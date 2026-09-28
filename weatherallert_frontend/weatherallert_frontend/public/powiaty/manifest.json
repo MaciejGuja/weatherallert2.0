@@ -1,0 +1,114 @@
+{
+  "śląskie": {
+    "file": "powiaty_slaskie.png",
+    "minLng": 17.9574,
+    "maxLng": 20.0516,
+    "minLat": 49.3258,
+    "maxLat": 51.1676
+  },
+  "opolskie": {
+    "file": "powiaty_opolskie.png",
+    "minLng": 16.8364,
+    "maxLng": 18.7669,
+    "minLat": 49.9236,
+    "maxLat": 51.2435
+  },
+  "wielkopolskie": {
+    "file": "powiaty_wielkopolskie.png",
+    "minLng": 15.6432,
+    "maxLng": 19.2381,
+    "minLat": 51.0016,
+    "maxLat": 53.758
+  },
+  "zachodniopomorskie": {
+    "file": "powiaty_zachodniopomorskie.png",
+    "minLng": 14.0085,
+    "maxLng": 17.0965,
+    "minLat": 52.5469,
+    "maxLat": 54.6475
+  },
+  "świętokrzyskie": {
+    "file": "powiaty_swietokrzyskie.png",
+    "minLng": 19.6178,
+    "maxLng": 21.9557,
+    "minLat": 50.1397,
+    "maxLat": 51.3887
+  },
+  "kujawsko-pomorskie": {
+    "file": "powiaty_kujawsko_pomorskie.png",
+    "minLng": 17.1467,
+    "maxLng": 19.8622,
+    "minLat": 52.2726,
+    "maxLat": 53.8391
+  },
+  "podlaskie": {
+    "file": "powiaty_podlaskie.png",
+    "minLng": 21.4989,
+    "maxLng": 24.0404,
+    "minLat": 52.1947,
+    "maxLat": 54.4956
+  },
+  "dolnośląskie": {
+    "file": "powiaty_dolnoslaskie.png",
+    "minLng": 14.6983,
+    "maxLng": 17.9144,
+    "minLat": 50.028,
+    "maxLat": 51.8731
+  },
+  "podkarpackie": {
+    "file": "powiaty_podkarpackie.png",
+    "minLng": 21.046,
+    "maxLng": 23.6441,
+    "minLat": 48.9293,
+    "maxLat": 50.8932
+  },
+  "małopolskie": {
+    "file": "powiaty_malopolskie.png",
+    "minLng": 18.9897,
+    "maxLng": 21.5144,
+    "minLat": 49.1248,
+    "maxLat": 50.5742
+  },
+  "pomorskie": {
+    "file": "powiaty_pomorskie.png",
+    "minLng": 16.5811,
+    "maxLng": 19.7667,
+    "minLat": 53.4372,
+    "maxLat": 54.8902
+  },
+  "warmińsko-mazurskie": {
+    "file": "powiaty_warminsko_mazurskie.png",
+    "minLng": 18.9805,
+    "maxLng": 22.9532,
+    "minLat": 53.0865,
+    "maxLat": 54.5059
+  },
+  "łódzkie": {
+    "file": "powiaty_lodzkie.png",
+    "minLng": 17.9711,
+    "maxLng": 20.7627,
+    "minLat": 50.7813,
+    "maxLat": 52.4561
+  },
+  "mazowieckie": {
+    "file": "powiaty_mazowieckie.png",
+    "minLng": 19.1044,
+    "maxLng": 23.2832,
+    "minLat": 50.9144,
+    "maxLat": 53.5805
+  },
+  "lubelskie": {
+    "file": "powiaty_lubelskie.png",
+    "minLng": 21.5143,
+    "maxLng": 24.247,
+    "minLat": 50.1704,
+    "maxLat": 52.3692
+  },
+  "lubuskie": {
+    "file": "powiaty_lubuskie.png",
+    "minLng": 14.4589,
+    "maxLng": 16.4921,
+    "minLat": 51.2928,
+    "maxLat": 53.1944
+  }
+}

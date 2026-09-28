@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: weather-alert
+  
+  datasource:
+    url: jdbc:postgresql://localhost:5432/weather_db
+    username: weather_admin
+    password: AdMin_Pa$$Word
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8

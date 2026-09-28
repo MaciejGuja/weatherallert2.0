@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitoringu Pogodowego IMGW</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        body { background-color: #eceff1; margin: 0; padding: 25px; color: #263238; }
+        
+        .card { max-width: 1300px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        h1 { margin: 0; color: #1a237e; font-size: 26px; }
+        
+        .search-box { display: flex; gap: 10px; }
+        input[type="text"] { padding: 10px 16px; border: 1px solid #cfd8dc; border-radius: 6px; width: 300px; font-size: 14px; }
+        input[type="text"]:focus { outline: none; border-color: #3f51b5; }
+        
+        button { padding: 10px 20px; background-color: #3f51b5; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s; }
+        button:hover { background-color: #303f9f; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background-color: #1a237e; color: white; text-transform: uppercase; font-size: 12px; letter-spacing: 0.8px; position: sticky; top: 0; }
+        
+        .province-header { background-color: #e8eaf6; }
+        .province-header td { font-weight: bold; color: #283593; font-size: 16px; padding: 14px 16px; border-top: 2px solid #c5cae9; }
+        
+        tr.station-row:hover { background-color: #f5f5f5; }
+        .temp-badge { font-weight: bold; color: #d84315; }
+        .station-count { background-color: #3f51b5; color: white; border-radius: 12px; padding: 2px 8px; font-size: 11px; margin-left: 8px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>Stacje Synoptyczne IMGW według Województw</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" onkeyup="filterGroupedData()" placeholder="Szukaj miasta lub województwa...">
+            <button onclick="fetchSynopData()">Odśwież</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Stacja / Miasto</th>
+                <th>Kraj</th>
+                <th>Szerokość</th>
+                <th>Długość</th>
+                <th>Data / Czas pomiaru</th>
+                <th>Temperatura</th>
+                <th>Prędkość wiatru</th>
+                <th>Kierunek</th>
+                <th>Wilgotność</th>
+                <th>Opad</th>
+                <th>Ciśnienie</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr><td colspan="11" style="text-align:center;">Ładowanie danych z serwera Spring Boot...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+let globalGroupedData = {};
+
+async function fetchSynopData() {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Pobieranie odczytów z API...</td></tr>';
+
+    try {
+        const response = await fetch('http://localhost:8080/api/synop/grouped');
+        globalGroupedData = await response.json();
+        renderTable(globalGroupedData);
+    } catch (error) {
+        console.error('Błąd podczas pobierania danych:', error);
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center; color: #c62828;">Nie udało się połączyć z backendem Spring Boot.</td></tr>';
+    }
+}
+
+function renderTable(dataMap) {
+    const tbody = document.getElementById('tableBody');
+    tbody.innerHTML = '';
+
+    const sortedProvinces = Object.keys(dataMap).sort();
+
+    if (sortedProvinces.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;">Brak danych do wyświetlenia.</td></tr>';
+        return;
+    }
+
+    sortedProvinces.forEach(province => {
+        const list = dataMap[province];
+
+        if (list && list.length > 0) {
+            // Wiersz nagłówka grupy (Województwo)
+            const provTr = document.createElement('tr');
+            provTr.className = 'province-header';
+            provTr.innerHTML = `
+                <td colspan="11">
+                    📍 Województwo: ${province}
+                    <span class="station-count">${list.length} stacje</span>
+                </td>
+            `;
+            tbody.appendChild(provTr);
+
+            // Wiersze z konkretnymi pomiarami stacji
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'station-row';
+                tr.innerHTML = `
+                    <td><strong>${item.station || 'b.d.'}</strong></td>
+                    <td>${item.country || 'Polska'}</td>
+                    <td>${item.latitudeGeo ?? item.latitude ?? 'b.d.'}</td>
+                    <td>${item.longitudeGeo ?? item.longitude ?? 'b.d.'}</td>
+                    <td>${item.measurementData || ''} ${item.measurementHour ? item.measurementHour + ':00' : ''}</td>
+                    <td class="temp-badge">${item.temprature ? item.temprature + ' °C' : 'b.d.'}</td>
+                    <td>${item.windSpeed ? item.windSpeed + ' m/s' : 'b.d.'}</td>
+                    <td>${item.windDirection ? item.windDirection + '°' : 'b.d.'}</td>
+                    <td>${item.relativeHumidity ? item.relativeHumidity + ' %' : 'b.d.'}</td>
+                    <td>${item.totalPrecipitation ? item.totalPrecipitation + ' mm' : 'b.d.'}</td>
+                    <td>${item.airPressure ? item.airPressure + ' hPa' : 'b.d.'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    });
+}
+
+function filterGroupedData() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    if (!query) {
+        renderTable(globalGroupedData);
+        return;
+    }
+
+    const filtered = {};
+
+    Object.entries(globalGroupedData).forEach(([province, list]) => {
+        const matchesProvince = province.toLowerCase().includes(query);
+        const matchingStations = list.filter(item => 
+            item.station && item.station.toLowerCase().includes(query)
+        );
+
+        if (matchesProvince) {
+            filtered[province] = list;
+        } else if (matchingStations.length > 0) {
+            filtered[province] = matchingStations;
+        }
+    });
+
+    renderTable(filtered);
+}
+
+// Pierwsze załadowanie danych po otwarciu pliku
+fetchSynopData();
+</script>
+
+</body>
+</html>
