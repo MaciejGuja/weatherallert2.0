@@ -1,0 +1,370 @@
+{
+  "2801": {
+    "name": "bartoszycki",
+    "file": "powiat_bartoszycki.png",
+    "minLng": 20.22262,
+    "maxLng": 21.25888,
+    "minLat": 54.00773,
+    "maxLat": 54.41727,
+    "aspect": 1.4797,
+    "gminy": [
+      "Bartoszyce",
+      "Bartoszyce",
+      "Bisztynek",
+      "Górowo Iławeckie",
+      "Górowo Iławeckie",
+      "Sępopol"
+    ],
+    "subdivided": true
+  },
+  "2802": {
+    "name": "braniewski",
+    "file": "powiat_braniewski.png",
+    "minLng": 19.58812,
+    "maxLng": 20.42458,
+    "minLat": 54.08836,
+    "maxLat": 54.46734,
+    "aspect": 1.2886,
+    "gminy": [
+      "Braniewo",
+      "Braniewo",
+      "Frombork",
+      "Lelkowo",
+      "Pieniężno",
+      "Płoskinia",
+      "Wilczęta"
+    ],
+    "subdivided": true
+  },
+  "2803": {
+    "name": "działdowski",
+    "file": "powiat_dzialdowski.png",
+    "minLng": 19.65406,
+    "maxLng": 20.44354,
+    "minLat": 53.12712,
+    "maxLat": 53.45048,
+    "aspect": 1.4595,
+    "gminy": [
+      "Działdowo",
+      "Działdowo",
+      "Iłowo-Osada",
+      "Lidzbark",
+      "Płośnica",
+      "Rybno"
+    ],
+    "subdivided": true
+  },
+  "2804": {
+    "name": "elbląski",
+    "file": "powiat_elblaski.png",
+    "minLng": 19.18366,
+    "maxLng": 20.09184,
+    "minLat": 53.90766,
+    "maxLat": 54.41084,
+    "aspect": 1.0568,
+    "gminy": [
+      "Elbląg",
+      "Godkowo",
+      "Gronowo Elbląskie",
+      "Markusy",
+      "Milejewo",
+      "Młynary",
+      "Pasłęk",
+      "Rychliki",
+      "Tolkmicko"
+    ],
+    "subdivided": true
+  },
+  "2805": {
+    "name": "ełcki",
+    "file": "powiat_elcki.png",
+    "minLng": 21.99531,
+    "maxLng": 22.81579,
+    "minLat": 53.6116,
+    "maxLat": 54.0219,
+    "aspect": 1.1806,
+    "gminy": [
+      "Ełk",
+      "Ełk",
+      "Kalinowo",
+      "Prostki",
+      "Stare Juchy"
+    ],
+    "subdivided": true
+  },
+  "2806": {
+    "name": "giżycki",
+    "file": "powiat_gizycki.png",
+    "minLng": 21.39833,
+    "maxLng": 22.24537,
+    "minLat": 53.84152,
+    "maxLat": 54.19468,
+    "aspect": 1.4092,
+    "gminy": [
+      "Giżycko",
+      "Giżycko",
+      "Kruklanki",
+      "Miłki",
+      "Ryn",
+      "Wydminy"
+    ],
+    "subdivided": true
+  },
+  "2807": {
+    "name": "iławski",
+    "file": "powiat_ilawski.png",
+    "minLng": 19.09478,
+    "maxLng": 19.98082,
+    "minLat": 53.41459,
+    "maxLat": 53.93601,
+    "aspect": 1.0066,
+    "gminy": [
+      "Iława",
+      "Iława",
+      "Kisielice",
+      "Lubawa",
+      "Lubawa",
+      "Susz",
+      "Zalewo"
+    ],
+    "subdivided": true
+  },
+  "2808": {
+    "name": "kętrzyński",
+    "file": "powiat_ketrzynski.png",
+    "minLng": 20.99879,
+    "maxLng": 21.62551,
+    "minLat": 53.92234,
+    "maxLat": 54.35066,
+    "aspect": 0.8572,
+    "gminy": [
+      "Barciany",
+      "Korsze",
+      "Kętrzyn",
+      "Kętrzyn",
+      "Reszel",
+      "Srokowo"
+    ],
+    "subdivided": true
+  },
+  "2809": {
+    "name": "lidzbarski",
+    "file": "powiat_lidzbarski.png",
+    "minLng": 19.90876,
+    "maxLng": 20.85204,
+    "minLat": 53.97307,
+    "maxLat": 54.23853,
+    "aspect": 2.0833,
+    "gminy": [
+      "Kiwity",
+      "Lidzbark Warmiński",
+      "Lidzbark Warmiński",
+      "Lubomino",
+      "Orneta"
+    ],
+    "subdivided": true
+  },
+  "2810": {
+    "name": "mrągowski",
+    "file": "powiat_mragowski.png",
+    "minLng": 21.0237,
+    "maxLng": 21.7715,
+    "minLat": 53.61067,
+    "maxLat": 54.01113,
+    "aspect": 1.1026,
+    "gminy": [
+      "Mikołajki",
+      "Mrągowo",
+      "Mrągowo",
+      "Piecki",
+      "Sorkwity"
+    ],
+    "subdivided": true
+  },
+  "2811": {
+    "name": "nidzicki",
+    "file": "powiat_nidzicki.png",
+    "minLng": 20.15462,
+    "maxLng": 20.84248,
+    "minLat": 53.20154,
+    "maxLat": 53.54336,
+    "aspect": 1.2006,
+    "gminy": [
+      "Janowiec Kościelny",
+      "Janowo",
+      "Kozłowo",
+      "Nidzica"
+    ],
+    "subdivided": true
+  },
+  "2812": {
+    "name": "nowomiejski",
+    "file": "powiat_nowomiejski.png",
+    "minLng": 19.16061,
+    "maxLng": 19.93259,
+    "minLat": 53.29141,
+    "maxLat": 53.58009,
+    "aspect": 1.5931,
+    "gminy": [
+      "Biskupiec",
+      "Grodziczno",
+      "Kurzętnik",
+      "Nowe Miasto Lubawskie",
+      "Nowe Miasto Lubawskie"
+    ],
+    "subdivided": true
+  },
+  "2813": {
+    "name": "olecki",
+    "file": "powiat_olecki.png",
+    "minLng": 22.08566,
+    "maxLng": 22.74824,
+    "minLat": 53.8744,
+    "maxLat": 54.2281,
+    "aspect": 1.0997,
+    "gminy": [
+      "Kowale Oleckie",
+      "Olecko",
+      "Wieliczki",
+      "Świętajno"
+    ],
+    "subdivided": true
+  },
+  "2814": {
+    "name": "olsztyński",
+    "file": "powiat_olsztynski.png",
+    "minLng": 20.06576,
+    "maxLng": 21.16854,
+    "minLat": 53.4277,
+    "maxLat": 54.1298,
+    "aspect": 0.9281,
+    "gminy": [
+      "Barczewo",
+      "Biskupiec",
+      "Dobre Miasto",
+      "Dywity",
+      "Gietrzwałd",
+      "Jeziorany",
+      "Jonkowo",
+      "Kolno",
+      "Olsztynek",
+      "Purda",
+      "Stawiguda",
+      "Świątki"
+    ],
+    "subdivided": true
+  },
+  "2815": {
+    "name": "ostródzki",
+    "file": "powiat_ostrodzki.png",
+    "minLng": 19.52734,
+    "maxLng": 20.30106,
+    "minLat": 53.35044,
+    "maxLat": 54.10796,
+    "aspect": 0.6043,
+    "gminy": [
+      "Dąbrówno",
+      "Grunwald",
+      "Małdyty",
+      "Miłakowo",
+      "Miłomłyn",
+      "Morąg",
+      "Ostróda",
+      "Ostróda",
+      "Łukta"
+    ],
+    "subdivided": true
+  },
+  "2816": {
+    "name": "piski",
+    "file": "powiat_piski.png",
+    "minLng": 21.37418,
+    "maxLng": 22.34142,
+    "minLat": 53.44126,
+    "maxLat": 53.91744,
+    "aspect": 1.2031,
+    "gminy": [
+      "Biała Piska",
+      "Orzysz",
+      "Pisz",
+      "Ruciane-Nida"
+    ],
+    "subdivided": true
+  },
+  "2817": {
+    "name": "szczycieński",
+    "file": "powiat_szczycienski.png",
+    "minLng": 20.5533,
+    "maxLng": 21.5901,
+    "minLat": 53.27256,
+    "maxLat": 53.81094,
+    "aspect": 1.1444,
+    "gminy": [
+      "Dźwierzuty",
+      "Jedwabno",
+      "Pasym",
+      "Rozogi",
+      "Szczytno",
+      "Szczytno",
+      "Wielbark",
+      "Świętajno"
+    ],
+    "subdivided": true
+  },
+  "2818": {
+    "name": "gołdapski",
+    "file": "powiat_goldapski.png",
+    "minLng": 21.90359,
+    "maxLng": 22.84081,
+    "minLat": 54.14935,
+    "maxLat": 54.37205,
+    "aspect": 2.4581,
+    "gminy": [
+      "Banie Mazurskie",
+      "Dubeninki",
+      "Gołdap"
+    ],
+    "subdivided": true
+  },
+  "2819": {
+    "name": "węgorzewski",
+    "file": "powiat_wegorzewski.png",
+    "minLng": 21.5113,
+    "maxLng": 22.0459,
+    "minLat": 54.07068,
+    "maxLat": 54.34382,
+    "aspect": 1.1447,
+    "gminy": [
+      "Budry",
+      "Pozezdrze",
+      "Węgorzewo"
+    ],
+    "subdivided": true
+  },
+  "2861": {
+    "name": "Elbląg",
+    "file": "powiat_elblag.png",
+    "minLng": 19.3531,
+    "maxLng": 19.515,
+    "minLat": 54.12926,
+    "maxLat": 54.26794,
+    "aspect": 0.6829,
+    "gminy": [
+      "Elbląg"
+    ],
+    "subdivided": false
+  },
+  "2862": {
+    "name": "Olsztyn",
+    "file": "powiat_olsztyn.png",
+    "minLng": 20.35933,
+    "maxLng": 20.57457,
+    "minLat": 53.72003,
+    "maxLat": 53.83267,
+    "aspect": 1.1292,
+    "gminy": [
+      "Olsztyn"
+    ],
+    "subdivided": false
+  }
+}

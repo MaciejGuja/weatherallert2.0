@@ -1,0 +1,252 @@
+{
+  "0801": {
+    "name": "gorzowski",
+    "file": "powiat_gorzowski.png",
+    "minLng": 14.52231,
+    "maxLng": 15.64789,
+    "minLat": 52.55888,
+    "maxLat": 52.91842,
+    "aspect": 1.8954,
+    "gminy": [
+      "Bogdaniec",
+      "Deszczno",
+      "Kostrzyn nad Odrą",
+      "Kłodawa",
+      "Lubiszyn",
+      "Santok",
+      "Witnica"
+    ],
+    "subdivided": true
+  },
+  "0802": {
+    "name": "krośnieński",
+    "file": "powiat_krosnienski.png",
+    "minLng": 14.56061,
+    "maxLng": 15.34339,
+    "minLat": 51.76719,
+    "maxLat": 52.25071,
+    "aspect": 0.9965,
+    "gminy": [
+      "Bobrowice",
+      "Bytnica",
+      "Dąbie",
+      "Gubin",
+      "Gubin",
+      "Krosno Odrzańskie",
+      "Maszewo"
+    ],
+    "subdivided": true
+  },
+  "0803": {
+    "name": "międzyrzecki",
+    "file": "powiat_miedzyrzecki.png",
+    "minLng": 15.24041,
+    "maxLng": 15.92599,
+    "minLat": 52.26607,
+    "maxLat": 52.73133,
+    "aspect": 0.8971,
+    "gminy": [
+      "Bledzew",
+      "Międzyrzecz",
+      "Przytoczna",
+      "Pszczew",
+      "Skwierzyna",
+      "Trzciel"
+    ],
+    "subdivided": true
+  },
+  "0804": {
+    "name": "nowosolski",
+    "file": "powiat_nowosolski.png",
+    "minLng": 15.41942,
+    "maxLng": 16.03448,
+    "minLat": 51.62922,
+    "maxLat": 52.05518,
+    "aspect": 0.8921,
+    "gminy": [
+      "Bytom Odrzański",
+      "Kolsko",
+      "Kożuchów",
+      "Nowa Sól",
+      "Nowa Sól",
+      "Nowe Miasteczko",
+      "Otyń",
+      "Siedlisko"
+    ],
+    "subdivided": true
+  },
+  "0805": {
+    "name": "słubicki",
+    "file": "powiat_slubicki.png",
+    "minLng": 14.51386,
+    "maxLng": 15.06304,
+    "minLat": 52.04976,
+    "maxLat": 52.59614,
+    "aspect": 0.6143,
+    "gminy": [
+      "Cybinka",
+      "Górzyca",
+      "Ośno Lubuskie",
+      "Rzepin",
+      "Słubice"
+    ],
+    "subdivided": true
+  },
+  "0806": {
+    "name": "strzelecko-drezdenecki",
+    "file": "powiat_strzelecko_drezdenecki.png",
+    "minLng": 15.25432,
+    "maxLng": 16.02588,
+    "minLat": 52.68346,
+    "maxLat": 53.14094,
+    "aspect": 1.0171,
+    "gminy": [
+      "Dobiegniew",
+      "Drezdenko",
+      "Stare Kurowo",
+      "Strzelce Krajeńskie",
+      "Zwierzyn"
+    ],
+    "subdivided": true
+  },
+  "0807": {
+    "name": "sulęciński",
+    "file": "powiat_sulecinski.png",
+    "minLng": 14.6153,
+    "maxLng": 15.4821,
+    "minLat": 52.18816,
+    "maxLat": 52.66994,
+    "aspect": 1.097,
+    "gminy": [
+      "Krzeszyce",
+      "Lubniewice",
+      "Sulęcin",
+      "Słońsk",
+      "Torzym"
+    ],
+    "subdivided": true
+  },
+  "0808": {
+    "name": "świebodziński",
+    "file": "powiat_swiebodzinski.png",
+    "minLng": 15.0597,
+    "maxLng": 15.913,
+    "minLat": 52.08362,
+    "maxLat": 52.39078,
+    "aspect": 1.7012,
+    "gminy": [
+      "Lubrza",
+      "Skąpe",
+      "Szczaniec",
+      "Zbąszynek",
+      "Łagów",
+      "Świebodzin"
+    ],
+    "subdivided": true
+  },
+  "0809": {
+    "name": "zielonogórski",
+    "file": "powiat_zielonogorski.png",
+    "minLng": 15.04028,
+    "maxLng": 16.04262,
+    "minLat": 51.71736,
+    "maxLat": 52.23424,
+    "aspect": 1.1945,
+    "gminy": [
+      "Babimost",
+      "Bojadła",
+      "Czerwieńsk",
+      "Kargowa",
+      "Nowogród Bobrzański",
+      "Sulechów",
+      "Trzebiechów",
+      "Zabór",
+      "Świdnica"
+    ],
+    "subdivided": true
+  },
+  "0810": {
+    "name": "żagański",
+    "file": "powiat_zaganski.png",
+    "minLng": 14.95313,
+    "maxLng": 15.89197,
+    "minLat": 51.39274,
+    "maxLat": 51.79666,
+    "aspect": 1.4439,
+    "gminy": [
+      "Brzeźnica",
+      "Gozdnica",
+      "Iłowa",
+      "Małomice",
+      "Niegosławice",
+      "Szprotawa",
+      "Wymiarki",
+      "Żagań",
+      "Żagań"
+    ],
+    "subdivided": true
+  },
+  "0811": {
+    "name": "żarski",
+    "file": "powiat_zarski.png",
+    "minLng": 14.62506,
+    "maxLng": 15.29844,
+    "minLat": 51.34198,
+    "maxLat": 51.91492,
+    "aspect": 0.7296,
+    "gminy": [
+      "Brody",
+      "Jasień",
+      "Lipinki Łużyckie",
+      "Lubsko",
+      "Przewóz",
+      "Trzebiel",
+      "Tuplice",
+      "Łęknica",
+      "Żary",
+      "Żary"
+    ],
+    "subdivided": true
+  },
+  "0812": {
+    "name": "wschowski",
+    "file": "powiat_wschowski.png",
+    "minLng": 15.80146,
+    "maxLng": 16.43984,
+    "minLat": 51.65017,
+    "maxLat": 52.01013,
+    "aspect": 1.096,
+    "gminy": [
+      "Szlichtyngowa",
+      "Sława",
+      "Wschowa"
+    ],
+    "subdivided": true
+  },
+  "0861": {
+    "name": "Gorzów Wielkopolski",
+    "file": "powiat_gorzow_wielkopolski.png",
+    "minLng": 15.11726,
+    "maxLng": 15.31824,
+    "minLat": 52.68112,
+    "maxLat": 52.78058,
+    "aspect": 1.2237,
+    "gminy": [
+      "Gorzów Wielkopolski"
+    ],
+    "subdivided": false
+  },
+  "0862": {
+    "name": "Zielona Góra",
+    "file": "powiat_zielona_gora.png",
+    "minLng": 15.39606,
+    "maxLng": 15.66184,
+    "minLat": 51.8115,
+    "maxLat": 52.0437,
+    "aspect": 0.7058,
+    "gminy": [
+      "Zielona Góra"
+    ],
+    "subdivided": false
+  }
+}

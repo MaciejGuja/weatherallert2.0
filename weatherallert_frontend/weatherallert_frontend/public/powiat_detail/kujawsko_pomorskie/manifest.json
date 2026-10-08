@@ -1,0 +1,422 @@
+{
+  "0401": {
+    "name": "aleksandrowski",
+    "file": "powiat_aleksandrowski.png",
+    "minLng": 18.48308,
+    "maxLng": 18.95612,
+    "minLat": 52.62369,
+    "maxLat": 52.94531,
+    "aspect": 0.8896,
+    "gminy": [
+      "Aleksandrów Kujawski",
+      "Aleksandrów Kujawski",
+      "Bądkowo",
+      "Ciechocinek",
+      "Koneck",
+      "Nieszawa",
+      "Raciążek",
+      "Waganiec",
+      "Zakrzewo"
+    ],
+    "subdivided": true
+  },
+  "0402": {
+    "name": "brodnicki",
+    "file": "powiat_brodnicki.png",
+    "minLng": 19.05679,
+    "maxLng": 19.78871,
+    "minLat": 53.0652,
+    "maxLat": 53.4728,
+    "aspect": 1.0739,
+    "gminy": [
+      "Bartniczka",
+      "Bobrowo",
+      "Brodnica",
+      "Brodnica",
+      "Brzozie",
+      "Górzno",
+      "Jabłonowo Pomorskie",
+      "Osiek",
+      "Zbiczno",
+      "Świedziebnia"
+    ],
+    "subdivided": true
+  },
+  "0403": {
+    "name": "bydgoski",
+    "file": "powiat_bydgoski.png",
+    "minLng": 17.63946,
+    "maxLng": 18.43694,
+    "minLat": 52.92015,
+    "maxLat": 53.46415,
+    "aspect": 0.8783,
+    "gminy": [
+      "Białe Błota",
+      "Dobrcz",
+      "Dąbrowa Chełmińska",
+      "Koronowo",
+      "Nowa Wieś Wielka",
+      "Osielsko",
+      "Sicienko",
+      "Solec Kujawski"
+    ],
+    "subdivided": true
+  },
+  "0404": {
+    "name": "chełmiński",
+    "file": "powiat_chelminski.png",
+    "minLng": 18.24826,
+    "maxLng": 18.75974,
+    "minLat": 53.15934,
+    "maxLat": 53.44186,
+    "aspect": 1.0819,
+    "gminy": [
+      "Chełmno",
+      "Chełmno",
+      "Kijewo Królewskie",
+      "Lisewo",
+      "Papowo Biskupie",
+      "Stolno",
+      "Unisław"
+    ],
+    "subdivided": true
+  },
+  "0405": {
+    "name": "golubsko-dobrzyński",
+    "file": "powiat_golubsko_dobrzynski.png",
+    "minLng": 18.70622,
+    "maxLng": 19.27798,
+    "minLat": 52.94962,
+    "maxLat": 53.24878,
+    "aspect": 1.1476,
+    "gminy": [
+      "Ciechocin",
+      "Golub-Dobrzyń",
+      "Golub-Dobrzyń",
+      "Kowalewo Pomorskie",
+      "Radomin",
+      "Zbójno"
+    ],
+    "subdivided": true
+  },
+  "0406": {
+    "name": "grudziądzki",
+    "file": "powiat_grudziadzki.png",
+    "minLng": 18.57299,
+    "maxLng": 19.26181,
+    "minLat": 53.32085,
+    "maxLat": 53.62195,
+    "aspect": 1.3617,
+    "gminy": [
+      "Grudziądz",
+      "Gruta",
+      "Radzyń Chełmiński",
+      "Rogóźno",
+      "Łasin",
+      "Świecie nad Osą"
+    ],
+    "subdivided": true
+  },
+  "0407": {
+    "name": "inowrocławski",
+    "file": "powiat_inowroclawski.png",
+    "minLng": 17.9414,
+    "maxLng": 18.6515,
+    "minLat": 52.51933,
+    "maxLat": 53.00997,
+    "aspect": 0.8757,
+    "gminy": [
+      "Dąbrowa Biskupia",
+      "Gniewkowo",
+      "Inowrocław",
+      "Inowrocław",
+      "Janikowo",
+      "Kruszwica",
+      "Pakość",
+      "Rojewo",
+      "Złotniki Kujawskie"
+    ],
+    "subdivided": true
+  },
+  "0408": {
+    "name": "lipnowski",
+    "file": "powiat_lipnowski.png",
+    "minLng": 18.88251,
+    "maxLng": 19.55189,
+    "minLat": 52.60966,
+    "maxLat": 53.01844,
+    "aspect": 0.9897,
+    "gminy": [
+      "Bobrowniki",
+      "Chrostkowo",
+      "Dobrzyń nad Wisłą",
+      "Kikół",
+      "Lipno",
+      "Lipno",
+      "Skępe",
+      "Tłuchowo",
+      "Wielgie"
+    ],
+    "subdivided": true
+  },
+  "0409": {
+    "name": "mogileński",
+    "file": "powiat_mogilenski.png",
+    "minLng": 17.7636,
+    "maxLng": 18.3846,
+    "minLat": 52.46687,
+    "maxLat": 52.85643,
+    "aspect": 0.9669,
+    "gminy": [
+      "Dąbrowa",
+      "Jeziora Wielkie",
+      "Mogilno",
+      "Strzelno"
+    ],
+    "subdivided": true
+  },
+  "0410": {
+    "name": "nakielski",
+    "file": "powiat_nakielski.png",
+    "minLng": 17.27853,
+    "maxLng": 17.90147,
+    "minLat": 52.8789,
+    "maxLat": 53.3109,
+    "aspect": 0.8659,
+    "gminy": [
+      "Kcynia",
+      "Mrocza",
+      "Nakło nad Notecią",
+      "Sadki",
+      "Szubin"
+    ],
+    "subdivided": true
+  },
+  "0411": {
+    "name": "radziejowski",
+    "file": "powiat_radziejowski.png",
+    "minLng": 18.35779,
+    "maxLng": 18.84671,
+    "minLat": 52.40943,
+    "maxLat": 52.73797,
+    "aspect": 0.9044,
+    "gminy": [
+      "Bytoń",
+      "Dobre",
+      "Osięciny",
+      "Piotrków Kujawski",
+      "Radziejów",
+      "Radziejów",
+      "Topólka"
+    ],
+    "subdivided": true
+  },
+  "0412": {
+    "name": "rypiński",
+    "file": "powiat_rypinski.png",
+    "minLng": 19.15981,
+    "maxLng": 19.70499,
+    "minLat": 52.91778,
+    "maxLat": 53.22882,
+    "aspect": 1.053,
+    "gminy": [
+      "Brzuze",
+      "Rogowo",
+      "Rypin",
+      "Rypin",
+      "Skrwilno",
+      "Wąpielsk"
+    ],
+    "subdivided": true
+  },
+  "0413": {
+    "name": "sępoleński",
+    "file": "powiat_sepolenski.png",
+    "minLng": 17.22678,
+    "maxLng": 17.79162,
+    "minLat": 53.25351,
+    "maxLat": 53.63129,
+    "aspect": 0.8906,
+    "gminy": [
+      "Kamień Krajeński",
+      "Sośno",
+      "Sępólno Krajeńskie",
+      "Więcbork"
+    ],
+    "subdivided": true
+  },
+  "0414": {
+    "name": "świecki",
+    "file": "powiat_swiecki.png",
+    "minLng": 18.00411,
+    "maxLng": 18.81919,
+    "minLat": 53.23484,
+    "maxLat": 53.72776,
+    "aspect": 0.984,
+    "gminy": [
+      "Bukowiec",
+      "Dragacz",
+      "Drzycim",
+      "Jeżewo",
+      "Lniano",
+      "Nowe",
+      "Osie",
+      "Pruszcz",
+      "Warlubie",
+      "Świecie",
+      "Świekatowo"
+    ],
+    "subdivided": true
+  },
+  "0415": {
+    "name": "toruński",
+    "file": "powiat_torunski.png",
+    "minLng": 18.10838,
+    "maxLng": 19.13222,
+    "minLat": 52.8132,
+    "maxLat": 53.2803,
+    "aspect": 1.3177,
+    "gminy": [
+      "Chełmża",
+      "Chełmża",
+      "Czernikowo",
+      "Lubicz",
+      "Obrowo",
+      "Wielka Nieszawka",
+      "Zławieś Wielka",
+      "Łubianka",
+      "Łysomice"
+    ],
+    "subdivided": true
+  },
+  "0416": {
+    "name": "tucholski",
+    "file": "powiat_tucholski.png",
+    "minLng": 17.57522,
+    "maxLng": 18.30368,
+    "minLat": 53.36832,
+    "maxLat": 53.79698,
+    "aspect": 1.0089,
+    "gminy": [
+      "Cekcyn",
+      "Gostycyn",
+      "Kęsowo",
+      "Lubiewo",
+      "Tuchola",
+      "Śliwice"
+    ],
+    "subdivided": true
+  },
+  "0417": {
+    "name": "wąbrzeski",
+    "file": "powiat_wabrzeski.png",
+    "minLng": 18.6772,
+    "maxLng": 19.1768,
+    "minLat": 53.16328,
+    "maxLat": 53.40152,
+    "aspect": 1.2538,
+    "gminy": [
+      "Dębowa Łąka",
+      "Książki",
+      "Płużnica",
+      "Ryńsk",
+      "Wąbrzeźno"
+    ],
+    "subdivided": true
+  },
+  "0418": {
+    "name": "włocławski",
+    "file": "powiat_wloclawski.png",
+    "minLng": 18.64718,
+    "maxLng": 19.45492,
+    "minLat": 52.31366,
+    "maxLat": 52.80064,
+    "aspect": 1.0084,
+    "gminy": [
+      "Baruchowo",
+      "Boniewo",
+      "Brześć Kujawski",
+      "Choceń",
+      "Chodecz",
+      "Fabianki",
+      "Izbica Kujawska",
+      "Kowal",
+      "Kowal",
+      "Lubanie",
+      "Lubień Kujawski",
+      "Lubraniec",
+      "Włocławek"
+    ],
+    "subdivided": true
+  },
+  "0419": {
+    "name": "żniński",
+    "file": "powiat_zninski.png",
+    "minLng": 17.38119,
+    "maxLng": 18.09701,
+    "minLat": 52.58467,
+    "maxLat": 53.06063,
+    "aspect": 0.9088,
+    "gminy": [
+      "Barcin",
+      "Gąsawa",
+      "Janowiec Wielkopolski",
+      "Rogowo",
+      "Łabiszyn",
+      "Żnin"
+    ],
+    "subdivided": true
+  },
+  "0461": {
+    "name": "Bydgoszcz",
+    "file": "powiat_bydgoszcz.png",
+    "minLng": 17.86108,
+    "maxLng": 18.21522,
+    "minLat": 53.04374,
+    "maxLat": 53.21536,
+    "aspect": 1.2381,
+    "gminy": [
+      "Bydgoszcz"
+    ],
+    "subdivided": false
+  },
+  "0462": {
+    "name": "Grudziądz",
+    "file": "powiat_grudziadz.png",
+    "minLng": 18.68869,
+    "maxLng": 18.87791,
+    "minLat": 53.41667,
+    "maxLat": 53.52813,
+    "aspect": 1.0105,
+    "gminy": [
+      "Grudziądz"
+    ],
+    "subdivided": false
+  },
+  "0463": {
+    "name": "Toruń",
+    "file": "powiat_torun.png",
+    "minLng": 18.4495,
+    "maxLng": 18.752,
+    "minLat": 52.959,
+    "maxLat": 53.0697,
+    "aspect": 1.644,
+    "gminy": [
+      "Toruń"
+    ],
+    "subdivided": false
+  },
+  "0464": {
+    "name": "Włocławek",
+    "file": "powiat_wloclawek.png",
+    "minLng": 18.92936,
+    "maxLng": 19.19234,
+    "minLat": 52.58915,
+    "maxLat": 52.74165,
+    "aspect": 1.0458,
+    "gminy": [
+      "Włocławek"
+    ],
+    "subdivided": false
+  }
+}

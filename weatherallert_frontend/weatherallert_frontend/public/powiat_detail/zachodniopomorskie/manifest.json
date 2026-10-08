@@ -1,0 +1,367 @@
+{
+  "3201": {
+    "name": "białogardzki",
+    "file": "powiat_bialogardzki.png",
+    "minLng": 15.69062,
+    "maxLng": 16.48648,
+    "minLat": 53.79532,
+    "maxLat": 54.15918,
+    "aspect": 1.2863,
+    "gminy": [
+      "Białogard",
+      "Białogard",
+      "Karlino",
+      "Tychowo"
+    ],
+    "subdivided": true
+  },
+  "3202": {
+    "name": "choszczeński",
+    "file": "powiat_choszczenski.png",
+    "minLng": 15.17163,
+    "maxLng": 16.06987,
+    "minLat": 52.92551,
+    "maxLat": 53.35999,
+    "aspect": 1.2401,
+    "gminy": [
+      "Bierzwnik",
+      "Choszczno",
+      "Drawno",
+      "Krzęcin",
+      "Pełczyce",
+      "Recz"
+    ],
+    "subdivided": true
+  },
+  "3203": {
+    "name": "drawski",
+    "file": "powiat_drawski.png",
+    "minLng": 15.54988,
+    "maxLng": 16.49282,
+    "minLat": 53.18128,
+    "maxLat": 53.71362,
+    "aspect": 1.0549,
+    "gminy": [
+      "Czaplinek",
+      "Drawsko Pomorskie",
+      "Kalisz Pomorski",
+      "Wierzchowo",
+      "Złocieniec"
+    ],
+    "subdivided": true
+  },
+  "3204": {
+    "name": "goleniowski",
+    "file": "powiat_goleniowski.png",
+    "minLng": 14.34357,
+    "maxLng": 15.36493,
+    "minLat": 53.38641,
+    "maxLat": 53.83429,
+    "aspect": 1.3529,
+    "gminy": [
+      "Goleniów",
+      "Maszewo",
+      "Nowogard",
+      "Osina",
+      "Przybiernów",
+      "Stepnica"
+    ],
+    "subdivided": true
+  },
+  "3205": {
+    "name": "gryficki",
+    "file": "powiat_gryficki.png",
+    "minLng": 14.87156,
+    "maxLng": 15.50974,
+    "minLat": 53.70949,
+    "maxLat": 54.17691,
+    "aspect": 0.8036,
+    "gminy": [
+      "Brojce",
+      "Gryfice",
+      "Karnice",
+      "Płoty",
+      "Rewal",
+      "Trzebiatów"
+    ],
+    "subdivided": true
+  },
+  "3206": {
+    "name": "gryfiński",
+    "file": "powiat_gryfinski.png",
+    "minLng": 14.09281,
+    "maxLng": 14.90529,
+    "minLat": 52.65245,
+    "maxLat": 53.39355,
+    "aspect": 0.6594,
+    "gminy": [
+      "Banie",
+      "Cedynia",
+      "Chojna",
+      "Gryfino",
+      "Mieszkowice",
+      "Moryń",
+      "Stare Czarnowo",
+      "Trzcińsko-Zdrój",
+      "Widuchowa"
+    ],
+    "subdivided": true
+  },
+  "3207": {
+    "name": "kamieński",
+    "file": "powiat_kamienski.png",
+    "minLng": 14.36277,
+    "maxLng": 15.12493,
+    "minLat": 53.75608,
+    "maxLat": 54.06722,
+    "aspect": 1.4429,
+    "gminy": [
+      "Dziwnów",
+      "Golczewo",
+      "Kamień Pomorski",
+      "Międzyzdroje",
+      "Wolin",
+      "Świerzno"
+    ],
+    "subdivided": true
+  },
+  "3208": {
+    "name": "kołobrzeski",
+    "file": "powiat_kolobrzeski.png",
+    "minLng": 15.32618,
+    "maxLng": 15.90192,
+    "minLat": 53.85881,
+    "maxLat": 54.24199,
+    "aspect": 0.8821,
+    "gminy": [
+      "Dygowo",
+      "Gościno",
+      "Kołobrzeg",
+      "Kołobrzeg",
+      "Rymań",
+      "Siemyśl",
+      "Ustronie Morskie"
+    ],
+    "subdivided": true
+  },
+  "3209": {
+    "name": "koszaliński",
+    "file": "powiat_koszalinski.png",
+    "minLng": 15.75034,
+    "maxLng": 16.85346,
+    "minLat": 53.86799,
+    "maxLat": 54.35161,
+    "aspect": 1.3372,
+    "gminy": [
+      "Biesiekierz",
+      "Bobolice",
+      "Będzino",
+      "Manowo",
+      "Mielno",
+      "Polanów",
+      "Sianów",
+      "Świeszyno"
+    ],
+    "subdivided": true
+  },
+  "3210": {
+    "name": "myśliborski",
+    "file": "powiat_mysliborski.png",
+    "minLng": 14.40055,
+    "maxLng": 15.36855,
+    "minLat": 52.60628,
+    "maxLat": 53.10362,
+    "aspect": 1.1753,
+    "gminy": [
+      "Barlinek",
+      "Boleszkowice",
+      "Dębno",
+      "Myślibórz",
+      "Nowogródek Pomorski"
+    ],
+    "subdivided": true
+  },
+  "3211": {
+    "name": "policki",
+    "file": "powiat_policki.png",
+    "minLng": 14.25206,
+    "maxLng": 14.65004,
+    "minLat": 53.25397,
+    "maxLat": 53.80563,
+    "aspect": 0.4288,
+    "gminy": [
+      "Dobra (Szczecińska)",
+      "Kołbaskowo",
+      "Nowe Warpno",
+      "Police"
+    ],
+    "subdivided": true
+  },
+  "3212": {
+    "name": "pyrzycki",
+    "file": "powiat_pyrzycki.png",
+    "minLng": 14.64706,
+    "maxLng": 15.23394,
+    "minLat": 52.95772,
+    "maxLat": 53.29738,
+    "aspect": 1.0368,
+    "gminy": [
+      "Bielice",
+      "Kozielice",
+      "Lipiany",
+      "Przelewice",
+      "Pyrzyce",
+      "Warnice"
+    ],
+    "subdivided": true
+  },
+  "3213": {
+    "name": "sławieński",
+    "file": "powiat_slawienski.png",
+    "minLng": 16.18742,
+    "maxLng": 16.89148,
+    "minLat": 54.17427,
+    "maxLat": 54.58543,
+    "aspect": 0.9973,
+    "gminy": [
+      "Darłowo",
+      "Darłowo",
+      "Malechowo",
+      "Postomino",
+      "Sławno",
+      "Sławno"
+    ],
+    "subdivided": true
+  },
+  "3214": {
+    "name": "stargardzki",
+    "file": "powiat_stargardzki.png",
+    "minLng": 14.69533,
+    "maxLng": 15.75837,
+    "minLat": 53.06324,
+    "maxLat": 53.56716,
+    "aspect": 1.2603,
+    "gminy": [
+      "Chociwel",
+      "Dobrzany",
+      "Dolice",
+      "Ińsko",
+      "Kobylanka",
+      "Marianowo",
+      "Stara Dąbrowa",
+      "Stargard",
+      "Stargard",
+      "Suchań"
+    ],
+    "subdivided": true
+  },
+  "3215": {
+    "name": "szczecinecki",
+    "file": "powiat_szczecinecki.png",
+    "minLng": 16.1657,
+    "maxLng": 17.0135,
+    "minLat": 53.44894,
+    "maxLat": 54.02566,
+    "aspect": 0.8695,
+    "gminy": [
+      "Barwice",
+      "Biały Bór",
+      "Borne Sulinowo",
+      "Grzmiąca",
+      "Szczecinek",
+      "Szczecinek"
+    ],
+    "subdivided": true
+  },
+  "3216": {
+    "name": "świdwiński",
+    "file": "powiat_swidwinski.png",
+    "minLng": 15.49954,
+    "maxLng": 16.29756,
+    "minLat": 53.63198,
+    "maxLat": 53.98342,
+    "aspect": 1.3409,
+    "gminy": [
+      "Brzeżno",
+      "Połczyn-Zdrój",
+      "Rąbino",
+      "Sławoborze",
+      "Świdwin",
+      "Świdwin"
+    ],
+    "subdivided": true
+  },
+  "3217": {
+    "name": "wałecki",
+    "file": "powiat_walecki.png",
+    "minLng": 15.93242,
+    "maxLng": 16.74458,
+    "minLat": 52.99416,
+    "maxLat": 53.47854,
+    "aspect": 1.0035,
+    "gminy": [
+      "Człopa",
+      "Mirosławiec",
+      "Tuczno",
+      "Wałcz",
+      "Wałcz"
+    ],
+    "subdivided": true
+  },
+  "3218": {
+    "name": "łobeski",
+    "file": "powiat_lobeski.png",
+    "minLng": 15.11828,
+    "maxLng": 15.82632,
+    "minLat": 53.45452,
+    "maxLat": 53.89408,
+    "aspect": 0.9542,
+    "gminy": [
+      "Dobra",
+      "Radowo Małe",
+      "Resko",
+      "Węgorzyno",
+      "Łobez"
+    ],
+    "subdivided": true
+  },
+  "3261": {
+    "name": "Koszalin",
+    "file": "powiat_koszalin.png",
+    "minLng": 16.071,
+    "maxLng": 16.3329,
+    "minLat": 54.13318,
+    "maxLat": 54.28212,
+    "aspect": 1.0284,
+    "gminy": [
+      "Koszalin"
+    ],
+    "subdivided": false
+  },
+  "3262": {
+    "name": "Szczecin",
+    "file": "powiat_szczecin.png",
+    "minLng": 14.42944,
+    "maxLng": 14.81986,
+    "minLat": 53.31504,
+    "maxLat": 53.54626,
+    "aspect": 1.006,
+    "gminy": [
+      "Szczecin"
+    ],
+    "subdivided": false
+  },
+  "3263": {
+    "name": "Świnoujście",
+    "file": "powiat_swinoujscie.png",
+    "minLng": 14.17508,
+    "maxLng": 14.45112,
+    "minLat": 53.76184,
+    "maxLat": 53.94436,
+    "aspect": 0.8921,
+    "gminy": [
+      "Świnoujście"
+    ],
+    "subdivided": false
+  }
+}

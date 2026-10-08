@@ -1,0 +1,272 @@
+{
+  "2601": {
+    "name": "buski",
+    "file": "powiat_buski.png",
+    "minLng": 20.58251,
+    "maxLng": 21.17089,
+    "minLat": 50.2587,
+    "maxLat": 50.6529,
+    "aspect": 0.9503,
+    "gminy": [
+      "Busko-Zdrój",
+      "Gnojno",
+      "Nowy Korczyn",
+      "Pacanów",
+      "Solec-Zdrój",
+      "Stopnica",
+      "Tuczępy",
+      "Wiślica"
+    ],
+    "subdivided": true
+  },
+  "2602": {
+    "name": "jędrzejowski",
+    "file": "powiat_jedrzejowski.png",
+    "minLng": 19.75624,
+    "maxLng": 20.61636,
+    "minLat": 50.43054,
+    "maxLat": 50.88296,
+    "aspect": 1.2053,
+    "gminy": [
+      "Imielno",
+      "Jędrzejów",
+      "Małogoszcz",
+      "Nagłowice",
+      "Oksa",
+      "Sobków",
+      "Sędziszów",
+      "Słupia (Jędrzejowska)",
+      "Wodzisław"
+    ],
+    "subdivided": true
+  },
+  "2603": {
+    "name": "kazimierski",
+    "file": "powiat_kazimierski.png",
+    "minLng": 20.27321,
+    "maxLng": 20.79399,
+    "minLat": 50.17781,
+    "maxLat": 50.39899,
+    "aspect": 1.5044,
+    "gminy": [
+      "Bejsce",
+      "Czarnocin",
+      "Kazimierza Wielka",
+      "Opatowiec",
+      "Skalbmierz"
+    ],
+    "subdivided": true
+  },
+  "2604": {
+    "name": "kielecki",
+    "file": "powiat_kielecki.png",
+    "minLng": 20.04928,
+    "maxLng": 21.21622,
+    "minLat": 50.5153,
+    "maxLat": 51.0878,
+    "aspect": 1.2882,
+    "gminy": [
+      "Bieliny",
+      "Bodzentyn",
+      "Chmielnik",
+      "Chęciny",
+      "Daleszyce",
+      "Górno",
+      "Masłów",
+      "Miedziana Góra",
+      "Mniów",
+      "Morawica",
+      "Nowa Słupia",
+      "Nowiny",
+      "Piekoszów",
+      "Pierzchnica",
+      "Raków",
+      "Strawczyn",
+      "Zagnańsk",
+      "Łagów",
+      "Łopuszno"
+    ],
+    "subdivided": true
+  },
+  "2605": {
+    "name": "konecki",
+    "file": "powiat_konecki.png",
+    "minLng": 19.95296,
+    "maxLng": 20.73154,
+    "minLat": 50.94522,
+    "maxLat": 51.35768,
+    "aspect": 1.1841,
+    "gminy": [
+      "Fałków",
+      "Gowarczów",
+      "Końskie",
+      "Radoszyce",
+      "Ruda Maleniecka",
+      "Smyków",
+      "Stąporków",
+      "Słupia Konecka"
+    ],
+    "subdivided": true
+  },
+  "2606": {
+    "name": "opatowski",
+    "file": "powiat_opatowski.png",
+    "minLng": 21.10312,
+    "maxLng": 21.86398,
+    "minLat": 50.66398,
+    "maxLat": 51.09392,
+    "aspect": 1.1166,
+    "gminy": [
+      "Baćkowice",
+      "Iwaniska",
+      "Lipnik",
+      "Opatów",
+      "Ożarów",
+      "Sadowie",
+      "Tarłów",
+      "Wojciechowice"
+    ],
+    "subdivided": true
+  },
+  "2607": {
+    "name": "ostrowiecki",
+    "file": "powiat_ostrowiecki.png",
+    "minLng": 21.10553,
+    "maxLng": 21.70957,
+    "minLat": 50.80946,
+    "maxLat": 51.07514,
+    "aspect": 1.4326,
+    "gminy": [
+      "Bałtów",
+      "Bodzechów",
+      "Kunów",
+      "Ostrowiec Świętokrzyski",
+      "Waśniów",
+      "Ćmielów"
+    ],
+    "subdivided": true
+  },
+  "2608": {
+    "name": "pińczowski",
+    "file": "powiat_pinczowski.png",
+    "minLng": 20.24365,
+    "maxLng": 20.70135,
+    "minLat": 50.31502,
+    "maxLat": 50.68428,
+    "aspect": 0.7884,
+    "gminy": [
+      "Działoszyce",
+      "Kije",
+      "Michałów",
+      "Pińczów",
+      "Złota"
+    ],
+    "subdivided": true
+  },
+  "2609": {
+    "name": "sandomierski",
+    "file": "powiat_sandomierski.png",
+    "minLng": 21.32841,
+    "maxLng": 21.88979,
+    "minLat": 50.49441,
+    "maxLat": 50.89379,
+    "aspect": 0.8904,
+    "gminy": [
+      "Dwikozy",
+      "Klimontów",
+      "Koprzywnica",
+      "Obrazów",
+      "Samborzec",
+      "Sandomierz",
+      "Wilczyce",
+      "Zawichost",
+      "Łoniów"
+    ],
+    "subdivided": true
+  },
+  "2610": {
+    "name": "skarżyski",
+    "file": "powiat_skarzyski.png",
+    "minLng": 20.58559,
+    "maxLng": 20.99901,
+    "minLat": 50.92417,
+    "maxLat": 51.20573,
+    "aspect": 0.9227,
+    "gminy": [
+      "Bliżyn",
+      "Skarżysko Kościelne",
+      "Skarżysko-Kamienna",
+      "Suchedniów",
+      "Łączna"
+    ],
+    "subdivided": true
+  },
+  "2611": {
+    "name": "starachowicki",
+    "file": "powiat_starachowicki.png",
+    "minLng": 20.88359,
+    "maxLng": 21.40231,
+    "minLat": 50.88328,
+    "maxLat": 51.22402,
+    "aspect": 0.9569,
+    "gminy": [
+      "Brody",
+      "Mirzec",
+      "Pawłów",
+      "Starachowice",
+      "Wąchock"
+    ],
+    "subdivided": true
+  },
+  "2612": {
+    "name": "staszowski",
+    "file": "powiat_staszowski.png",
+    "minLng": 20.84836,
+    "maxLng": 21.54344,
+    "minLat": 50.3148,
+    "maxLat": 50.7199,
+    "aspect": 1.091,
+    "gminy": [
+      "Bogoria",
+      "Oleśnica",
+      "Osiek",
+      "Połaniec",
+      "Rytwiany",
+      "Staszów",
+      "Szydłów",
+      "Łubnice"
+    ],
+    "subdivided": true
+  },
+  "2613": {
+    "name": "włoszczowski",
+    "file": "powiat_wloszczowski.png",
+    "minLng": 19.68259,
+    "maxLng": 20.27141,
+    "minLat": 50.59851,
+    "maxLat": 51.06539,
+    "aspect": 0.7966,
+    "gminy": [
+      "Kluczewsko",
+      "Krasocin",
+      "Moskorzew",
+      "Radków",
+      "Secemin",
+      "Włoszczowa"
+    ],
+    "subdivided": true
+  },
+  "2661": {
+    "name": "Kielce",
+    "file": "powiat_kielce.png",
+    "minLng": 20.5021,
+    "maxLng": 20.7289,
+    "minLat": 50.78843,
+    "maxLat": 50.91987,
+    "aspect": 1.0893,
+    "gminy": [
+      "Kielce"
+    ],
+    "subdivided": false
+  }
+}

@@ -1,0 +1,648 @@
+{
+  "3001": {
+    "name": "chodzieski",
+    "file": "powiat_chodzieski.png",
+    "minLng": 16.70932,
+    "maxLng": 17.32158,
+    "minLat": 52.80505,
+    "maxLat": 53.10065,
+    "aspect": 1.2479,
+    "gminy": [
+      "Budzyń",
+      "Chodzież",
+      "Chodzież",
+      "Margonin",
+      "Szamocin"
+    ],
+    "subdivided": true
+  },
+  "3002": {
+    "name": "czarnkowsko-trzcianecki",
+    "file": "powiat_czarnkowsko_trzcianecki.png",
+    "minLng": 15.85692,
+    "maxLng": 16.83638,
+    "minLat": 52.70945,
+    "maxLat": 53.14815,
+    "aspect": 1.3459,
+    "gminy": [
+      "Czarnków",
+      "Czarnków",
+      "Drawsko",
+      "Krzyż Wielkopolski",
+      "Lubasz",
+      "Połajewo",
+      "Trzcianka",
+      "Wieleń"
+    ],
+    "subdivided": true
+  },
+  "3003": {
+    "name": "gnieźnieński",
+    "file": "powiat_gnieznienski.png",
+    "minLng": 17.11696,
+    "maxLng": 18.02524,
+    "minLat": 52.35348,
+    "maxLat": 52.75372,
+    "aspect": 1.3798,
+    "gminy": [
+      "Czerniejewo",
+      "Gniezno",
+      "Gniezno",
+      "Kiszkowo",
+      "Kłecko",
+      "Mieleszyn",
+      "Niechanowo",
+      "Trzemeszno",
+      "Witkowo",
+      "Łubowo"
+    ],
+    "subdivided": true
+  },
+  "3004": {
+    "name": "gostyński",
+    "file": "powiat_gostynski.png",
+    "minLng": 16.70444,
+    "maxLng": 17.36496,
+    "minLat": 51.68193,
+    "maxLat": 51.99167,
+    "aspect": 1.3177,
+    "gminy": [
+      "Borek Wielkopolski",
+      "Gostyń",
+      "Krobia",
+      "Piaski",
+      "Pogorzela",
+      "Poniec",
+      "Pępowo"
+    ],
+    "subdivided": true
+  },
+  "3005": {
+    "name": "grodziski",
+    "file": "powiat_grodziski.png",
+    "minLng": 16.0413,
+    "maxLng": 16.63,
+    "minLat": 52.02346,
+    "maxLat": 52.29734,
+    "aspect": 1.3186,
+    "gminy": [
+      "Granowo",
+      "Grodzisk Wielkopolski",
+      "Kamieniec",
+      "Rakoniewice",
+      "Wielichowo"
+    ],
+    "subdivided": true
+  },
+  "3006": {
+    "name": "jarociński",
+    "file": "powiat_jarocinski.png",
+    "minLng": 17.16491,
+    "maxLng": 17.74509,
+    "minLat": 51.86252,
+    "maxLat": 52.15638,
+    "aspect": 1.2153,
+    "gminy": [
+      "Jaraczewo",
+      "Jarocin",
+      "Kotlin",
+      "Żerków"
+    ],
+    "subdivided": true
+  },
+  "3007": {
+    "name": "kaliski",
+    "file": "powiat_kaliski.png",
+    "minLng": 17.9121,
+    "maxLng": 18.5035,
+    "minLat": 51.5124,
+    "maxLat": 52.066,
+    "aspect": 0.6608,
+    "gminy": [
+      "Blizanów",
+      "Brzeziny",
+      "Ceków-Kolonia",
+      "Godziesze Wielkie",
+      "Koźminek",
+      "Lisków",
+      "Mycielin",
+      "Opatówek",
+      "Stawiszyn",
+      "Szczytniki",
+      "Żelazków"
+    ],
+    "subdivided": true
+  },
+  "3008": {
+    "name": "kępiński",
+    "file": "powiat_kepinski.png",
+    "minLng": 17.72054,
+    "maxLng": 18.19726,
+    "minLat": 51.09211,
+    "maxLat": 51.40499,
+    "aspect": 0.9537,
+    "gminy": [
+      "Baranów",
+      "Bralin",
+      "Kępno",
+      "Perzów",
+      "Rychtal",
+      "Trzcinica",
+      "Łęka Opatowska"
+    ],
+    "subdivided": true
+  },
+  "3009": {
+    "name": "kolski",
+    "file": "powiat_kolski.png",
+    "minLng": 18.43102,
+    "maxLng": 19.12978,
+    "minLat": 52.04632,
+    "maxLat": 52.44268,
+    "aspect": 1.0794,
+    "gminy": [
+      "Babiak",
+      "Chodów",
+      "Dąbie",
+      "Grzegorzew",
+      "Koło",
+      "Koło",
+      "Kościelec",
+      "Kłodawa",
+      "Olszówka",
+      "Osiek Mały",
+      "Przedecz"
+    ],
+    "subdivided": true
+  },
+  "3010": {
+    "name": "koniński",
+    "file": "powiat_koninski.png",
+    "minLng": 17.90568,
+    "maxLng": 18.68662,
+    "minLat": 51.95299,
+    "maxLat": 52.56611,
+    "aspect": 0.7796,
+    "gminy": [
+      "Golina",
+      "Grodziec",
+      "Kazimierz Biskupi",
+      "Kleczew",
+      "Kramsk",
+      "Krzymów",
+      "Rychwał",
+      "Rzgów",
+      "Skulsk",
+      "Sompolno",
+      "Stare Miasto",
+      "Wierzbinek",
+      "Wilczyn",
+      "Ślesin"
+    ],
+    "subdivided": true
+  },
+  "3011": {
+    "name": "kościański",
+    "file": "powiat_koscianski.png",
+    "minLng": 16.39704,
+    "maxLng": 17.03326,
+    "minLat": 51.9061,
+    "maxLat": 52.2274,
+    "aspect": 1.2173,
+    "gminy": [
+      "Czempiń",
+      "Kościan",
+      "Kościan",
+      "Krzywiń",
+      "Śmigiel"
+    ],
+    "subdivided": true
+  },
+  "3012": {
+    "name": "krotoszyński",
+    "file": "powiat_krotoszynski.png",
+    "minLng": 17.1036,
+    "maxLng": 17.738,
+    "minLat": 51.56966,
+    "maxLat": 51.91354,
+    "aspect": 1.1423,
+    "gminy": [
+      "Kobylin",
+      "Koźmin Wielkopolski",
+      "Krotoszyn",
+      "Rozdrażew",
+      "Sulmierzyce",
+      "Zduny"
+    ],
+    "subdivided": true
+  },
+  "3013": {
+    "name": "leszczyński",
+    "file": "powiat_leszczynski.png",
+    "minLng": 16.0669,
+    "maxLng": 16.9364,
+    "minLat": 51.69336,
+    "maxLat": 52.00504,
+    "aspect": 1.7233,
+    "gminy": [
+      "Krzemieniewo",
+      "Lipno",
+      "Osieczna",
+      "Rydzyna",
+      "Wijewo",
+      "Włoszakowice",
+      "Święciechowa"
+    ],
+    "subdivided": true
+  },
+  "3014": {
+    "name": "międzychodzki",
+    "file": "powiat_miedzychodzki.png",
+    "minLng": 15.75381,
+    "maxLng": 16.36099,
+    "minLat": 52.43602,
+    "maxLat": 52.76768,
+    "aspect": 1.1119,
+    "gminy": [
+      "Chrzypsko Wielkie",
+      "Kwilcz",
+      "Międzychód",
+      "Sieraków"
+    ],
+    "subdivided": true
+  },
+  "3015": {
+    "name": "nowotomyski",
+    "file": "powiat_nowotomyski.png",
+    "minLng": 15.77576,
+    "maxLng": 16.54104,
+    "minLat": 52.16923,
+    "maxLat": 52.52747,
+    "aspect": 1.3049,
+    "gminy": [
+      "Kuślin",
+      "Lwówek",
+      "Miedzichowo",
+      "Nowy Tomyśl",
+      "Opalenica",
+      "Zbąszyń"
+    ],
+    "subdivided": true
+  },
+  "3016": {
+    "name": "obornicki",
+    "file": "powiat_obornicki.png",
+    "minLng": 16.55395,
+    "maxLng": 17.15475,
+    "minLat": 52.53114,
+    "maxLat": 52.90256,
+    "aspect": 0.9799,
+    "gminy": [
+      "Oborniki",
+      "Rogoźno",
+      "Ryczywół"
+    ],
+    "subdivided": true
+  },
+  "3017": {
+    "name": "ostrowski",
+    "file": "powiat_ostrowski.png",
+    "minLng": 17.48515,
+    "maxLng": 18.21545,
+    "minLat": 51.38282,
+    "maxLat": 51.83318,
+    "aspect": 1.0071,
+    "gminy": [
+      "Nowe Skalmierzyce",
+      "Odolanów",
+      "Ostrów Wielkopolski",
+      "Ostrów Wielkopolski",
+      "Przygodzice",
+      "Raszków",
+      "Sieroszewice",
+      "Sośnie"
+    ],
+    "subdivided": true
+  },
+  "3018": {
+    "name": "ostrzeszowski",
+    "file": "powiat_ostrzeszowski.png",
+    "minLng": 17.67716,
+    "maxLng": 18.40994,
+    "minLat": 51.28153,
+    "maxLat": 51.59387,
+    "aspect": 1.4625,
+    "gminy": [
+      "Czajków",
+      "Doruchów",
+      "Grabów nad Prosną",
+      "Kobyla Góra",
+      "Kraszewice",
+      "Mikstat",
+      "Ostrzeszów"
+    ],
+    "subdivided": true
+  },
+  "3019": {
+    "name": "pilski",
+    "file": "powiat_pilski.png",
+    "minLng": 16.34857,
+    "maxLng": 17.48073,
+    "minLat": 52.93606,
+    "maxLat": 53.37984,
+    "aspect": 1.5297,
+    "gminy": [
+      "Białośliwie",
+      "Kaczory",
+      "Miasteczko Krajeńskie",
+      "Piła",
+      "Szydłowo",
+      "Ujście",
+      "Wyrzysk",
+      "Wysoka",
+      "Łobżenica"
+    ],
+    "subdivided": true
+  },
+  "3020": {
+    "name": "pleszewski",
+    "file": "powiat_pleszewski.png",
+    "minLng": 17.49286,
+    "maxLng": 18.06374,
+    "minLat": 51.74645,
+    "maxLat": 52.10415,
+    "aspect": 0.9842,
+    "gminy": [
+      "Chocz",
+      "Czermin",
+      "Dobrzyca",
+      "Gizałki",
+      "Gołuchów",
+      "Pleszew"
+    ],
+    "subdivided": true
+  },
+  "3021": {
+    "name": "poznański",
+    "file": "powiat_poznanski.png",
+    "minLng": 16.41584,
+    "maxLng": 17.43546,
+    "minLat": 52.13096,
+    "maxLat": 52.69914,
+    "aspect": 1.0946,
+    "gminy": [
+      "Buk",
+      "Czerwonak",
+      "Dopiewo",
+      "Kleszczewo",
+      "Komorniki",
+      "Kostrzyn",
+      "Kórnik",
+      "Luboń",
+      "Mosina",
+      "Murowana Goślina",
+      "Pobiedziska",
+      "Puszczykowo",
+      "Rokietnica",
+      "Stęszew",
+      "Suchy Las",
+      "Swarzędz",
+      "Tarnowo Podgórne"
+    ],
+    "subdivided": true
+  },
+  "3022": {
+    "name": "rawicki",
+    "file": "powiat_rawicki.png",
+    "minLng": 16.61398,
+    "maxLng": 17.28402,
+    "minLat": 51.53549,
+    "maxLat": 51.75451,
+    "aspect": 1.8984,
+    "gminy": [
+      "Bojanowo",
+      "Jutrosin",
+      "Miejska Górka",
+      "Pakosław",
+      "Rawicz"
+    ],
+    "subdivided": true
+  },
+  "3023": {
+    "name": "słupecki",
+    "file": "powiat_slupecki.png",
+    "minLng": 17.66563,
+    "maxLng": 18.15087,
+    "minLat": 52.05413,
+    "maxLat": 52.57437,
+    "aspect": 0.5702,
+    "gminy": [
+      "Lądek",
+      "Orchowo",
+      "Ostrowite",
+      "Powidz",
+      "Strzałkowo",
+      "Słupca",
+      "Słupca",
+      "Zagórów"
+    ],
+    "subdivided": true
+  },
+  "3024": {
+    "name": "szamotulski",
+    "file": "powiat_szamotulski.png",
+    "minLng": 15.98472,
+    "maxLng": 16.76988,
+    "minLat": 52.35699,
+    "maxLat": 52.81091,
+    "aspect": 1.051,
+    "gminy": [
+      "Duszniki",
+      "Kaźmierz",
+      "Obrzycko",
+      "Obrzycko",
+      "Ostroróg",
+      "Pniewy",
+      "Szamotuły",
+      "Wronki"
+    ],
+    "subdivided": true
+  },
+  "3025": {
+    "name": "średzki",
+    "file": "powiat_sredzki.png",
+    "minLng": 17.0748,
+    "maxLng": 17.5366,
+    "minLat": 51.99706,
+    "maxLat": 52.36264,
+    "aspect": 0.7746,
+    "gminy": [
+      "Dominowo",
+      "Krzykosy",
+      "Nowe Miasto nad Wartą",
+      "Zaniemyśl",
+      "Środa Wielkopolska"
+    ],
+    "subdivided": true
+  },
+  "3026": {
+    "name": "śremski",
+    "file": "powiat_sremski.png",
+    "minLng": 16.76884,
+    "maxLng": 17.34836,
+    "minLat": 51.91408,
+    "maxLat": 52.20892,
+    "aspect": 1.2084,
+    "gminy": [
+      "Brodnica",
+      "Dolsk",
+      "Książ Wielkopolski",
+      "Śrem"
+    ],
+    "subdivided": true
+  },
+  "3027": {
+    "name": "turecki",
+    "file": "powiat_turecki.png",
+    "minLng": 18.19621,
+    "maxLng": 18.78989,
+    "minLat": 51.80701,
+    "maxLat": 52.18479,
+    "aspect": 0.9676,
+    "gminy": [
+      "Brudzew",
+      "Dobra",
+      "Kawęczyn",
+      "Malanów",
+      "Przykona",
+      "Tuliszków",
+      "Turek",
+      "Turek",
+      "Władysławów"
+    ],
+    "subdivided": true
+  },
+  "3028": {
+    "name": "wągrowiecki",
+    "file": "powiat_wagrowiecki.png",
+    "minLng": 16.98208,
+    "maxLng": 17.54952,
+    "minLat": 52.54611,
+    "maxLat": 53.10469,
+    "aspect": 0.6138,
+    "gminy": [
+      "Damasławek",
+      "Gołańcz",
+      "Mieścisko",
+      "Skoki",
+      "Wapno",
+      "Wągrowiec",
+      "Wągrowiec"
+    ],
+    "subdivided": true
+  },
+  "3029": {
+    "name": "wolsztyński",
+    "file": "powiat_wolsztynski.png",
+    "minLng": 15.8106,
+    "maxLng": 16.4909,
+    "minLat": 51.91692,
+    "maxLat": 52.25938,
+    "aspect": 1.2206,
+    "gminy": [
+      "Przemęt",
+      "Siedlec",
+      "Wolsztyn"
+    ],
+    "subdivided": true
+  },
+  "3030": {
+    "name": "wrzesiński",
+    "file": "powiat_wrzesinski.png",
+    "minLng": 17.32733,
+    "maxLng": 17.85307,
+    "minLat": 52.04887,
+    "maxLat": 52.43303,
+    "aspect": 0.838,
+    "gminy": [
+      "Kołaczkowo",
+      "Miłosław",
+      "Nekla",
+      "Pyzdry",
+      "Września"
+    ],
+    "subdivided": true
+  },
+  "3031": {
+    "name": "złotowski",
+    "file": "powiat_zlotowski.png",
+    "minLng": 16.39798,
+    "maxLng": 17.43002,
+    "minLat": 53.14984,
+    "maxLat": 53.67536,
+    "aspect": 1.1705,
+    "gminy": [
+      "Jastrowie",
+      "Krajenka",
+      "Lipka",
+      "Okonek",
+      "Tarnówka",
+      "Zakrzewo",
+      "Złotów",
+      "Złotów"
+    ],
+    "subdivided": true
+  },
+  "3061": {
+    "name": "Kalisz",
+    "file": "powiat_kalisz.png",
+    "minLng": 17.98852,
+    "maxLng": 18.16358,
+    "minLat": 51.69749,
+    "maxLat": 51.79761,
+    "aspect": 1.0825,
+    "gminy": [
+      "Kalisz"
+    ],
+    "subdivided": false
+  },
+  "3062": {
+    "name": "Konin",
+    "file": "powiat_konin.png",
+    "minLng": 18.18703,
+    "maxLng": 18.33737,
+    "minLat": 52.1766,
+    "maxLat": 52.3359,
+    "aspect": 0.5777,
+    "gminy": [
+      "Konin"
+    ],
+    "subdivided": false
+  },
+  "3063": {
+    "name": "Leszno",
+    "file": "powiat_leszno.png",
+    "minLng": 16.52384,
+    "maxLng": 16.62816,
+    "minLat": 51.80371,
+    "maxLat": 51.88449,
+    "aspect": 0.7978,
+    "gminy": [
+      "Leszno"
+    ],
+    "subdivided": false
+  },
+  "3064": {
+    "name": "Poznań",
+    "file": "powiat_poznan.png",
+    "minLng": 16.71808,
+    "maxLng": 17.08312,
+    "minLat": 52.2832,
+    "maxLat": 52.518,
+    "aspect": 0.9486,
+    "gminy": [
+      "Poznań"
+    ],
+    "subdivided": false
+  }
+}

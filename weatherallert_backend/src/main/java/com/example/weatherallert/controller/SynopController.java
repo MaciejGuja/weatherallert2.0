@@ -17,6 +17,6 @@ public class SynopController{
     }
     @GetMapping("/grouped")
     public Map<String, List<SynopResponseDto>> getGroupedSynopData(){
-        return synopService.getAndCollectSynopticData();
+        return synopService.getAndCollectData();
     }
 }

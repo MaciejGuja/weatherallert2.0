@@ -1,0 +1,217 @@
+{
+  "1601": {
+    "name": "brzeski",
+    "file": "powiat_brzeski.png",
+    "minLng": 17.18422,
+    "maxLng": 17.78578,
+    "minLat": 50.56196,
+    "maxLat": 51.01664,
+    "aspect": 0.8364,
+    "gminy": [
+      "Brzeg",
+      "Grodków",
+      "Lewin Brzeski",
+      "Lubsza",
+      "Olszanka",
+      "Skarbimierz"
+    ],
+    "subdivided": true
+  },
+  "1602": {
+    "name": "głubczycki",
+    "file": "powiat_glubczycki.png",
+    "minLng": 17.57374,
+    "maxLng": 18.09116,
+    "minLat": 49.95843,
+    "maxLat": 50.33837,
+    "aspect": 0.8727,
+    "gminy": [
+      "Baborów",
+      "Branice",
+      "Głubczyce",
+      "Kietrz"
+    ],
+    "subdivided": true
+  },
+  "1603": {
+    "name": "kędzierzyńsko-kozielski",
+    "file": "powiat_kedzierzynsko_kozielski.png",
+    "minLng": 17.89064,
+    "maxLng": 18.44846,
+    "minLat": 50.15718,
+    "maxLat": 50.43052,
+    "aspect": 1.3037,
+    "gminy": [
+      "Bierawa",
+      "Cisek",
+      "Kędzierzyn-Koźle",
+      "Pawłowiczki",
+      "Polska Cerekiew",
+      "Reńska Wieś"
+    ],
+    "subdivided": true
+  },
+  "1604": {
+    "name": "kluczborski",
+    "file": "powiat_kluczborski.png",
+    "minLng": 17.90594,
+    "maxLng": 18.39886,
+    "minLat": 50.7817,
+    "maxLat": 51.1894,
+    "aspect": 0.7611,
+    "gminy": [
+      "Byczyna",
+      "Kluczbork",
+      "Lasowice Wielkie",
+      "Wołczyn"
+    ],
+    "subdivided": true
+  },
+  "1605": {
+    "name": "krapkowicki",
+    "file": "powiat_krapkowicki.png",
+    "minLng": 17.73502,
+    "maxLng": 18.17988,
+    "minLat": 50.33423,
+    "maxLat": 50.57107,
+    "aspect": 1.196,
+    "gminy": [
+      "Gogolin",
+      "Krapkowice",
+      "Strzeleczki",
+      "Walce",
+      "Zdzieszowice"
+    ],
+    "subdivided": true
+  },
+  "1606": {
+    "name": "namysłowski",
+    "file": "powiat_namyslowski.png",
+    "minLng": 17.49451,
+    "maxLng": 18.03159,
+    "minLat": 50.82365,
+    "maxLat": 51.20835,
+    "aspect": 0.8783,
+    "gminy": [
+      "Domaszowice",
+      "Namysłów",
+      "Pokój",
+      "Wilków",
+      "Świerczów"
+    ],
+    "subdivided": true
+  },
+  "1607": {
+    "name": "nyski",
+    "file": "powiat_nyski.png",
+    "minLng": 16.8737,
+    "maxLng": 17.7972,
+    "minLat": 50.23499,
+    "maxLat": 50.68621,
+    "aspect": 1.3029,
+    "gminy": [
+      "Głuchołazy",
+      "Kamiennik",
+      "Korfantów",
+      "Nysa",
+      "Otmuchów",
+      "Paczków",
+      "Pakosławice",
+      "Skoroszyce",
+      "Łambinowice"
+    ],
+    "subdivided": true
+  },
+  "1608": {
+    "name": "oleski",
+    "file": "powiat_oleski.png",
+    "minLng": 18.20649,
+    "maxLng": 18.71431,
+    "minLat": 50.59551,
+    "maxLat": 51.16219,
+    "aspect": 0.5654,
+    "gminy": [
+      "Dobrodzień",
+      "Gorzów Śląski",
+      "Olesno",
+      "Praszka",
+      "Radłów",
+      "Rudniki",
+      "Zębowice"
+    ],
+    "subdivided": true
+  },
+  "1609": {
+    "name": "opolski",
+    "file": "powiat_opolski.png",
+    "minLng": 17.4313,
+    "maxLng": 18.3898,
+    "minLat": 50.48304,
+    "maxLat": 50.98686,
+    "aspect": 1.2041,
+    "gminy": [
+      "Chrząstowice",
+      "Dobrzeń Wielki",
+      "Dąbrowa",
+      "Komprachcice",
+      "Murów",
+      "Niemodlin",
+      "Ozimek",
+      "Popielów",
+      "Prószków",
+      "Tarnów Opolski",
+      "Turawa",
+      "Tułowice",
+      "Łubniany"
+    ],
+    "subdivided": true
+  },
+  "1610": {
+    "name": "prudnicki",
+    "file": "powiat_prudnicki.png",
+    "minLng": 17.42421,
+    "maxLng": 18.05569,
+    "minLat": 50.25352,
+    "maxLat": 50.56618,
+    "aspect": 1.2871,
+    "gminy": [
+      "Biała",
+      "Głogówek",
+      "Lubrza",
+      "Prudnik"
+    ],
+    "subdivided": true
+  },
+  "1611": {
+    "name": "strzelecki",
+    "file": "powiat_strzelecki.png",
+    "minLng": 18.05418,
+    "maxLng": 18.63782,
+    "minLat": 50.34274,
+    "maxLat": 50.71706,
+    "aspect": 0.9911,
+    "gminy": [
+      "Izbicko",
+      "Jemielnica",
+      "Kolonowskie",
+      "Leśnica",
+      "Strzelce Opolskie",
+      "Ujazd",
+      "Zawadzkie"
+    ],
+    "subdivided": true
+  },
+  "1661": {
+    "name": "Opole",
+    "file": "powiat_opole.png",
+    "minLng": 17.76979,
+    "maxLng": 18.04281,
+    "minLat": 50.58041,
+    "maxLat": 50.77729,
+    "aspect": 0.8787,
+    "gminy": [
+      "Opole"
+    ],
+    "subdivided": false
+  }
+}

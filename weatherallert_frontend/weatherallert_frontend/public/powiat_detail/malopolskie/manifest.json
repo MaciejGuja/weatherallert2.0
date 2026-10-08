@@ -1,0 +1,449 @@
+{
+  "1201": {
+    "name": "bocheński",
+    "file": "powiat_bochenski.png",
+    "minLng": 20.21652,
+    "maxLng": 20.64808,
+    "minLat": 49.76392,
+    "maxLat": 50.15768,
+    "aspect": 0.7051,
+    "gminy": [
+      "Bochnia",
+      "Bochnia",
+      "Drwinia",
+      "Lipnica Murowana",
+      "Nowy Wiśnicz",
+      "Rzezawa",
+      "Trzciana",
+      "Łapanów",
+      "Żegocina"
+    ],
+    "subdivided": true
+  },
+  "1202": {
+    "name": "brzeski",
+    "file": "powiat_brzeski.png",
+    "minLng": 20.48859,
+    "maxLng": 20.81011,
+    "minLat": 49.74434,
+    "maxLat": 50.21836,
+    "aspect": 0.4362,
+    "gminy": [
+      "Borzęcin",
+      "Brzesko",
+      "Czchów",
+      "Dębno",
+      "Gnojnik",
+      "Iwkowa",
+      "Szczurowa"
+    ],
+    "subdivided": true
+  },
+  "1203": {
+    "name": "chrzanowski",
+    "file": "powiat_chrzanowski.png",
+    "minLng": 19.24444,
+    "maxLng": 19.64296,
+    "minLat": 50.00342,
+    "maxLat": 50.23778,
+    "aspect": 1.0903,
+    "gminy": [
+      "Alwernia",
+      "Babice",
+      "Chrzanów",
+      "Libiąż",
+      "Trzebinia"
+    ],
+    "subdivided": true
+  },
+  "1204": {
+    "name": "dąbrowski",
+    "file": "powiat_dabrowski.png",
+    "minLng": 20.70822,
+    "maxLng": 21.24238,
+    "minLat": 50.09688,
+    "maxLat": 50.36482,
+    "aspect": 1.2753,
+    "gminy": [
+      "Bolesław",
+      "Dąbrowa Tarnowska",
+      "Gręboszów",
+      "Mędrzechów",
+      "Olesno",
+      "Radgoszcz",
+      "Szczucin"
+    ],
+    "subdivided": true
+  },
+  "1205": {
+    "name": "gorlicki",
+    "file": "powiat_gorlicki.png",
+    "minLng": 20.86107,
+    "maxLng": 21.44243,
+    "minLat": 49.38577,
+    "maxLat": 49.79693,
+    "aspect": 0.9166,
+    "gminy": [
+      "Biecz",
+      "Bobowa",
+      "Gorlice",
+      "Gorlice",
+      "Lipinki",
+      "Moszczenica",
+      "Ropa",
+      "Sękowa",
+      "Uście Gorlickie",
+      "Łużna"
+    ],
+    "subdivided": true
+  },
+  "1206": {
+    "name": "krakowski",
+    "file": "powiat_krakowski.png",
+    "minLng": 19.48769,
+    "maxLng": 20.38711,
+    "minLat": 49.86802,
+    "maxLat": 50.33188,
+    "aspect": 1.2438,
+    "gminy": [
+      "Czernichów",
+      "Igołomia-Wawrzeńczyce",
+      "Iwanowice",
+      "Jerzmanowice-Przeginia",
+      "Kocmyrzów-Luborzyca",
+      "Krzeszowice",
+      "Liszki",
+      "Michałowice",
+      "Mogilany",
+      "Skawina",
+      "Skała",
+      "Sułoszowa",
+      "Słomniki",
+      "Wielka Wieś",
+      "Zabierzów",
+      "Zielonki",
+      "Świątniki Górne"
+    ],
+    "subdivided": true
+  },
+  "1207": {
+    "name": "limanowski",
+    "file": "powiat_limanowski.png",
+    "minLng": 19.96723,
+    "maxLng": 20.61977,
+    "minLat": 49.52226,
+    "maxLat": 49.84194,
+    "aspect": 1.3207,
+    "gminy": [
+      "Dobra",
+      "Jodłownik",
+      "Kamienica",
+      "Laskowa",
+      "Limanowa",
+      "Limanowa",
+      "Mszana Dolna",
+      "Mszana Dolna",
+      "Niedźwiedź",
+      "Szczawa",
+      "Słopnice",
+      "Tymbark",
+      "Łukowica"
+    ],
+    "subdivided": true
+  },
+  "1208": {
+    "name": "miechowski",
+    "file": "powiat_miechowski.png",
+    "minLng": 19.80482,
+    "maxLng": 20.35788,
+    "minLat": 50.24844,
+    "maxLat": 50.53096,
+    "aspect": 1.2481,
+    "gminy": [
+      "Charsznica",
+      "Gołcza",
+      "Kozłów",
+      "Książ Wielki",
+      "Miechów",
+      "Racławice",
+      "Słaboszów"
+    ],
+    "subdivided": true
+  },
+  "1209": {
+    "name": "myślenicki",
+    "file": "powiat_myslenicki.png",
+    "minLng": 19.72282,
+    "maxLng": 20.26758,
+    "minLat": 49.60544,
+    "maxLat": 49.94466,
+    "aspect": 1.0371,
+    "gminy": [
+      "Dobczyce",
+      "Lubień",
+      "Myślenice",
+      "Pcim",
+      "Raciechowice",
+      "Siepraw",
+      "Sułkowice",
+      "Tokarnia",
+      "Wiśniowa"
+    ],
+    "subdivided": true
+  },
+  "1210": {
+    "name": "nowosądecki",
+    "file": "powiat_nowosadecki.png",
+    "minLng": 20.3266,
+    "maxLng": 21.134,
+    "minLat": 49.27608,
+    "maxLat": 49.82732,
+    "aspect": 0.9502,
+    "gminy": [
+      "Chełmiec",
+      "Grybów",
+      "Grybów",
+      "Gródek nad Dunajcem",
+      "Kamionka Wielka",
+      "Korzenna",
+      "Krynica-Zdrój",
+      "Muszyna",
+      "Nawojowa",
+      "Piwniczna-Zdrój",
+      "Podegrodzie",
+      "Rytro",
+      "Stary Sącz",
+      "Łabowa",
+      "Łososina Dolna",
+      "Łącko"
+    ],
+    "subdivided": true
+  },
+  "1211": {
+    "name": "nowotarski",
+    "file": "powiat_nowotarski.png",
+    "minLng": 19.48386,
+    "maxLng": 20.65944,
+    "minLat": 49.31301,
+    "maxLat": 49.67449,
+    "aspect": 2.1124,
+    "gminy": [
+      "Czarny Dunajec",
+      "Czorsztyn",
+      "Jabłonka",
+      "Krościenko nad Dunajcem",
+      "Lipnica Wielka",
+      "Nowy Targ",
+      "Nowy Targ",
+      "Ochotnica Dolna",
+      "Raba Wyżna",
+      "Rabka-Zdrój",
+      "Spytkowice",
+      "Szaflary",
+      "Szczawnica",
+      "Łapsze Niżne"
+    ],
+    "subdivided": true
+  },
+  "1212": {
+    "name": "olkuski",
+    "file": "powiat_olkuski.png",
+    "minLng": 19.2995,
+    "maxLng": 19.9448,
+    "minLat": 50.17873,
+    "maxLat": 50.45867,
+    "aspect": 1.4719,
+    "gminy": [
+      "Bolesław",
+      "Bukowno",
+      "Klucze",
+      "Olkusz",
+      "Trzyciąż",
+      "Wolbrom"
+    ],
+    "subdivided": true
+  },
+  "1213": {
+    "name": "oświęcimski",
+    "file": "powiat_oswiecimski.png",
+    "minLng": 19.06622,
+    "maxLng": 19.52738,
+    "minLat": 49.83926,
+    "maxLat": 50.14554,
+    "aspect": 0.968,
+    "gminy": [
+      "Brzeszcze",
+      "Chełmek",
+      "Kęty",
+      "Osiek",
+      "Oświęcim",
+      "Oświęcim",
+      "Polanka Wielka",
+      "Przeciszów",
+      "Zator"
+    ],
+    "subdivided": true
+  },
+  "1214": {
+    "name": "proszowicki",
+    "file": "powiat_proszowicki.png",
+    "minLng": 20.10409,
+    "maxLng": 20.70371,
+    "minLat": 50.10263,
+    "maxLat": 50.33137,
+    "aspect": 1.6774,
+    "gminy": [
+      "Koniusza",
+      "Koszyce",
+      "Nowe Brzesko",
+      "Pałecznica",
+      "Proszowice",
+      "Radziemice"
+    ],
+    "subdivided": true
+  },
+  "1215": {
+    "name": "suski",
+    "file": "powiat_suski.png",
+    "minLng": 19.34832,
+    "maxLng": 19.93378,
+    "minLat": 49.56113,
+    "maxLat": 49.84107,
+    "aspect": 1.3527,
+    "gminy": [
+      "Budzów",
+      "Bystra-Sidzina",
+      "Jordanów",
+      "Jordanów",
+      "Maków Podhalański",
+      "Stryszawa",
+      "Sucha Beskidzka",
+      "Zawoja",
+      "Zembrzyce"
+    ],
+    "subdivided": true
+  },
+  "1216": {
+    "name": "tarnowski",
+    "file": "powiat_tarnowski.png",
+    "minLng": 20.65293,
+    "maxLng": 21.37567,
+    "minLat": 49.70793,
+    "maxLat": 50.26337,
+    "aspect": 0.8366,
+    "gminy": [
+      "Ciężkowice",
+      "Gromnik",
+      "Lisia Góra",
+      "Pleśna",
+      "Radłów",
+      "Ryglice",
+      "Rzepiennik Strzyżewski",
+      "Skrzyszów",
+      "Szerzyny",
+      "Tarnów",
+      "Tuchów",
+      "Wierzchosławice",
+      "Wietrzychowice",
+      "Wojnicz",
+      "Zakliczyn",
+      "Żabno"
+    ],
+    "subdivided": true
+  },
+  "1217": {
+    "name": "tatrzański",
+    "file": "powiat_tatrzanski.png",
+    "minLng": 19.74113,
+    "maxLng": 20.20737,
+    "minLat": 49.16871,
+    "maxLat": 49.43839,
+    "aspect": 1.1273,
+    "gminy": [
+      "Biały Dunajec",
+      "Bukowina Tatrzańska",
+      "Kościelisko",
+      "Poronin",
+      "Zakopane"
+    ],
+    "subdivided": true
+  },
+  "1218": {
+    "name": "wadowicki",
+    "file": "powiat_wadowicki.png",
+    "minLng": 19.26503,
+    "maxLng": 19.83127,
+    "minLat": 49.75109,
+    "maxLat": 50.03751,
+    "aspect": 1.2736,
+    "gminy": [
+      "Andrychów",
+      "Brzeźnica",
+      "Kalwaria Zebrzydowska",
+      "Lanckorona",
+      "Mucharz",
+      "Spytkowice",
+      "Stryszów",
+      "Tomice",
+      "Wadowice",
+      "Wieprz"
+    ],
+    "subdivided": true
+  },
+  "1219": {
+    "name": "wielicki",
+    "file": "powiat_wielicki.png",
+    "minLng": 19.94602,
+    "maxLng": 20.40458,
+    "minLat": 49.85415,
+    "maxLat": 50.10935,
+    "aspect": 1.1554,
+    "gminy": [
+      "Biskupice",
+      "Gdów",
+      "Kłaj",
+      "Niepołomice",
+      "Wieliczka"
+    ],
+    "subdivided": true
+  },
+  "1261": {
+    "name": "Kraków",
+    "file": "powiat_krakow.png",
+    "minLng": 19.77478,
+    "maxLng": 20.23432,
+    "minLat": 49.9623,
+    "maxLat": 50.1324,
+    "aspect": 1.7348,
+    "gminy": [
+      "Kraków"
+    ],
+    "subdivided": false
+  },
+  "1262": {
+    "name": "Nowy Sącz",
+    "file": "powiat_nowy_sacz.png",
+    "minLng": 20.64374,
+    "maxLng": 20.76956,
+    "minLat": 49.55047,
+    "maxLat": 49.67003,
+    "aspect": 0.6819,
+    "gminy": [
+      "Nowy Sącz"
+    ],
+    "subdivided": false
+  },
+  "1263": {
+    "name": "Tarnów",
+    "file": "powiat_tarnow.png",
+    "minLng": 20.88685,
+    "maxLng": 21.06905,
+    "minLat": 49.98247,
+    "maxLat": 50.06973,
+    "aspect": 1.3414,
+    "gminy": [
+      "Tarnów"
+    ],
+    "subdivided": false
+  }
+}

@@ -1,8 +1,12 @@
 package com.example.weatherallert.dto;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class SynopResponseDto{
     private String stationId;
     private String station;

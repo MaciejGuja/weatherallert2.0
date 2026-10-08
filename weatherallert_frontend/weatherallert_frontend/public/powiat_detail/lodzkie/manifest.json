@@ -1,0 +1,467 @@
+{
+  "1001": {
+    "name": "bełchatowski",
+    "file": "powiat_belchatowski.png",
+    "minLng": 18.83045,
+    "maxLng": 19.52575,
+    "minLat": 51.16697,
+    "maxLat": 51.57013,
+    "aspect": 1.0767,
+    "gminy": [
+      "Bełchatów",
+      "Bełchatów",
+      "Drużbice",
+      "Kleszczów",
+      "Kluki",
+      "Rusiec",
+      "Szczerców",
+      "Zelów"
+    ],
+    "subdivided": true
+  },
+  "1002": {
+    "name": "kutnowski",
+    "file": "powiat_kutnowski.png",
+    "minLng": 19.00074,
+    "maxLng": 19.79336,
+    "minLat": 52.09729,
+    "maxLat": 52.40541,
+    "aspect": 1.5748,
+    "gminy": [
+      "Bedlno",
+      "Dąbrowice",
+      "Krośniewice",
+      "Krzyżanów",
+      "Kutno",
+      "Kutno",
+      "Nowe Ostrowy",
+      "Oporów",
+      "Strzelce",
+      "Łanięta",
+      "Żychlin"
+    ],
+    "subdivided": true
+  },
+  "1003": {
+    "name": "łaski",
+    "file": "powiat_laski.png",
+    "minLng": 18.78418,
+    "maxLng": 19.29222,
+    "minLat": 51.32684,
+    "maxLat": 51.79546,
+    "aspect": 0.674,
+    "gminy": [
+      "Buczek",
+      "Sędziejowice",
+      "Widawa",
+      "Wodzierady",
+      "Łask"
+    ],
+    "subdivided": true
+  },
+  "1004": {
+    "name": "łęczycki",
+    "file": "powiat_leczycki.png",
+    "minLng": 18.79842,
+    "maxLng": 19.59158,
+    "minLat": 51.98826,
+    "maxLat": 52.22414,
+    "aspect": 2.0653,
+    "gminy": [
+      "Daszyna",
+      "Grabów",
+      "Góra Świętej Małgorzaty",
+      "Piątek",
+      "Witonia",
+      "Łęczyca",
+      "Łęczyca",
+      "Świnice Warckie"
+    ],
+    "subdivided": true
+  },
+  "1005": {
+    "name": "łowicki",
+    "file": "powiat_lowicki.png",
+    "minLng": 19.48962,
+    "maxLng": 20.15328,
+    "minLat": 51.89349,
+    "maxLat": 52.32581,
+    "aspect": 0.9428,
+    "gminy": [
+      "Bielawy",
+      "Chąśno",
+      "Domaniewice",
+      "Kiernozia",
+      "Kocierzew Południowy",
+      "Nieborów",
+      "Zduny",
+      "Łowicz",
+      "Łowicz",
+      "Łyszkowice"
+    ],
+    "subdivided": true
+  },
+  "1006": {
+    "name": "łódzki wschodni",
+    "file": "powiat_lodzki_wschodni.png",
+    "minLng": 19.39634,
+    "maxLng": 20.00556,
+    "minLat": 51.49345,
+    "maxLat": 51.87815,
+    "aspect": 0.9818,
+    "gminy": [
+      "Andrespol",
+      "Brójce",
+      "Koluszki",
+      "Nowosolna",
+      "Rzgów",
+      "Tuszyn"
+    ],
+    "subdivided": true
+  },
+  "1007": {
+    "name": "opoczyński",
+    "file": "powiat_opoczynski.png",
+    "minLng": 19.83319,
+    "maxLng": 20.55971,
+    "minLat": 51.16731,
+    "maxLat": 51.61789,
+    "aspect": 1.0061,
+    "gminy": [
+      "Białaczów",
+      "Drzewica",
+      "Mniszków",
+      "Opoczno",
+      "Paradyż",
+      "Poświętne",
+      "Sławno",
+      "Żarnów"
+    ],
+    "subdivided": true
+  },
+  "1008": {
+    "name": "pabianicki",
+    "file": "powiat_pabianicki.png",
+    "minLng": 18.97981,
+    "maxLng": 19.49519,
+    "minLat": 51.50988,
+    "maxLat": 51.84522,
+    "aspect": 0.953,
+    "gminy": [
+      "Dobroń",
+      "Dłutów",
+      "Konstantynów Łódzki",
+      "Ksawerów",
+      "Lutomiersk",
+      "Pabianice",
+      "Pabianice"
+    ],
+    "subdivided": true
+  },
+  "1009": {
+    "name": "pajęczański",
+    "file": "powiat_pajeczanski.png",
+    "minLng": 18.7171,
+    "maxLng": 19.3354,
+    "minLat": 50.96973,
+    "maxLat": 51.31187,
+    "aspect": 1.1338,
+    "gminy": [
+      "Działoszyn",
+      "Kiełczygłów",
+      "Nowa Brzeźnica",
+      "Pajęczno",
+      "Rząśnia",
+      "Siemkowice",
+      "Strzelce Wielkie",
+      "Sulmierzyce"
+    ],
+    "subdivided": true
+  },
+  "1010": {
+    "name": "piotrkowski",
+    "file": "powiat_piotrkowski.png",
+    "minLng": 19.38822,
+    "maxLng": 20.09248,
+    "minLat": 51.08634,
+    "maxLat": 51.67116,
+    "aspect": 0.7516,
+    "gminy": [
+      "Aleksandrów",
+      "Czarnocin",
+      "Gorzkowice",
+      "Grabica",
+      "Moszczenica",
+      "Rozprza",
+      "Ręczno",
+      "Sulejów",
+      "Wola Krzysztoporska",
+      "Wolbórz",
+      "Łęki Szlacheckie"
+    ],
+    "subdivided": true
+  },
+  "1011": {
+    "name": "poddębicki",
+    "file": "powiat_poddebicki.png",
+    "minLng": 18.63158,
+    "maxLng": 19.21262,
+    "minLat": 51.70595,
+    "maxLat": 52.09075,
+    "aspect": 0.9317,
+    "gminy": [
+      "Dalików",
+      "Poddębice",
+      "Pęczniew",
+      "Uniejów",
+      "Wartkowice",
+      "Zadzim"
+    ],
+    "subdivided": true
+  },
+  "1012": {
+    "name": "radomszczański",
+    "file": "powiat_radomszczanski.png",
+    "minLng": 19.17095,
+    "maxLng": 20.09025,
+    "minLat": 50.82548,
+    "maxLat": 51.30382,
+    "aspect": 1.2078,
+    "gminy": [
+      "Dobryszyce",
+      "Gidle",
+      "Gomunice",
+      "Kamieńsk",
+      "Kobiele Wielkie",
+      "Kodrąb",
+      "Lgota Wielka",
+      "Masłowice",
+      "Przedbórz",
+      "Radomsko",
+      "Radomsko",
+      "Wielgomłyny",
+      "Ładzice",
+      "Żytno"
+    ],
+    "subdivided": true
+  },
+  "1013": {
+    "name": "rawski",
+    "file": "powiat_rawski.png",
+    "minLng": 20.08959,
+    "maxLng": 20.68121,
+    "minLat": 51.62221,
+    "maxLat": 51.90279,
+    "aspect": 1.305,
+    "gminy": [
+      "Biała Rawska",
+      "Cielądz",
+      "Rawa Mazowiecka",
+      "Rawa Mazowiecka",
+      "Regnów",
+      "Sadkowice"
+    ],
+    "subdivided": true
+  },
+  "1014": {
+    "name": "sieradzki",
+    "file": "powiat_sieradzki.png",
+    "minLng": 18.30416,
+    "maxLng": 18.90194,
+    "minLat": 51.3319,
+    "maxLat": 51.8745,
+    "aspect": 0.6843,
+    "gminy": [
+      "Brzeźnio",
+      "Brąszewice",
+      "Burzenin",
+      "Błaszki",
+      "Goszczanów",
+      "Klonowa",
+      "Sieradz",
+      "Sieradz",
+      "Warta",
+      "Wróblew",
+      "Złoczew"
+    ],
+    "subdivided": true
+  },
+  "1015": {
+    "name": "skierniewicki",
+    "file": "powiat_skierniewicki.png",
+    "minLng": 19.84249,
+    "maxLng": 20.54481,
+    "minLat": 51.72209,
+    "maxLat": 52.16781,
+    "aspect": 0.9713,
+    "gminy": [
+      "Bolimów",
+      "Godzianów",
+      "Głuchów",
+      "Kowiesy",
+      "Lipce Reymontowskie",
+      "Maków",
+      "Nowy Kawęczyn",
+      "Skierniewice",
+      "Słupia"
+    ],
+    "subdivided": true
+  },
+  "1016": {
+    "name": "tomaszowski",
+    "file": "powiat_tomaszowski.png",
+    "minLng": 19.67962,
+    "maxLng": 20.45398,
+    "minLat": 51.40586,
+    "maxLat": 51.78754,
+    "aspect": 1.2603,
+    "gminy": [
+      "Budziszewice",
+      "Będków",
+      "Czerniewice",
+      "Inowłódz",
+      "Lubochnia",
+      "Rokiciny",
+      "Rzeczyca",
+      "Tomaszów Mazowiecki",
+      "Tomaszów Mazowiecki",
+      "Ujazd",
+      "Żelechlinek"
+    ],
+    "subdivided": true
+  },
+  "1017": {
+    "name": "wieluński",
+    "file": "powiat_wielunski.png",
+    "minLng": 18.32509,
+    "maxLng": 18.93021,
+    "minLat": 51.04025,
+    "maxLat": 51.42495,
+    "aspect": 0.9849,
+    "gminy": [
+      "Biała",
+      "Czarnożyły",
+      "Konopnica",
+      "Mokrsko",
+      "Osjaków",
+      "Ostrówek",
+      "Pątnów",
+      "Skomlin",
+      "Wieluń",
+      "Wierzchlas"
+    ],
+    "subdivided": true
+  },
+  "1018": {
+    "name": "wieruszowski",
+    "file": "powiat_wieruszowski.png",
+    "minLng": 18.05498,
+    "maxLng": 18.58212,
+    "minLat": 51.12119,
+    "maxLat": 51.46711,
+    "aspect": 0.9529,
+    "gminy": [
+      "Bolesławiec",
+      "Czastary",
+      "Galewice",
+      "Lututów",
+      "Sokolniki",
+      "Wieruszów",
+      "Łubnice"
+    ],
+    "subdivided": true
+  },
+  "1019": {
+    "name": "zduńskowolski",
+    "file": "powiat_zdunskowolski.png",
+    "minLng": 18.78134,
+    "maxLng": 19.12046,
+    "minLat": 51.45547,
+    "maxLat": 51.78563,
+    "aspect": 0.6377,
+    "gminy": [
+      "Szadek",
+      "Zapolice",
+      "Zduńska Wola",
+      "Zduńska Wola"
+    ],
+    "subdivided": true
+  },
+  "1020": {
+    "name": "zgierski",
+    "file": "powiat_zgierski.png",
+    "minLng": 19.09172,
+    "maxLng": 19.86878,
+    "minLat": 51.76057,
+    "maxLat": 52.04763,
+    "aspect": 1.6701,
+    "gminy": [
+      "Aleksandrów Łódzki",
+      "Głowno",
+      "Głowno",
+      "Ozorków",
+      "Ozorków",
+      "Parzęczew",
+      "Stryków",
+      "Zgierz",
+      "Zgierz"
+    ],
+    "subdivided": true
+  },
+  "1021": {
+    "name": "brzeziński",
+    "file": "powiat_brzezinski.png",
+    "minLng": 19.62963,
+    "maxLng": 20.03107,
+    "minLat": 51.7206,
+    "maxLat": 51.9609,
+    "aspect": 1.0322,
+    "gminy": [
+      "Brzeziny",
+      "Brzeziny",
+      "Dmosin",
+      "Jeżów",
+      "Rogów"
+    ],
+    "subdivided": true
+  },
+  "1061": {
+    "name": "Łódź",
+    "file": "powiat_lodz.png",
+    "minLng": 19.30814,
+    "maxLng": 19.65266,
+    "minLat": 51.67967,
+    "maxLat": 51.86683,
+    "aspect": 1.139,
+    "gminy": [
+      "Łódź"
+    ],
+    "subdivided": false
+  },
+  "1062": {
+    "name": "Piotrków Trybunalski",
+    "file": "powiat_piotrkow_trybunalski.png",
+    "minLng": 19.6154,
+    "maxLng": 19.8178,
+    "minLat": 51.37001,
+    "maxLat": 51.45609,
+    "aspect": 1.4665,
+    "gminy": [
+      "Piotrków Trybunalski"
+    ],
+    "subdivided": false
+  },
+  "1063": {
+    "name": "Skierniewice",
+    "file": "powiat_skierniewice.png",
+    "minLng": 20.09979,
+    "maxLng": 20.23781,
+    "minLat": 51.92371,
+    "maxLat": 51.99639,
+    "aspect": 1.1702,
+    "gminy": [
+      "Skierniewice"
+    ],
+    "subdivided": false
+  }
+}

@@ -11,26 +11,24 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 @Service
-public class SynopService{
-    private final String IMGW_URL="https://danepubliczne.imgw.pl/api/data/synop";
-    private final SynopLokalizationRepository synopLokalizationRepository;
-    private final WebClient webClient;
+public class SynopService extends AbstractWeatherService<ImgwSynopDto, SynopResponseDto, SynopLokalizationClass, SynopLokalizationRepository>   {
+    private static final String IMGW_URL="https://danepubliczne.imgw.pl/api/data/synop";
     public SynopService(SynopLokalizationRepository synopLokalizationRepository, WebClient.Builder webClientBuilder){
-        this.synopLokalizationRepository = synopLokalizationRepository;
-        this.webClient = webClientBuilder.baseUrl(IMGW_URL).build();
+        super(synopLokalizationRepository, webClientBuilder, IMGW_URL);
     }
-    public Map<String, List<SynopResponseDto>> getAndCollectSynopticData(){
-        ImgwSynopDto[] rawRespone = webClient.get()
+    @Override
+    public Map<String, List<SynopResponseDto>> getAndCollectData(){
+        ImgwSynopDto[] rawResponse = webClient.get()
             .retrieve()
             .bodyToMono(ImgwSynopDto[].class)
             .block();
-        if(rawRespone==null){
+        if(rawResponse==null){
             return Map.of();
         }
-        Map<String, SynopLokalizationClass> stationInMap=synopLokalizationRepository.findAll()
+        Map<String, SynopLokalizationClass> stationInMap=lokalizationRepository.findAll()
             .stream()
             .collect(Collectors.toMap(SynopLokalizationClass::getStationId, Function.identity()));
-            return Arrays.stream(rawRespone)
+            return Arrays.stream(rawResponse)
                 .map(raw->{
                     SynopLokalizationClass synopId=stationInMap.get(raw.getStationId());
                     String province=synopId!=null?synopId.getProvince():"UNKNOWN";

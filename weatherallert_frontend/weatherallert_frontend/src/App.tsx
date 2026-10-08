@@ -1,58 +1,83 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { MapContainer, ImageOverlay, Marker, Popup, Tooltip, GeoJSON, useMapEvents } from 'react-leaflet';
-import L, { LatLngBoundsExpression } from 'leaflet';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { MapContainer, ImageOverlay, GeoJSON, useMapEvents } from 'react-leaflet';
+import L, { type LatLngBoundsExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-// Ikona stacji: czarna kropka + mały podpis (nazwa miasta) pod spodem.
-// Punkt zakotwiczenia to środek kropki (iconSize [0,0] + elementy pozycjonowane absolutnie),
-// więc kropka leży dokładnie w miejscu współrzędnych stacji.
-function escapeHtml(text: string): string {
-    return text.replace(/[&<>"']/g, (c) => (
-        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string
-    ));
+import { SynopPresentation, filterCapitalStations, SynopMarker, type SynopStation } from './SynopPresentation';
+import { MeteoPresentation, MeteoMarker, type MeteoStation } from './MeteoPresentation';
+import { POWIAT_DETAIL_MAPS, type PowiatDetailMapInfo } from './powiatDetailMaps';
+
+type DataType = 'synop' | 'meteo';
+
+type StationData = SynopStation | MeteoStation;
+
+function flattenBackendResponse(data: Record<string, any[]> | any[]): any[] {
+    if (!data) return [];
+    if (Array.isArray(data)) return data;
+    return Object.values(data).flat();
 }
 
-function makeDotIcon(label: string, temp?: string | number): L.DivIcon {
-    const tempText = temp !== undefined && temp !== null && temp !== ''
-        ? `${temp}°C`
-        : '';
+function normalizeSynopData(item: any): SynopStation {
+    const latRaw = item.latitudeGeo ?? item.lat;
+    const lonRaw = item.longitudeGeo ?? item.lon;
+    const lat = latRaw != null ? parseFloat(String(latRaw)) : null;
+    const lon = lonRaw != null ? parseFloat(String(lonRaw)) : null;
 
-    return L.divIcon({
-        className: '',
-        iconSize: [0, 0],
-        iconAnchor: [0, 0],
-        popupAnchor: [0, -8],
-        html: `
-            <div style="position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#000;cursor:pointer;"></div>
-            <div style="position:absolute;left:0;top:8px;transform:translateX(-50%);white-space:nowrap;text-align:center;cursor:pointer;pointer-events:none;">
-                <div style="font-size:18px;line-height:1.1;font-weight:600;color:#000;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff;">${escapeHtml(label)}</div>
-                ${tempText ? `<div style="font-size:18px;line-height:1.1;font-weight:700;color:#1a237e;text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff;">${escapeHtml(tempText)}</div>` : ''}
-            </div>
-        `,
-    });
+    return {
+        stationId: item.stationId ?? null,
+        station: item.station ?? 'Nieznana stacja',
+        province: item.province ?? null,
+        country: item.country ?? null,
+        measurementData: item.measurementData ?? null,
+        measurementHour: item.measurementHour ?? null,
+        temprature: item.temprature ?? null,
+        windSpeed: item.windSpeed ?? null,
+        windDirection: item.windDirection ?? null,
+        relativeHumidity: item.relativeHumidity ?? null,
+        totalPrecipitation: item.totalPrecipitation ?? null,
+        airPressure: item.airPressure ?? null,
+        latitudeGeo: lat === null || Number.isNaN(lat) ? null : lat,
+        longitudeGeo: lon === null || Number.isNaN(lon) ? null : lon,
+    };
 }
 
-interface SynopItem {
-    station: string;
-    province?: string; // opcjonalne - patrz uwaga przy stationsInProvince() niżej
-    temprature?: string;
-    airPressure?: string;
-    relativeHumidity?: string;
-    windSpeed?: string;
-    latitudeGeo?: number;
-    longitudeGeo?: number;
+function normalizeMeteoData(item: any): MeteoStation {
+    const parseNum = (v: any): number | null => {
+        if (v === null || v === undefined || v === '') return null;
+        const n = typeof v === 'number' ? v : parseFloat(String(v));
+        return Number.isNaN(n) ? null : n;
+    };
+
+    return {
+        stationCode: item.stationCode ?? null,
+        stationName: item.stationName ?? 'Nieznana stacja',
+        province: item.province ?? null,
+        country: item.country ?? null,
+        latitudeGeo: parseNum(item.lat),
+        longitudeGeo: parseNum(item.lon),
+        stationEstablishmentYear: item.stationEstablishmentYear ?? null,
+        heightAboveSeaLevel: item.heightAboveSeaLevel ?? null,
+        groundTemperature: item.groundTemperature ?? null,
+        groundTemperatureDate: item.groundTemperatureDate ?? null,
+        airTemperature: item.airTemperature ?? null,
+        airTemperatureDate: item.airTemperatureDate ?? null,
+        windDirection: item.windDirection ?? null,
+        windDirectionDate: item.windDirectionDate ?? null,
+        windAverageSpeed: item.windAverageSpeed ?? null,
+        windAverageSpeedDate: item.windAverageSpeedDate ?? null,
+        windMaximumSpeed: item.windMaximumSpeed ?? null,
+        windMaximumSpeedDate: item.windMaximumSpeedDate ?? null,
+        relativeHumidity: item.relativeHumidity ?? null,
+        relativeHumidityDate: item.relativeHumidityDate ?? null,
+        windGust10min: item.windGust10min ?? null,
+        windGust10minDate: item.windGust10minDate ?? null,
+        precipitation10min: item.precipitation10min ?? null,
+        precipitation10minDate: item.precipitation10minDate ?? null,
+    };
 }
 
-type GroupedSynopResponse = Record<string, SynopItem[]>;
-
-// ============================================================================
-// MAPA GŁÓWNA (cała Polska)
-// ============================================================================
-
-// UKŁAD STRONY: wysokość zarezerwowana u góry na menu oraz sztywny rozmiar ramki mapy.
-// Ramka jest kwadratowa (obrazek mapy jest 1:1) i zawsze mieści się w oknie pod menu.
-const MENU_HEIGHT = 80; // px - tu wjedzie menu
-const PAGE_GAP = 16;    // px - odstęp mapy od krawędzi
+const MENU_HEIGHT = 80;
+const PAGE_GAP = 16;
 const MAP_FRAME_SIZE = `min(calc(100vh - ${MENU_HEIGHT}px - ${PAGE_GAP * 2}px), calc(100vw - ${PAGE_GAP * 2}px))`;
 
 const MAP_HEIGHT = 1000;
@@ -63,9 +88,6 @@ const imageBounds: LatLngBoundsExpression = [
     [MAP_HEIGHT, MAP_WIDTH]
 ];
 
-// WAŻNE: te wartości muszą być identyczne z zakresem lon/lat użytym przy
-// renderowaniu polska_mapa_szara.png (aspect='auto', bez marginesu, bez
-// zniekształcenia proporcji - obrazek wypełnia kadr krawędź-do-krawędzi).
 const GEO_BOUNDS = {
     minLat: 48.9,
     maxLat: 55.0,
@@ -85,101 +107,9 @@ function coordsToLatLng(coords: number[]): L.LatLng {
     return L.latLng(y, x);
 }
 
-// "śląskie" / "warmińsko-mazurskie" -> "Śląskie" / "Warmińsko-Mazurskie"
 function capitalizeWoj(name: string): string {
     return name.replace(/(^|[\s-])\p{L}/gu, (c) => c.toUpperCase());
 }
-
-// Miasta wojewódzkie pokazywane na widoku podstawowym (cała Polska).
-// Dopasowanie po nazwie stacji (dokładnie tak, jak przychodzi z API w polu
-// "stacja"/"station"). To rozwiązanie pragmatyczne - jeśli kiedyś backend
-// zacznie zwracać np. flagę "isCapital" albo stabilne station_id, lepiej
-// przełączyć się na to zamiast dopasowania po nazwie tekstowej.
-// (Lubuskie ma dwie siedziby władz: Gorzów Wielkopolski i Zielona Góra -
-// stąd 17 nazw na 16 województw).
-const CAPITAL_STATION_NAMES = new Set<string>([
-    'Białystok',       // podlaskie
-    'Katowice',        // śląskie
-    'Gdańsk',          // pomorskie
-    'Gorzów',          // lubuskie (siedziba wojewody)
-    'Zielona Góra',    // lubuskie (siedziba sejmiku)
-    'Wrocław',         // dolnośląskie
-    'Poznań',          // wielkopolskie
-    'Kraków',          // małopolskie
-    'Szczecin',        // zachodniopomorskie
-    'Olsztyn',         // warmińsko-mazurskie
-    'Kielce',          // świętokrzyskie
-    'Warszawa',        // mazowieckie
-    'Rzeszów',         // podkarpackie
-    'Lublin',          // lubelskie
-    'Łódź',            // łódzkie
-    'Opole',           // opolskie
-    'Toruń',           // kujawsko-pomorskie
-]);
-
-const DEFAULT_STYLE: L.PathOptions = {
-    fillColor: 'transparent',
-    fillOpacity: 0,
-    color: 'transparent',
-    weight: 0,
-};
-
-const HOVER_STYLE: L.PathOptions = {
-    fillColor: '#ffca28',
-    fillOpacity: 0.45,
-    color: '#ffffff',
-    weight: 2,
-};
-
-interface VoivodeshipsLayerProps {
-    geoData: GeoJSON.FeatureCollection | null;
-    onSelect: (rawName: string) => void;
-}
-
-function VoivodeshipsLayer({ geoData, onSelect }: VoivodeshipsLayerProps) {
-    const geoJsonRef = useRef<L.GeoJSON | null>(null);
-
-    if (!geoData) return null;
-
-    const onEachFeature = (feature: GeoJSON.Feature, layer: L.Layer) => {
-        const rawName: string = (feature.properties as any)?.nazwa ?? '';
-        const path = layer as L.Path;
-
-        layer.on({
-            mouseover: () => {
-                path.setStyle(HOVER_STYLE);
-                path.bringToFront();
-            },
-            mouseout: () => {
-                geoJsonRef.current?.resetStyle(path);
-            },
-            click: () => {
-                // Nie zoomujemy już mapy głównej w tle - samo kliknięcie tylko
-                // otwiera modal ze szczegółową mapą powiatów (patrz ModalMap).
-                onSelect(rawName);
-            },
-        });
-
-        layer.bindTooltip(capitalizeWoj(rawName), { sticky: true });
-    };
-
-    return (
-        <GeoJSON
-            ref={geoJsonRef}
-            data={geoData}
-            coordsToLatLng={coordsToLatLng as any}
-            style={() => DEFAULT_STYLE}
-            onEachFeature={onEachFeature}
-        />
-    );
-}
-
-// ============================================================================
-// GEOMETRIA: sprawdzanie, czy punkt (stacja) leży wewnątrz danego województwa
-// Liczymy to bezpośrednio z tych samych granic (wojewodztwa.geojson), których
-// już używamy do rysowania/hover/klik - więc wynik zawsze jest spójny z tym,
-// co widać na mapie, niezależnie od tego, czy backend przysyła pole "province".
-// ============================================================================
 
 type Ring = number[][];
 
@@ -200,7 +130,7 @@ function pointInGeometry(lng: number, lat: number, geometry: GeoJSON.Geometry): 
         const rings = geometry.coordinates as unknown as Ring[];
         if (rings.length === 0 || !rayCastInRing(lng, lat, rings[0])) return false;
         for (let h = 1; h < rings.length; h++) {
-            if (rayCastInRing(lng, lat, rings[h])) return false; // dziura (np. enklawa)
+            if (rayCastInRing(lng, lat, rings[h])) return false;
         }
         return true;
     }
@@ -220,10 +150,10 @@ function pointInGeometry(lng: number, lat: number, geometry: GeoJSON.Geometry): 
 }
 
 function stationsInProvince(
-    stations: SynopItem[],
+    stations: StationData[],
     geoData: GeoJSON.FeatureCollection | null,
     provinceNazwa: string
-): SynopItem[] {
+): StationData[] {
     if (!geoData) return [];
     const feature = geoData.features.find(
         f => ((f.properties as any)?.nazwa as string | undefined)?.toLowerCase() === provinceNazwa.toLowerCase()
@@ -235,75 +165,76 @@ function stationsInProvince(
     });
 }
 
-// ============================================================================
-// PINEZKA STACJI: tooltip przy najechaniu + popup z danymi po kliknięciu
-// ============================================================================
-
-// Odporne na drobne różnice w nazwach pól z API (np. temprature/temperature).
-// Jeśli nadal widzisz "b.d." - zrób console.log(stations[0]) i sprawdź,
-// jak naprawdę nazywają się pola w odpowiedzi backendu.
-function pick(item: any, ...keys: string[]): any {
-    for (const k of keys) {
-        if (item?.[k] !== undefined && item?.[k] !== null && item?.[k] !== '') return item[k];
-    }
-    return undefined;
+function stationsInGeometry(stations: StationData[], geometry?: GeoJSON.Geometry): StationData[] {
+    if (!geometry) return [];
+    return stations.filter(s => {
+        if (s.latitudeGeo == null || s.longitudeGeo == null) return false;
+        return pointInGeometry(s.longitudeGeo, s.latitudeGeo, geometry);
+    });
 }
 
-function stationName(item: SynopItem): string {
-    return pick(item, 'station', 'stacja') ?? 'Stacja';
-}
-// function formatTemp(temp?: string | number): string | undefined {
-//     if (temp === undefined || temp === null || temp === '') return undefined;
-//     const n = typeof temp === 'number' ? temp : parseFloat(String(temp).replace(',', '.'));
-//     if (Number.isNaN(n)) return String(temp);
-//     return `${Math.round(n)}`;
-// }
-function StationMarker({ item, position }: { item: SynopItem; position: [number, number] }) {
-    const [popupOpen, setPopupOpen] = useState(false);
+// Kody TERYT województw (2 pierwsze cyfry kodu powiatu).
+const WOJ_TERYT: Record<string, string> = {
+    "dolnośląskie": "02", "kujawsko-pomorskie": "04", "lubelskie": "06", "lubuskie": "08",
+    "łódzkie": "10", "małopolskie": "12", "mazowieckie": "14", "opolskie": "16",
+    "podkarpackie": "18", "podlaskie": "20", "pomorskie": "22", "śląskie": "24",
+    "świętokrzyskie": "26", "warmińsko-mazurskie": "28", "wielkopolskie": "30", "zachodniopomorskie": "32",
+};
 
-    const name = stationName(item);
-    //const dotIcon = useMemo(() => makeDotIcon(name), [name]);
-    const temp = pick(item, 'temprature', 'temperature', 'temperatura');
-    const pressure = pick(item, 'airPressure', 'cisnienie');
-    const humidity = pick(item, 'relativeHumidity', 'wilgotnosc_wzgledna', 'wilgotnoscWzgledna');
-    const wind = pick(item, 'windSpeed', 'predkosc_wiatru', 'predkoscWiatru');
-    const dotIcon = useMemo(() => makeDotIcon(name, temp), [name, temp]);
-    const popupContent = (
-        <div style={{ minWidth: '160px' }}>
-            <h3 style={{ margin: '0 0 6px 0', color: '#1a237e', fontSize: '16px', fontWeight: 700 }}>{name}</h3>
-            <p style={{ margin: '3px 0' }}><strong>Temp:</strong> {temp ?? 'b.d.'} °C</p>
-            <p style={{ margin: '3px 0' }}><strong>Ciśnienie:</strong> {pressure ?? 'b.d.'} hPa</p>
-            <p style={{ margin: '3px 0' }}><strong>Wilgotność:</strong> {humidity ?? 'b.d.'} %</p>
-            <p style={{ margin: '3px 0' }}><strong>Wiatr:</strong> {wind ?? 'b.d.'} m/s</p>
-        </div>
-    );
+// "raciborski" -> "Powiat raciborski", miasto na prawach powiatu -> samo "Katowice"
+function powiatLabel(info: PowiatDetailMapInfo): string {
+    return info.subdivided ? `Powiat ${info.name}` : info.name;
+}
+
+const DEFAULT_STYLE: L.PathOptions = {
+    fillColor: 'transparent',
+    fillOpacity: 0,
+    color: 'transparent',
+    weight: 0,
+};
+
+const HOVER_STYLE: L.PathOptions = {
+    fillColor: '#ffca28',
+    fillOpacity: 0.45,
+    color: '#ffffff',
+    weight: 2,
+};
+
+function VoivodeshipsLayer({ geoData, onSelect }: { geoData: GeoJSON.FeatureCollection | null; onSelect: (rawName: string) => void }) {
+    const geoJsonRef = useRef<L.GeoJSON | null>(null);
+
+    if (!geoData) return null;
+
+    const onEachFeature = (feature: GeoJSON.Feature, layer: L.Layer) => {
+        const rawName: string = (feature.properties as any)?.nazwa ?? '';
+        const path = layer as L.Path;
+
+        layer.on({
+            mouseover: () => {
+                path.setStyle(HOVER_STYLE);
+                path.bringToFront();
+            },
+            mouseout: () => {
+                geoJsonRef.current?.resetStyle(path);
+            },
+            click: () => {
+                onSelect(rawName);
+            },
+        });
+
+        layer.bindTooltip(capitalizeWoj(rawName), { sticky: true });
+    };
 
     return (
-        <Marker position={position} icon={dotIcon} eventHandlers={{
-        click: (e) => {
-            L.DomEvent.stopPropagation(e.originalEvent);
-        },
-    }}>
-            {!popupOpen && (
-                <Tooltip direction="auto" offset={[0, 0]}>
-                    {popupContent}
-                </Tooltip>
-            )}
-            <Popup
-                eventHandlers={{
-                    add: () => setPopupOpen(true),
-                    remove: () => setPopupOpen(false),
-                }}
-            >
-                {popupContent}
-            </Popup>
-        </Marker>
+        <GeoJSON
+            ref={geoJsonRef}
+            data={geoData}
+            coordsToLatLng={coordsToLatLng as any}
+            style={() => DEFAULT_STYLE}
+            onEachFeature={onEachFeature}
+        />
     );
 }
-
-// ============================================================================
-// MAPA POWIATÓW W MODALU (jedno województwo)
-// ============================================================================
 
 interface VoivodeshipMapInfo {
     file: string;
@@ -313,9 +244,6 @@ interface VoivodeshipMapInfo {
     maxLat: number;
 }
 
-// Wygenerowane razem z obrazkami (patrz make_powiat_maps_v2.py -> manifest.json).
-// Każde województwo ma WŁASNY kadr (inny zakres lon/lat), dlatego każde ma
-// swój własny zestaw granic tu, obok pliku PNG.
 const POWIAT_MAPS: Record<string, VoivodeshipMapInfo> = {
     "śląskie": { file: "powiaty_slaskie.png", minLng: 17.9574, maxLng: 20.0516, minLat: 49.3258, maxLat: 51.1676 },
     "opolskie": { file: "powiaty_opolskie.png", minLng: 16.8364, maxLng: 18.7669, minLat: 49.9236, maxLat: 51.2435 },
@@ -335,46 +263,93 @@ const POWIAT_MAPS: Record<string, VoivodeshipMapInfo> = {
     "lubuskie": { file: "powiaty_lubuskie.png", minLng: 14.4589, maxLng: 16.4921, minLat: 51.2928, maxLat: 53.1944 },
 };
 
-interface ModalMapProps {
-    info: VoivodeshipMapInfo;
-    stations: SynopItem[];
-    geometry?: GeoJSON.Geometry; // kształt klikniętego województwa (do wykrywania kliknięcia "poza")
-    onClose: () => void;
-}
+type GeoRect = Pick<VoivodeshipMapInfo, 'minLng' | 'maxLng' | 'minLat' | 'maxLat'>;
 
-// Kliknięcie w mapę: zamieniamy pozycję kliknięcia z powrotem na lon/lat
-// (odwrotność toXY) i sprawdzamy, czy leży wewnątrz kształtu województwa.
-// Jeśli NIE - zamykamy modal i wracamy do mapy Polski. Kliknięcia w pinezki
-// nie docierają tu (Leaflet nie przekazuje ich do mapy), więc popupy działają.
-function OutsideShapeCloser({ info, geometry, onClose }: {
-    info: VoivodeshipMapInfo;
-    geometry?: GeoJSON.Geometry;
-    onClose: () => void;
-}) {
+// Wysokość obrazka w jednostkach Leafleta to zawsze 1000, szerokość = 1000 * aspect
+// (aspect = 1 dla obrazków województw, dla powiatów bierzemy go z powiatDetailMaps.ts).
+function OutsideShapeCloser({ geo, aspect, geometry, onClose }: { geo: GeoRect; aspect: number; geometry?: GeoJSON.Geometry; onClose: () => void }) {
     useMapEvents({
         click: (e) => {
             if (!geometry) return;
-            const y = e.latlng.lat; // w CRS.Simple: lat = y, lng = x (0..1000)
+            const y = e.latlng.lat;
             const x = e.latlng.lng;
-            const lat = info.minLat + (y / 1000) * (info.maxLat - info.minLat);
-            const lng = info.minLng + (x / 1000) * (info.maxLng - info.minLng);
+            const lat = geo.minLat + (y / 1000) * (geo.maxLat - geo.minLat);
+            const lng = geo.minLng + (x / (1000 * aspect)) * (geo.maxLng - geo.minLng);
             if (!pointInGeometry(lng, lat, geometry)) onClose();
         },
     });
     return null;
 }
 
-function ModalMap({ info, stations, geometry, onClose }: ModalMapProps) {
+// Powiaty wybranego województwa: podświetlenie po najechaniu + klik = wejście w powiat.
+// Rysowane na obrazku województwa, więc używamy jego własnego kadru (info).
+function PowiatsLayer({ features, info, onSelect }: { features: GeoJSON.Feature[]; info: GeoRect; onSelect: (code: string) => void }) {
+    const geoJsonRef = useRef<L.GeoJSON | null>(null);
+    const data = useMemo<GeoJSON.FeatureCollection>(() => ({ type: 'FeatureCollection', features }), [features]);
+    const toLatLng = useMemo(() => (coords: number[]) => {
+        const [lng, lat] = coords;
+        const y = ((lat - info.minLat) / (info.maxLat - info.minLat)) * 1000;
+        const x = ((lng - info.minLng) / (info.maxLng - info.minLng)) * 1000;
+        return L.latLng(y, x);
+    }, [info]);
+
+    if (features.length === 0) return null;
+
+    const onEachFeature = (feature: GeoJSON.Feature, layer: L.Layer) => {
+        const code: string = (feature.properties as any)?.code ?? '';
+        const path = layer as L.Path;
+        const detail = POWIAT_DETAIL_MAPS[code];
+
+        layer.on({
+            mouseover: () => {
+                path.setStyle(HOVER_STYLE);
+                path.bringToFront();
+            },
+            mouseout: () => {
+                geoJsonRef.current?.resetStyle(path);
+            },
+            click: () => {
+                if (detail) onSelect(code);
+            },
+        });
+
+        const fallbackName: string = (feature.properties as any)?.name ?? '';
+        layer.bindTooltip(detail ? powiatLabel(detail) : fallbackName, { sticky: true });
+    };
+
+    return (
+        <GeoJSON
+            ref={geoJsonRef}
+            data={data}
+            coordsToLatLng={toLatLng as any}
+            style={() => DEFAULT_STYLE}
+            onEachFeature={onEachFeature}
+        />
+    );
+}
+
+// Jedna mapka w modalu: widok województwa (obrazek powiatów) albo widok powiatu (obrazek gmin).
+function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geometry, onClose, overlay }: {
+    imageUrl: string;
+    geo: GeoRect;
+    aspect?: number;
+    stations: StationData[];
+    dataType: DataType;
+    geometry?: GeoJSON.Geometry;
+    onClose: () => void;
+    overlay?: ReactNode;
+}) {
     const H = 1000;
-    const W = 1000;
+    const W = 1000 * aspect;
     const bounds: LatLngBoundsExpression = [[0, 0], [H, W]];
     const containerRef = useRef<HTMLDivElement | null>(null);
 
     const toXY = (lat: number, lng: number): [number, number] => {
-        const y = ((lat - info.minLat) / (info.maxLat - info.minLat)) * H;
-        const x = ((lng - info.minLng) / (info.maxLng - info.minLng)) * W;
+        const y = ((lat - geo.minLat) / (geo.maxLat - geo.minLat)) * H;
+        const x = ((lng - geo.minLng) / (geo.maxLng - geo.minLng)) * W;
         return [y, x];
     };
+
     useEffect(() => {
         const el = containerRef.current;
         if (!el) return;
@@ -403,50 +378,71 @@ function ModalMap({ info, stations, geometry, onClose }: ModalMapProps) {
                 zoomControl={false}
                 attributionControl={false}
                 doubleClickZoom={false}
-                dragging={false}   
-                keyboard={false}   
+                dragging={false}
+                keyboard={false}
                 style={{
                     height: 'min(85vh, 95vw)',
-                    width: 'min(85vh, 95vw)',   
+                    width: 'min(85vh, 95vw)',
                     background: 'transparent',
                 }}
             >
-                <ImageOverlay url={`/powiaty/${info.file}`} bounds={bounds} />
-            <OutsideShapeCloser info={info} geometry={geometry} onClose={onClose} />
+                <ImageOverlay url={imageUrl} bounds={bounds} />
+                {overlay}
+                <OutsideShapeCloser geo={geo} aspect={aspect} geometry={geometry} onClose={onClose} />
                 {stations.map((item, index) => {
                     if (item.latitudeGeo == null || item.longitudeGeo == null) return null;
                     const pos = toXY(item.latitudeGeo, item.longitudeGeo);
-                    return <StationMarker key={index} item={item} position={pos} />;
+                    if (dataType === 'synop') {
+                        const s = item as SynopStation;
+                        return <SynopMarker key={`synop-${s.stationId || index}`} item={s} position={pos} />;
+                    }
+                    const m = item as MeteoStation;
+                    return <MeteoMarker key={`meteo-${m.stationCode || index}`} item={m} position={pos} />;
                 })}
             </MapContainer>
         </div>
     );
 }
 
-// ============================================================================
-// APP
-// ============================================================================
-
 export default function App() {
-    const [stations, setStations] = useState<SynopItem[]>([]);
+    const [dataType, setDataType] = useState<DataType>('synop');
+    const [synopStations, setSynopStations] = useState<SynopStation[]>([]);
+    const [meteoStations, setMeteoStations] = useState<MeteoStation[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [geoData, setGeoData] = useState<GeoJSON.FeatureCollection | null>(null);
     const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [powiatGeoData, setPowiatGeoData] = useState<GeoJSON.FeatureCollection | null>(null);
+    const [selectedPowiat, setSelectedPowiat] = useState<string | null>(null); // kod TERYT powiatu
     const mapRef = useRef<L.Map | null>(null);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/synop/grouped')
-            .then(res => res.json() as Promise<GroupedSynopResponse>)
+        setLoading(true);
+        const endpoint = dataType === 'synop'
+            ? 'http://localhost:8080/api/synop/grouped'
+            : 'http://localhost:8080/api/meteo/grouped';
+
+        fetch(endpoint)
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.json();
+            })
             .then(data => {
-                setStations(Object.values(data).flat());
+                const rawList = flattenBackendResponse(data);
+                if (dataType === 'synop') {
+                    setSynopStations(rawList.map(normalizeSynopData));
+                } else {
+                    setMeteoStations(rawList.map(normalizeMeteoData));
+                }
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Błąd podczas pobierania danych:", err);
+                console.error(`Błąd pobierania (${dataType}):`, err);
+                if (dataType === 'synop') setSynopStations([]);
+                else setMeteoStations([]);
                 setLoading(false);
             });
-    }, []);
+    }, [dataType]);
 
     useEffect(() => {
         fetch('/wojewodztwa.geojson')
@@ -454,6 +450,14 @@ export default function App() {
             .then((data: GeoJSON.FeatureCollection) => setGeoData(data))
             .catch(err => console.error("Błąd wczytywania granic województw:", err));
     }, []);
+
+    useEffect(() => {
+        fetch('/powiaty_teryt.geojson')
+            .then(res => res.json())
+            .then((data: GeoJSON.FeatureCollection) => setPowiatGeoData(data))
+            .catch(err => console.error("Błąd wczytywania granic powiatów:", err));
+    }, []);
+
     useEffect(() => {
         const map = mapRef.current;
         if (!map) return;
@@ -465,38 +469,118 @@ export default function App() {
         });
 
         return () => cancelAnimationFrame(raf);
-    }, [loading]); // mapa montuje się dopiero po zakończeniu ładowania
+    }, [loading]);
 
     const handleSelectProvince = (rawName: string) => {
         setSelectedProvince(rawName);
+        setSelectedPowiat(null);
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setSelectedPowiat(null);
     };
 
-    if (loading) return <div style={{ padding: '20px' }}>Ładowanie mapy...</div>;
+    const displayedSynop = useMemo(() => filterCapitalStations(synopStations), [synopStations]);
+    const displayedMeteo = meteoStations;
 
-    // Widok podstawowy: TYLKO miasta wojewódzkie.
-    const capitalStations = stations.filter(s => CAPITAL_STATION_NAMES.has(stationName(s)));
+    const activeStations: StationData[] = dataType === 'synop' ? displayedSynop : displayedMeteo;
+    const allStations: StationData[] = dataType === 'synop' ? synopStations : meteoStations;
 
     const provinceInfo = selectedProvince ? POWIAT_MAPS[selectedProvince.toLowerCase()] : undefined;
-    const provinceStations = selectedProvince ? stationsInProvince(stations, geoData, selectedProvince) : [];
+    const provinceStations = selectedProvince ? stationsInProvince(allStations, geoData, selectedProvince) : [];
     const provinceGeometry = selectedProvince
         ? geoData?.features.find(
             f => ((f.properties as any)?.nazwa as string | undefined)?.toLowerCase() === selectedProvince.toLowerCase()
         )?.geometry
         : undefined;
 
-    return (
-        // position: fixed + inset: 0 -> strona zajmuje cały ekran niezależnie od
-        // domyślnego CSS z Vite (#root z max-width/padding/margin), bez scrolla.
-        <div style={{ position: 'fixed', inset: 0, background: '#ffffff', overflow: 'hidden' }}>
-            {/* Miejsce na menu */}
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: MENU_HEIGHT }} />
+    const stationCount = dataType === 'synop' ? synopStations.length : meteoStations.length;
 
-            {/* Kontener mapy głównej - dostaje blur, gdy modal jest otwarty */}
+    // --- POWIATY ---
+    const provinceCode = selectedProvince ? WOJ_TERYT[selectedProvince.toLowerCase()] : undefined;
+    const provincePowiatFeatures = useMemo(
+        () => (powiatGeoData && provinceCode
+            ? powiatGeoData.features.filter(f => String((f.properties as any)?.code ?? '').startsWith(provinceCode))
+            : []),
+        [powiatGeoData, provinceCode]
+    );
+    const powiatInfo = selectedPowiat ? POWIAT_DETAIL_MAPS[selectedPowiat] : undefined;
+    const powiatGeometry = selectedPowiat
+        ? powiatGeoData?.features.find(f => (f.properties as any)?.code === selectedPowiat)?.geometry
+        : undefined;
+    const powiatStations = stationsInGeometry(allStations, powiatGeometry);
+
+    const modalTitle = !selectedProvince
+        ? ''
+        : selectedPowiat && powiatInfo
+            ? `${powiatLabel(powiatInfo)} (woj. ${capitalizeWoj(selectedProvince)}) – ${powiatStations.length} stacji ${dataType.toUpperCase()}`
+            : `Województwo ${capitalizeWoj(selectedProvince)} (${provinceStations.length} stacji ${dataType.toUpperCase()})`;
+
+    return (
+        <div style={{ position: 'fixed', inset: 0, background: '#ffffff', overflow: 'hidden' }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: MENU_HEIGHT,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                zIndex: 1000,
+                background: '#f8f9fa',
+                borderBottom: '1px solid #e0e0e0',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+            }}>
+                <span style={{ fontWeight: 600, fontSize: '15px', color: '#333' }}>Źródło danych:</span>
+
+                <div style={{
+                    display: 'inline-flex',
+                    background: '#e0e0e0',
+                    borderRadius: '24px',
+                    padding: '3px',
+                    gap: '4px'
+                }}>
+                    <button
+                        onClick={() => setDataType('synop')}
+                        style={{
+                            border: 'none',
+                            padding: '8px 18px',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            fontWeight: dataType === 'synop' ? 'bold' : 'normal',
+                            background: dataType === 'synop' ? '#1a237e' : 'transparent',
+                            color: dataType === 'synop' ? '#ffffff' : '#424242',
+                            transition: 'all 0.2s ease',
+                            boxShadow: dataType === 'synop' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
+                        }}
+                    >
+                        Synoptyczne
+                    </button>
+                    <button
+                        onClick={() => setDataType('meteo')}
+                        style={{
+                            border: 'none',
+                            padding: '8px 18px',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            fontWeight: dataType === 'meteo' ? 'bold' : 'normal',
+                            background: dataType === 'meteo' ? '#2e7d32' : 'transparent',
+                            color: dataType === 'meteo' ? '#ffffff' : '#424242',
+                            transition: 'all 0.2s ease',
+                            boxShadow: dataType === 'meteo' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
+                        }}
+                    >
+                        Meteorologiczne ({meteoStations.length} stacji)
+                    </button>
+                </div>
+            </div>
+
             <div
                 style={{
                     position: 'absolute',
@@ -509,67 +593,62 @@ export default function App() {
                     justifyContent: 'center',
                 }}
             >
-              {/* Sztywna, wycentrowana ramka mapy (blur działa tylko na nią) */}
-              <div
-                style={{
-                    width: MAP_FRAME_SIZE,
-                    height: MAP_FRAME_SIZE,
-                    flex: 'none',
-                    background: '#ffffff',
-                    borderRadius: 8,
-                    overflow: 'hidden',
-                    filter: isModalOpen ? 'blur(6px) brightness(0.7)' : 'none',
-                    transition: 'filter 0.25s ease',
-                }}
-              >
-                <MapContainer
-                    ref={mapRef}
-                    crs={L.CRS.Simple}
-                    center={[MAP_HEIGHT / 2, MAP_WIDTH / 2]}
-                    bounds={imageBounds}         
-                    zoomSnap={0.1}               
-                    minZoom={-3}                 
-                    maxZoom={5}
-                    maxBounds={imageBounds}
-                    maxBoundsViscosity={1.0}
-                    doubleClickZoom={false}
-                dragging={false}   // mapy nie da się przesuwać
-                keyboard={false}   // ani strzałkami
-                    style={{ height: '100%', width: '100%', background: '#ffffff' }}
-                >
-                    <ImageOverlay
-                        url="/polska_mapa_szara.png"
-                        bounds={imageBounds}
-                    />
+                {loading ? (
+                    <div style={{ fontSize: '16px', color: dataType === 'synop' ? '#1a237e' : '#2e7d32', fontWeight: 600 }}>
+                        Ładowanie stacji ({dataType === 'synop' ? 'Synop' : 'Meteo'})...
+                    </div>
+                ) : (
+                    <div
+                        style={{
+                            width: MAP_FRAME_SIZE,
+                            height: MAP_FRAME_SIZE,
+                            flex: 'none',
+                            background: '#ffffff',
+                            borderRadius: 8,
+                            overflow: 'hidden',
+                            filter: isModalOpen ? 'blur(6px) brightness(0.7)' : 'none',
+                            transition: 'filter 0.25s ease',
+                        }}
+                    >
+                        <MapContainer
+                            ref={mapRef}
+                            crs={L.CRS.Simple}
+                            center={[MAP_HEIGHT / 2, MAP_WIDTH / 2]}
+                            bounds={imageBounds}
+                            zoomSnap={0.1}
+                            minZoom={-3}
+                            maxZoom={5}
+                            maxBounds={imageBounds}
+                            maxBoundsViscosity={1.0}
+                            doubleClickZoom={false}
+                            dragging={false}
+                            keyboard={false}
+                            style={{ height: '100%', width: '100%', background: '#ffffff' }}
+                        >
+                            <ImageOverlay
+                                url="/polska_mapa_szara.png"
+                                bounds={imageBounds}
+                            />
 
-                    <VoivodeshipsLayer geoData={geoData} onSelect={handleSelectProvince} />
+                            <VoivodeshipsLayer geoData={geoData} onSelect={handleSelectProvince} />
 
-                    {capitalStations.map((item, index) => {
-                        if (!item.latitudeGeo || !item.longitudeGeo) return null;
-                        const mapPosition = parseGpsToMapCoords(item.latitudeGeo, item.longitudeGeo);
-
-                        return <StationMarker key={index} item={item} position={mapPosition} />;
-                    })}
-                </MapContainer>
-              </div>
+                            {dataType === 'synop' ? (
+                                <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} />
+                            ) : (
+                                <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} />
+                            )}
+                        </MapContainer>
+                    </div>
+                )}
             </div>
 
-            {/* MODAL: mapa powiatów wybranego województwa + jego stacje, na przezroczystym tle */}
             {isModalOpen && selectedProvince && (
-                // UWAGA: celowo NIE ma tu żadnego wewnętrznego stopPropagation na
-                // treści modala. Dzięki temu kliknięcie w JAKIEKOLWIEK miejsce
-                // w obrębie tego kontenera - w tym w puste/przezroczyste miejsca
-                // wokół kształtu województwa na mapce powiatów - bąbelkuje aż
-                // tutaj i zamyka modal. Wyjątki: przycisk "x" (jawnie zatrzymuje
-                // propagację) oraz markery/popupy Leaflet (Leaflet sam zatrzymuje
-                // propagację kliknięcia na pinezce, więc otwarcie popupu nie
-                // zamyka modala).
                 <div
                     onClick={closeModal}
                     style={{
                         position: 'fixed',
                         inset: 0,
-                        background: 'transparent', // NIE zasłaniamy zblurowanej mapy Polski żadnym kolorem
+                        background: 'transparent',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
@@ -577,18 +656,9 @@ export default function App() {
                         zIndex: 2000,
                     }}
                 >
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 12,
-                        marginBottom: 8,
-                    }}>
-                        <h2 style={{
-                            margin: 0,
-                            color: '#1a237e',
-                            pointerEvents: 'none', // klik "przez" tytuł też zamyka modal
-                        }}>
-                            Województwo {capitalizeWoj(selectedProvince)}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+                        <h2 style={{ margin: 0, color: dataType === 'synop' ? '#1a237e' : '#2e7d32', pointerEvents: 'none' }}>
+                            {modalTitle}
                         </h2>
                         <button
                             onClick={(e) => {
@@ -612,8 +682,30 @@ export default function App() {
                         </button>
                     </div>
 
-                    {provinceInfo ? (
-                        <ModalMap info={provinceInfo} stations={provinceStations} geometry={provinceGeometry} onClose={closeModal} />
+                    {selectedPowiat && powiatInfo ? (
+                        // WIDOK POWIATU (gminy). Klik poza kształtem = powrót do widoku województwa.
+                        <ModalMap
+                            key={`powiat-${selectedPowiat}`}
+                            imageUrl={`/powiat_detail/${powiatInfo.file}`}
+                            geo={powiatInfo}
+                            aspect={powiatInfo.aspect}
+                            stations={powiatStations}
+                            dataType={dataType}
+                            geometry={powiatGeometry}
+                            onClose={() => setSelectedPowiat(null)}
+                        />
+                    ) : provinceInfo ? (
+                        // WIDOK WOJEWÓDZTWA (powiaty). Klik w powiat = wejście w powiat, klik poza kształtem = zamknięcie.
+                        <ModalMap
+                            key={`woj-${selectedProvince}`}
+                            imageUrl={`/powiaty/${provinceInfo.file}`}
+                            geo={provinceInfo}
+                            stations={provinceStations}
+                            dataType={dataType}
+                            geometry={provinceGeometry}
+                            onClose={closeModal}
+                            overlay={<PowiatsLayer features={provincePowiatFeatures} info={provinceInfo} onSelect={setSelectedPowiat} />}
+                        />
                     ) : (
                         <p style={{ color: '#1a237e' }}>Brak mapy powiatów dla tego województwa.</p>
                     )}

@@ -1,0 +1,325 @@
+{
+  "2001": {
+    "name": "augustowski",
+    "file": "powiat_augustowski.png",
+    "minLng": 22.66112,
+    "maxLng": 23.62438,
+    "minLat": 53.55191,
+    "maxLat": 54.04299,
+    "aspect": 1.1586,
+    "gminy": [
+      "Augustów",
+      "Augustów",
+      "Bargłów Kościelny",
+      "Lipsk",
+      "Nowinka",
+      "Płaska",
+      "Sztabin"
+    ],
+    "subdivided": true
+  },
+  "2002": {
+    "name": "białostocki",
+    "file": "powiat_bialostocki.png",
+    "minLng": 22.41001,
+    "maxLng": 24.00539,
+    "minLat": 52.82851,
+    "maxLat": 53.40609,
+    "aspect": 1.6578,
+    "gminy": [
+      "Choroszcz",
+      "Czarna Białostocka",
+      "Dobrzyniewo Duże",
+      "Grabówka",
+      "Gródek",
+      "Juchnowiec Kościelny",
+      "Michałowo",
+      "Poświętne",
+      "Supraśl",
+      "Suraż",
+      "Turośń Kościelna",
+      "Tykocin",
+      "Wasilków",
+      "Zabłudów",
+      "Zawady",
+      "Łapy"
+    ],
+    "subdivided": true
+  },
+  "2003": {
+    "name": "bielski",
+    "file": "powiat_bielski.png",
+    "minLng": 22.57979,
+    "maxLng": 23.43331,
+    "minLat": 52.55147,
+    "maxLat": 52.94113,
+    "aspect": 1.326,
+    "gminy": [
+      "Bielsk Podlaski",
+      "Bielsk Podlaski",
+      "Boćki",
+      "Brańsk",
+      "Brańsk",
+      "Orla",
+      "Rudka",
+      "Wyszki"
+    ],
+    "subdivided": true
+  },
+  "2004": {
+    "name": "grajewski",
+    "file": "powiat_grajewski.png",
+    "minLng": 22.10736,
+    "maxLng": 22.87254,
+    "minLat": 53.33208,
+    "maxLat": 53.77812,
+    "aspect": 1.0191,
+    "gminy": [
+      "Grajewo",
+      "Grajewo",
+      "Radziłów",
+      "Rajgród",
+      "Szczuczyn",
+      "Wąsosz"
+    ],
+    "subdivided": true
+  },
+  "2005": {
+    "name": "hajnowski",
+    "file": "powiat_hajnowski.png",
+    "minLng": 23.14421,
+    "maxLng": 23.97019,
+    "minLat": 52.40416,
+    "maxLat": 53.01274,
+    "aspect": 0.8223,
+    "gminy": [
+      "Białowieża",
+      "Czeremcha",
+      "Czyże",
+      "Dubicze Cerkiewne",
+      "Hajnówka",
+      "Hajnówka",
+      "Kleszczele",
+      "Narew",
+      "Narewka"
+    ],
+    "subdivided": true
+  },
+  "2006": {
+    "name": "kolneński",
+    "file": "powiat_kolnenski.png",
+    "minLng": 21.57095,
+    "maxLng": 22.30665,
+    "minLat": 53.22699,
+    "maxLat": 53.55671,
+    "aspect": 1.3306,
+    "gminy": [
+      "Grabowo",
+      "Kolno",
+      "Kolno",
+      "Mały Płock",
+      "Stawiski",
+      "Turośl"
+    ],
+    "subdivided": true
+  },
+  "2007": {
+    "name": "łomżyński",
+    "file": "powiat_lomzynski.png",
+    "minLng": 21.59186,
+    "maxLng": 22.53244,
+    "minLat": 52.96034,
+    "maxLat": 53.45616,
+    "aspect": 1.1361,
+    "gminy": [
+      "Jedwabne",
+      "Miastkowo",
+      "Nowogród",
+      "Piątnica",
+      "Przytuły",
+      "Wizna",
+      "Zbójna",
+      "Łomża",
+      "Śniadowo"
+    ],
+    "subdivided": true
+  },
+  "2008": {
+    "name": "moniecki",
+    "file": "powiat_moniecki.png",
+    "minLng": 22.40221,
+    "maxLng": 23.16059,
+    "minLat": 53.18185,
+    "maxLat": 53.70965,
+    "aspect": 0.8558,
+    "gminy": [
+      "Goniądz",
+      "Jasionówka",
+      "Jaświły",
+      "Knyszyn",
+      "Krypno",
+      "Mońki",
+      "Trzcianne"
+    ],
+    "subdivided": true
+  },
+  "2009": {
+    "name": "sejneński",
+    "file": "powiat_sejnenski.png",
+    "minLng": 23.06206,
+    "maxLng": 23.54654,
+    "minLat": 53.87809,
+    "maxLat": 54.31311,
+    "aspect": 0.6531,
+    "gminy": [
+      "Giby",
+      "Krasnopol",
+      "Puńsk",
+      "Sejny",
+      "Sejny"
+    ],
+    "subdivided": true
+  },
+  "2010": {
+    "name": "siemiatycki",
+    "file": "powiat_siemiatycki.png",
+    "minLng": 22.42351,
+    "maxLng": 23.34929,
+    "minLat": 52.26322,
+    "maxLat": 52.71358,
+    "aspect": 1.2517,
+    "gminy": [
+      "Drohiczyn",
+      "Dziadkowice",
+      "Grodzisk",
+      "Mielnik",
+      "Milejczyce",
+      "Nurzec-Stacja",
+      "Perlejewo",
+      "Siemiatycze",
+      "Siemiatycze"
+    ],
+    "subdivided": true
+  },
+  "2011": {
+    "name": "sokólski",
+    "file": "powiat_sokolski.png",
+    "minLng": 22.88864,
+    "maxLng": 23.94876,
+    "minLat": 53.12608,
+    "maxLat": 53.74482,
+    "aspect": 1.0207,
+    "gminy": [
+      "Dąbrowa Białostocka",
+      "Janów",
+      "Korycin",
+      "Krynki",
+      "Kuźnica",
+      "Nowy Dwór",
+      "Sidra",
+      "Sokółka",
+      "Suchowola",
+      "Szudziałowo"
+    ],
+    "subdivided": true
+  },
+  "2012": {
+    "name": "suwalski",
+    "file": "powiat_suwalski.png",
+    "minLng": 22.45437,
+    "maxLng": 23.18693,
+    "minLat": 53.90319,
+    "maxLat": 54.42991,
+    "aspect": 0.8142,
+    "gminy": [
+      "Bakałarzewo",
+      "Filipów",
+      "Jeleniewo",
+      "Przerośl",
+      "Raczki",
+      "Rutka-Tartak",
+      "Suwałki",
+      "Szypliszki",
+      "Wiżajny"
+    ],
+    "subdivided": true
+  },
+  "2013": {
+    "name": "wysokomazowiecki",
+    "file": "powiat_wysokomazowiecki.png",
+    "minLng": 22.21747,
+    "maxLng": 22.89333,
+    "minLat": 52.56306,
+    "maxLat": 53.16614,
+    "aspect": 0.6766,
+    "gminy": [
+      "Ciechanowiec",
+      "Czyżew",
+      "Klukowo",
+      "Kobylin-Borzymy",
+      "Kulesze Kościelne",
+      "Nowe Piekuty",
+      "Sokoły",
+      "Szepietowo",
+      "Wysokie Mazowieckie",
+      "Wysokie Mazowieckie"
+    ],
+    "subdivided": true
+  },
+  "2014": {
+    "name": "zambrowski",
+    "file": "powiat_zambrowski.png",
+    "minLng": 21.95138,
+    "maxLng": 22.61872,
+    "minLat": 52.82734,
+    "maxLat": 53.21786,
+    "aspect": 1.0279,
+    "gminy": [
+      "Kołaki Kościelne",
+      "Rutki",
+      "Szumowo",
+      "Zambrów",
+      "Zambrów"
+    ],
+    "subdivided": true
+  },
+  "2061": {
+    "name": "Białystok",
+    "file": "powiat_bialystok.png",
+    "minLng": 23.05958,
+    "maxLng": 23.25442,
+    "minLat": 53.06172,
+    "maxLat": 53.19338,
+    "aspect": 0.888,
+    "gminy": [
+      "Białystok"
+    ],
+    "subdivided": false
+  },
+  "2062": {
+    "name": "Łomża",
+    "file": "powiat_lomza.png",
+    "minLng": 22.00738,
+    "maxLng": 22.11042,
+    "minLat": 53.14004,
+    "maxLat": 53.22266,
+    "aspect": 0.7474,
+    "gminy": [
+      "Łomża"
+    ],
+    "subdivided": false
+  },
+  "2063": {
+    "name": "Suwałki",
+    "file": "powiat_suwalki.png",
+    "minLng": 22.8621,
+    "maxLng": 22.9998,
+    "minLat": 54.03542,
+    "maxLat": 54.16998,
+    "aspect": 0.6,
+    "gminy": [
+      "Suwałki"
+    ],
+    "subdivided": false
+  }
+}

@@ -1,0 +1,820 @@
+{
+  "1401": {
+    "name": "białobrzeski",
+    "file": "powiat_bialobrzeski.png",
+    "minLng": 20.61973,
+    "maxLng": 21.26687,
+    "minLat": 51.47778,
+    "maxLat": 51.76442,
+    "aspect": 1.4017,
+    "gminy": [
+      "Białobrzegi",
+      "Promna",
+      "Radzanów",
+      "Stara Błotnica",
+      "Stromiec",
+      "Wyśmierzyce"
+    ],
+    "subdivided": true
+  },
+  "1402": {
+    "name": "ciechanowski",
+    "file": "powiat_ciechanowski.png",
+    "minLng": 20.18275,
+    "maxLng": 20.96985,
+    "minLat": 52.68318,
+    "maxLat": 53.12102,
+    "aspect": 1.0843,
+    "gminy": [
+      "Ciechanów",
+      "Ciechanów",
+      "Glinojeck",
+      "Gołymin-Ośrodek",
+      "Grudusk",
+      "Ojrzeń",
+      "Opinogóra Górna",
+      "Regimin",
+      "Sońsk"
+    ],
+    "subdivided": true
+  },
+  "1403": {
+    "name": "garwoliński",
+    "file": "powiat_garwolinski.png",
+    "minLng": 21.24858,
+    "maxLng": 21.98362,
+    "minLat": 51.59484,
+    "maxLat": 52.05826,
+    "aspect": 0.9803,
+    "gminy": [
+      "Borowie",
+      "Garwolin",
+      "Garwolin",
+      "Górzno",
+      "Maciejowice",
+      "Miastków Kościelny",
+      "Parysów",
+      "Pilawa",
+      "Sobolew",
+      "Trojanów",
+      "Wilga",
+      "Łaskarzew",
+      "Łaskarzew",
+      "Żelechów"
+    ],
+    "subdivided": true
+  },
+  "1404": {
+    "name": "gostyniński",
+    "file": "powiat_gostyninski.png",
+    "minLng": 19.23019,
+    "maxLng": 20.01351,
+    "minLat": 52.24281,
+    "maxLat": 52.53689,
+    "aspect": 1.6256,
+    "gminy": [
+      "Gostynin",
+      "Gostynin",
+      "Pacyna",
+      "Sanniki",
+      "Szczawin Kościelny"
+    ],
+    "subdivided": true
+  },
+  "1405": {
+    "name": "grodziski",
+    "file": "powiat_grodziski.png",
+    "minLng": 20.37854,
+    "maxLng": 20.80946,
+    "minLat": 51.91346,
+    "maxLat": 52.21434,
+    "aspect": 0.8805,
+    "gminy": [
+      "Baranów",
+      "Grodzisk Mazowiecki",
+      "Jaktorów",
+      "Milanówek",
+      "Podkowa Leśna",
+      "Żabia Wola"
+    ],
+    "subdivided": true
+  },
+  "1406": {
+    "name": "grójecki",
+    "file": "powiat_grojecki.png",
+    "minLng": 20.34887,
+    "maxLng": 21.32433,
+    "minLat": 51.54022,
+    "maxLat": 51.97448,
+    "aspect": 1.3904,
+    "gminy": [
+      "Belsk Duży",
+      "Błędów",
+      "Chynów",
+      "Goszczyn",
+      "Grójec",
+      "Jasieniec",
+      "Mogielnica",
+      "Nowe Miasto nad Pilicą",
+      "Pniewy",
+      "Warka"
+    ],
+    "subdivided": true
+  },
+  "1407": {
+    "name": "kozienicki",
+    "file": "powiat_kozienicki.png",
+    "minLng": 21.08766,
+    "maxLng": 21.90424,
+    "minLat": 51.39942,
+    "maxLat": 51.87948,
+    "aspect": 1.0557,
+    "gminy": [
+      "Garbatka-Letnisko",
+      "Gniewoszów",
+      "Grabów nad Pilicą",
+      "Głowaczów",
+      "Kozienice",
+      "Magnuszew",
+      "Sieciechów"
+    ],
+    "subdivided": true
+  },
+  "1408": {
+    "name": "legionowski",
+    "file": "powiat_legionowski.png",
+    "minLng": 20.72048,
+    "maxLng": 21.16662,
+    "minLat": 52.32814,
+    "maxLat": 52.57536,
+    "aspect": 1.0998,
+    "gminy": [
+      "Jabłonna",
+      "Legionowo",
+      "Nieporęt",
+      "Serock",
+      "Wieliszew"
+    ],
+    "subdivided": true
+  },
+  "1409": {
+    "name": "lipski",
+    "file": "powiat_lipski.png",
+    "minLng": 21.29065,
+    "maxLng": 21.84275,
+    "minLat": 51.00144,
+    "maxLat": 51.31636,
+    "aspect": 1.0995,
+    "gminy": [
+      "Chotcza",
+      "Ciepielów",
+      "Lipsko",
+      "Rzeczniów",
+      "Sienno",
+      "Solec nad Wisłą"
+    ],
+    "subdivided": true
+  },
+  "1410": {
+    "name": "łosicki",
+    "file": "powiat_losicki.png",
+    "minLng": 22.53914,
+    "maxLng": 23.15106,
+    "minLat": 52.05069,
+    "maxLat": 52.39651,
+    "aspect": 1.0839,
+    "gminy": [
+      "Huszlew",
+      "Olszanka",
+      "Platerów",
+      "Sarnaki",
+      "Stara Kornica",
+      "Łosice"
+    ],
+    "subdivided": true
+  },
+  "1411": {
+    "name": "makowski",
+    "file": "powiat_makowski.png",
+    "minLng": 20.83628,
+    "maxLng": 21.52272,
+    "minLat": 52.741,
+    "maxLat": 53.1542,
+    "aspect": 1.001,
+    "gminy": [
+      "Czerwonka",
+      "Karniewo",
+      "Krasnosielc",
+      "Maków Mazowiecki",
+      "Młynarze",
+      "Płoniawy-Bramura",
+      "Rzewnie",
+      "Różan",
+      "Sypniewo",
+      "Szelków"
+    ],
+    "subdivided": true
+  },
+  "1412": {
+    "name": "miński",
+    "file": "powiat_minski.png",
+    "minLng": 21.20822,
+    "maxLng": 22.00958,
+    "minLat": 51.95684,
+    "maxLat": 52.40936,
+    "aspect": 1.0858,
+    "gminy": [
+      "Cegłów",
+      "Dobre",
+      "Dębe Wielkie",
+      "Halinów",
+      "Jakubów",
+      "Kałuszyn",
+      "Latowicz",
+      "Mińsk Mazowiecki",
+      "Mińsk Mazowiecki",
+      "Mrozy",
+      "Siennica",
+      "Stanisławów",
+      "Sulejówek"
+    ],
+    "subdivided": true
+  },
+  "1413": {
+    "name": "mławski",
+    "file": "powiat_mlawski.png",
+    "minLng": 19.99847,
+    "maxLng": 20.75263,
+    "minLat": 52.82355,
+    "maxLat": 53.28665,
+    "aspect": 0.9788,
+    "gminy": [
+      "Dzierzgowo",
+      "Lipowiec Kościelny",
+      "Mława",
+      "Radzanów",
+      "Strzegowo",
+      "Stupsk",
+      "Szreńsk",
+      "Szydłowo",
+      "Wieczfnia Kościelna",
+      "Wiśniewo"
+    ],
+    "subdivided": true
+  },
+  "1414": {
+    "name": "nowodworski",
+    "file": "powiat_nowodworski.png",
+    "minLng": 20.38044,
+    "maxLng": 20.95166,
+    "minLat": 52.27064,
+    "maxLat": 52.66106,
+    "aspect": 0.8914,
+    "gminy": [
+      "Czosnów",
+      "Leoncin",
+      "Nasielsk",
+      "Nowy Dwór Mazowiecki",
+      "Pomiechówek",
+      "Zakroczym"
+    ],
+    "subdivided": true
+  },
+  "1415": {
+    "name": "ostrołęcki",
+    "file": "powiat_ostrolecki.png",
+    "minLng": 21.01764,
+    "maxLng": 21.99676,
+    "minLat": 52.77106,
+    "maxLat": 53.50914,
+    "aspect": 0.7958,
+    "gminy": [
+      "Baranowo",
+      "Czarnia",
+      "Czerwin",
+      "Goworowo",
+      "Kadzidło",
+      "Lelis",
+      "Myszyniec",
+      "Olszewo-Borki",
+      "Rzekuń",
+      "Troszyn",
+      "Łyse"
+    ],
+    "subdivided": true
+  },
+  "1416": {
+    "name": "ostrowski",
+    "file": "powiat_ostrowski.png",
+    "minLng": 21.55507,
+    "maxLng": 22.50893,
+    "minLat": 52.59456,
+    "maxLat": 52.99534,
+    "aspect": 1.4391,
+    "gminy": [
+      "Andrzejewo",
+      "Boguty-Pianki",
+      "Brok",
+      "Małkinia Górna",
+      "Nur",
+      "Ostrów Mazowiecka",
+      "Ostrów Mazowiecka",
+      "Stary Lubotyń",
+      "Szulborze Wielkie",
+      "Wąsewo",
+      "Zaręby Kościelne"
+    ],
+    "subdivided": true
+  },
+  "1417": {
+    "name": "otwocki",
+    "file": "powiat_otwocki.png",
+    "minLng": 21.1484,
+    "maxLng": 21.5966,
+    "minLat": 51.85543,
+    "maxLat": 52.24067,
+    "aspect": 0.7155,
+    "gminy": [
+      "Celestynów",
+      "Józefów",
+      "Karczew",
+      "Kołbiel",
+      "Osieck",
+      "Otwock",
+      "Sobienie-Jeziory",
+      "Wiązowna"
+    ],
+    "subdivided": true
+  },
+  "1418": {
+    "name": "piaseczyński",
+    "file": "powiat_piaseczynski.png",
+    "minLng": 20.66125,
+    "maxLng": 21.30515,
+    "minLat": 51.87773,
+    "maxLat": 52.15497,
+    "aspect": 1.4294,
+    "gminy": [
+      "Góra Kalwaria",
+      "Konstancin-Jeziorna",
+      "Lesznowola",
+      "Piaseczno",
+      "Prażmów",
+      "Tarczyn"
+    ],
+    "subdivided": true
+  },
+  "1419": {
+    "name": "płocki",
+    "file": "powiat_plocki.png",
+    "minLng": 19.28234,
+    "maxLng": 20.28826,
+    "minLat": 52.30911,
+    "maxLat": 52.80019,
+    "aspect": 1.2454,
+    "gminy": [
+      "Bielsk",
+      "Bodzanów",
+      "Brudzeń Duży",
+      "Bulkowo",
+      "Drobin",
+      "Gąbin",
+      "Mała Wieś",
+      "Nowy Duninów",
+      "Radzanowo",
+      "Stara Biała",
+      "Staroźreby",
+      "Słubice",
+      "Słupno",
+      "Wyszogród",
+      "Łąck"
+    ],
+    "subdivided": true
+  },
+  "1420": {
+    "name": "płoński",
+    "file": "powiat_plonski.png",
+    "minLng": 19.93197,
+    "maxLng": 20.76173,
+    "minLat": 52.36089,
+    "maxLat": 52.91741,
+    "aspect": 0.9048,
+    "gminy": [
+      "Baboszewo",
+      "Czerwińsk nad Wisłą",
+      "Dzierzążnia",
+      "Joniec",
+      "Naruszewo",
+      "Nowe Miasto",
+      "Płońsk",
+      "Płońsk",
+      "Raciąż",
+      "Raciąż",
+      "Sochocin",
+      "Załuski"
+    ],
+    "subdivided": true
+  },
+  "1421": {
+    "name": "pruszkowski",
+    "file": "powiat_pruszkowski.png",
+    "minLng": 20.61647,
+    "maxLng": 21.00333,
+    "minLat": 51.99258,
+    "maxLat": 52.20912,
+    "aspect": 1.0974,
+    "gminy": [
+      "Brwinów",
+      "Michałowice",
+      "Nadarzyn",
+      "Piastów",
+      "Pruszków",
+      "Raszyn"
+    ],
+    "subdivided": true
+  },
+  "1422": {
+    "name": "przasnyski",
+    "file": "powiat_przasnyski.png",
+    "minLng": 20.64251,
+    "maxLng": 21.23629,
+    "minLat": 52.84421,
+    "maxLat": 53.38129,
+    "aspect": 0.6636,
+    "gminy": [
+      "Chorzele",
+      "Czernice Borowe",
+      "Jednorożec",
+      "Krasne",
+      "Krzynowłoga Mała",
+      "Przasnysz",
+      "Przasnysz"
+    ],
+    "subdivided": true
+  },
+  "1423": {
+    "name": "przysuski",
+    "file": "powiat_przysuski.png",
+    "minLng": 20.39623,
+    "maxLng": 20.90577,
+    "minLat": 51.21472,
+    "maxLat": 51.63258,
+    "aspect": 0.7604,
+    "gminy": [
+      "Borkowice",
+      "Gielniów",
+      "Klwów",
+      "Odrzywół",
+      "Potworów",
+      "Przysucha",
+      "Rusinów",
+      "Wieniawa"
+    ],
+    "subdivided": true
+  },
+  "1424": {
+    "name": "pułtuski",
+    "file": "powiat_pultuski.png",
+    "minLng": 20.66835,
+    "maxLng": 21.37975,
+    "minLat": 52.52359,
+    "maxLat": 52.82091,
+    "aspect": 1.4509,
+    "gminy": [
+      "Gzy",
+      "Obryte",
+      "Pokrzywnica",
+      "Pułtusk",
+      "Winnica",
+      "Zatory",
+      "Świercze"
+    ],
+    "subdivided": true
+  },
+  "1425": {
+    "name": "radomski",
+    "file": "powiat_radomski.png",
+    "minLng": 20.72493,
+    "maxLng": 21.59897,
+    "minLat": 51.05986,
+    "maxLat": 51.61184,
+    "aspect": 0.9893,
+    "gminy": [
+      "Gózd",
+      "Iłża",
+      "Jastrzębia",
+      "Jedlińsk",
+      "Jedlnia-Letnisko",
+      "Kowala",
+      "Pionki",
+      "Pionki",
+      "Przytyk",
+      "Skaryszew",
+      "Wierzbica",
+      "Wolanów",
+      "Zakrzew"
+    ],
+    "subdivided": true
+  },
+  "1426": {
+    "name": "siedlecki",
+    "file": "powiat_siedlecki.png",
+    "minLng": 21.83288,
+    "maxLng": 22.77562,
+    "minLat": 51.95571,
+    "maxLat": 52.42799,
+    "aspect": 1.2237,
+    "gminy": [
+      "Domanice",
+      "Korczew",
+      "Kotuń",
+      "Mokobody",
+      "Mordy",
+      "Paprotnia",
+      "Przesmyki",
+      "Siedlce",
+      "Skórzec",
+      "Suchożebry",
+      "Wiśniew",
+      "Wodynie",
+      "Zbuczyn"
+    ],
+    "subdivided": true
+  },
+  "1427": {
+    "name": "sierpecki",
+    "file": "powiat_sierpecki.png",
+    "minLng": 19.39996,
+    "maxLng": 20.02214,
+    "minLat": 52.66436,
+    "maxLat": 53.00284,
+    "aspect": 1.1105,
+    "gminy": [
+      "Gozdowo",
+      "Mochowo",
+      "Rościszewo",
+      "Sierpc",
+      "Sierpc",
+      "Szczutowo",
+      "Zawidz"
+    ],
+    "subdivided": true
+  },
+  "1428": {
+    "name": "sochaczewski",
+    "file": "powiat_sochaczewski.png",
+    "minLng": 19.91392,
+    "maxLng": 20.51278,
+    "minLat": 52.10252,
+    "maxLat": 52.43128,
+    "aspect": 1.1148,
+    "gminy": [
+      "Brochów",
+      "Iłów",
+      "Młodzieszyn",
+      "Nowa Sucha",
+      "Rybno",
+      "Sochaczew",
+      "Sochaczew",
+      "Teresin"
+    ],
+    "subdivided": true
+  },
+  "1429": {
+    "name": "sokołowski",
+    "file": "powiat_sokolowski.png",
+    "minLng": 21.9505,
+    "maxLng": 22.5876,
+    "minLat": 52.27164,
+    "maxLat": 52.71876,
+    "aspect": 0.8675,
+    "gminy": [
+      "Bielany",
+      "Ceranów",
+      "Jabłonna Lacka",
+      "Kosów Lacki",
+      "Repki",
+      "Sabnie",
+      "Sokołów Podlaski",
+      "Sokołów Podlaski",
+      "Sterdyń"
+    ],
+    "subdivided": true
+  },
+  "1430": {
+    "name": "szydłowiecki",
+    "file": "powiat_szydlowiecki.png",
+    "minLng": 20.59192,
+    "maxLng": 21.09348,
+    "minLat": 51.13558,
+    "maxLat": 51.37642,
+    "aspect": 1.3033,
+    "gminy": [
+      "Chlewiska",
+      "Jastrząb",
+      "Mirów",
+      "Orońsko",
+      "Szydłowiec"
+    ],
+    "subdivided": true
+  },
+  "1432": {
+    "name": "warszawski zachodni",
+    "file": "powiat_warszawski_zachodni.png",
+    "minLng": 20.28797,
+    "maxLng": 20.95033,
+    "minLat": 52.14863,
+    "maxLat": 52.38817,
+    "aspect": 1.6922,
+    "gminy": [
+      "Błonie",
+      "Izabelin",
+      "Kampinos",
+      "Leszno",
+      "Ożarów Mazowiecki",
+      "Stare Babice",
+      "Łomianki"
+    ],
+    "subdivided": true
+  },
+  "1433": {
+    "name": "węgrowski",
+    "file": "powiat_wegrowski.png",
+    "minLng": 21.5399,
+    "maxLng": 22.2069,
+    "minLat": 52.18976,
+    "maxLat": 52.72274,
+    "aspect": 0.7626,
+    "gminy": [
+      "Grębków",
+      "Korytnica",
+      "Liw",
+      "Miedzna",
+      "Sadowne",
+      "Stoczek",
+      "Wierzbno",
+      "Węgrów",
+      "Łochów"
+    ],
+    "subdivided": true
+  },
+  "1434": {
+    "name": "wołomiński",
+    "file": "powiat_wolominski.png",
+    "minLng": 21.03767,
+    "maxLng": 21.76483,
+    "minLat": 52.2442,
+    "maxLat": 52.5681,
+    "aspect": 1.3696,
+    "gminy": [
+      "Dąbrówka",
+      "Jadów",
+      "Klembów",
+      "Kobyłka",
+      "Marki",
+      "Poświętne",
+      "Radzymin",
+      "Strachówka",
+      "Tłuszcz",
+      "Wołomin",
+      "Zielonka",
+      "Ząbki"
+    ],
+    "subdivided": true
+  },
+  "1435": {
+    "name": "wyszkowski",
+    "file": "powiat_wyszkowski.png",
+    "minLng": 21.09159,
+    "maxLng": 21.79921,
+    "minLat": 52.44782,
+    "maxLat": 52.85488,
+    "aspect": 1.0546,
+    "gminy": [
+      "Brańszczyk",
+      "Długosiodło",
+      "Rząśnik",
+      "Somianka",
+      "Wyszków",
+      "Zabrodzie"
+    ],
+    "subdivided": true
+  },
+  "1436": {
+    "name": "zwoleński",
+    "file": "powiat_zwolenski.png",
+    "minLng": 21.30412,
+    "maxLng": 21.88148,
+    "minLat": 51.2095,
+    "maxLat": 51.512,
+    "aspect": 1.1918,
+    "gminy": [
+      "Kazanów",
+      "Policzna",
+      "Przyłęk",
+      "Tczów",
+      "Zwoleń"
+    ],
+    "subdivided": true
+  },
+  "1437": {
+    "name": "żuromiński",
+    "file": "powiat_zurominski.png",
+    "minLng": 19.61369,
+    "maxLng": 20.16751,
+    "minLat": 52.80469,
+    "maxLat": 53.22891,
+    "aspect": 0.7854,
+    "gminy": [
+      "Bieżuń",
+      "Kuczbork-Osada",
+      "Lubowidz",
+      "Lutocin",
+      "Siemiątkowo",
+      "Żuromin"
+    ],
+    "subdivided": true
+  },
+  "1438": {
+    "name": "żyrardowski",
+    "file": "powiat_zyrardowski.png",
+    "minLng": 20.17996,
+    "maxLng": 20.68584,
+    "minLat": 51.83182,
+    "maxLat": 52.16868,
+    "aspect": 0.9246,
+    "gminy": [
+      "Mszczonów",
+      "Puszcza Mariańska",
+      "Radziejowice",
+      "Wiskitki",
+      "Żyrardów"
+    ],
+    "subdivided": true
+  },
+  "1461": {
+    "name": "Ostrołęka",
+    "file": "powiat_ostroleka.png",
+    "minLng": 21.53174,
+    "maxLng": 21.67116,
+    "minLat": 53.0407,
+    "maxLat": 53.1136,
+    "aspect": 1.1489,
+    "gminy": [
+      "Ostrołęka"
+    ],
+    "subdivided": false
+  },
+  "1462": {
+    "name": "Płock",
+    "file": "powiat_plock.png",
+    "minLng": 19.61735,
+    "maxLng": 19.81315,
+    "minLat": 52.46876,
+    "maxLat": 52.60204,
+    "aspect": 0.8936,
+    "gminy": [
+      "Płock"
+    ],
+    "subdivided": false
+  },
+  "1463": {
+    "name": "Radom",
+    "file": "powiat_radom.png",
+    "minLng": 21.04496,
+    "maxLng": 21.26734,
+    "minLat": 51.34311,
+    "maxLat": 51.49139,
+    "aspect": 0.9353,
+    "gminy": [
+      "Radom"
+    ],
+    "subdivided": false
+  },
+  "1464": {
+    "name": "Siedlce",
+    "file": "powiat_siedlce.png",
+    "minLng": 22.21622,
+    "maxLng": 22.33448,
+    "minLat": 52.12497,
+    "maxLat": 52.19863,
+    "aspect": 0.9849,
+    "gminy": [
+      "Siedlce"
+    ],
+    "subdivided": false
+  },
+  "1465": {
+    "name": "Warszawa",
+    "file": "powiat_warszawa.png",
+    "minLng": 20.83497,
+    "maxLng": 21.28663,
+    "minLat": 52.08698,
+    "maxLat": 52.37902,
+    "aspect": 0.9472,
+    "gminy": [
+      "Warszawa"
+    ],
+    "subdivided": false
+  }
+}

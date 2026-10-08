@@ -1,0 +1,365 @@
+{
+  "2201": {
+    "name": "bytowski",
+    "file": "powiat_bytowski.png",
+    "minLng": 16.74242,
+    "maxLng": 17.84088,
+    "minLat": 53.84824,
+    "maxLat": 54.46546,
+    "aspect": 1.0421,
+    "gminy": [
+      "Borzytuchom",
+      "Bytów",
+      "Czarna Dąbrówka",
+      "Kołczygłowy",
+      "Lipnica",
+      "Miastko",
+      "Parchowo",
+      "Studzienice",
+      "Trzebielino",
+      "Tuchomie"
+    ],
+    "subdivided": true
+  },
+  "2202": {
+    "name": "chojnicki",
+    "file": "powiat_chojnicki.png",
+    "minLng": 17.26421,
+    "maxLng": 18.17389,
+    "minLat": 53.55174,
+    "maxLat": 54.05026,
+    "aspect": 1.0777,
+    "gminy": [
+      "Brusy",
+      "Chojnice",
+      "Chojnice",
+      "Czersk",
+      "Konarzyny"
+    ],
+    "subdivided": true
+  },
+  "2203": {
+    "name": "człuchowski",
+    "file": "powiat_czluchowski.png",
+    "minLng": 16.83116,
+    "maxLng": 17.54764,
+    "minLat": 53.47019,
+    "maxLat": 54.03201,
+    "aspect": 0.7541,
+    "gminy": [
+      "Czarne",
+      "Człuchów",
+      "Człuchów",
+      "Debrzno",
+      "Koczała",
+      "Przechlewo",
+      "Rzeczenica"
+    ],
+    "subdivided": true
+  },
+  "2204": {
+    "name": "gdański",
+    "file": "powiat_gdanski.png",
+    "minLng": 18.18578,
+    "maxLng": 18.97742,
+    "minLat": 54.09388,
+    "maxLat": 54.35622,
+    "aspect": 1.7641,
+    "gminy": [
+      "Cedry Wielkie",
+      "Kolbudy",
+      "Pruszcz Gdański",
+      "Pruszcz Gdański",
+      "Przywidz",
+      "Pszczółki",
+      "Suchy Dąb",
+      "Trąbki Wielkie"
+    ],
+    "subdivided": true
+  },
+  "2205": {
+    "name": "kartuski",
+    "file": "powiat_kartuski.png",
+    "minLng": 17.64908,
+    "maxLng": 18.52452,
+    "minLat": 54.16209,
+    "maxLat": 54.49181,
+    "aspect": 1.5483,
+    "gminy": [
+      "Chmielno",
+      "Kartuzy",
+      "Przodkowo",
+      "Sierakowice",
+      "Somonino",
+      "Stężyca",
+      "Sulęczyno",
+      "Żukowo"
+    ],
+    "subdivided": true
+  },
+  "2206": {
+    "name": "kościerski",
+    "file": "powiat_koscierski.png",
+    "minLng": 17.61825,
+    "maxLng": 18.38905,
+    "minLat": 53.82057,
+    "maxLat": 54.21823,
+    "aspect": 1.1388,
+    "gminy": [
+      "Dziemiany",
+      "Karsin",
+      "Kościerzyna",
+      "Kościerzyna",
+      "Liniewo",
+      "Lipusz",
+      "Nowa Karczma",
+      "Stara Kiszewa"
+    ],
+    "subdivided": true
+  },
+  "2207": {
+    "name": "kwidzyński",
+    "file": "powiat_kwidzynski.png",
+    "minLng": 18.71574,
+    "maxLng": 19.34636,
+    "minLat": 53.56408,
+    "maxLat": 53.92912,
+    "aspect": 1.0216,
+    "gminy": [
+      "Gardeja",
+      "Kwidzyn",
+      "Kwidzyn",
+      "Prabuty",
+      "Ryjewo",
+      "Sadlinki"
+    ],
+    "subdivided": true
+  },
+  "2208": {
+    "name": "lęborski",
+    "file": "powiat_leborski.png",
+    "minLng": 17.3979,
+    "maxLng": 17.9054,
+    "minLat": 54.33631,
+    "maxLat": 54.80049,
+    "aspect": 0.6338,
+    "gminy": [
+      "Cewice",
+      "Lębork",
+      "Nowa Wieś Lęborska",
+      "Wicko",
+      "Łeba"
+    ],
+    "subdivided": true
+  },
+  "2209": {
+    "name": "malborski",
+    "file": "powiat_malborski.png",
+    "minLng": 18.78695,
+    "maxLng": 19.30125,
+    "minLat": 53.93361,
+    "maxLat": 54.19249,
+    "aspect": 1.1659,
+    "gminy": [
+      "Lichnowy",
+      "Malbork",
+      "Malbork",
+      "Miłoradz",
+      "Nowy Staw",
+      "Stare Pole"
+    ],
+    "subdivided": true
+  },
+  "2210": {
+    "name": "nowodworski",
+    "file": "powiat_nowodworski.png",
+    "minLng": 18.80412,
+    "maxLng": 19.68118,
+    "minLat": 54.10054,
+    "maxLat": 54.52056,
+    "aspect": 1.2182,
+    "gminy": [
+      "Krynica Morska",
+      "Nowy Dwór Gdański",
+      "Ostaszewo",
+      "Stegna",
+      "Sztutowo"
+    ],
+    "subdivided": true
+  },
+  "2211": {
+    "name": "pucki",
+    "file": "powiat_pucki.png",
+    "minLng": 17.87317,
+    "maxLng": 18.90543,
+    "minLat": 54.54624,
+    "maxLat": 54.84756,
+    "aspect": 1.9798,
+    "gminy": [
+      "Hel",
+      "Jastarnia",
+      "Kosakowo",
+      "Krokowa",
+      "Puck",
+      "Puck",
+      "Władysławowo"
+    ],
+    "subdivided": true
+  },
+  "2212": {
+    "name": "słupski",
+    "file": "powiat_slupski.png",
+    "minLng": 16.66167,
+    "maxLng": 17.65613,
+    "minLat": 54.05746,
+    "maxLat": 54.78764,
+    "aspect": 0.7924,
+    "gminy": [
+      "Damnica",
+      "Dębnica Kaszubska",
+      "Główczyce",
+      "Kobylnica",
+      "Kępice",
+      "Potęgowo",
+      "Redzikowo",
+      "Smołdzino",
+      "Ustka",
+      "Ustka"
+    ],
+    "subdivided": true
+  },
+  "2213": {
+    "name": "starogardzki",
+    "file": "powiat_starogardzki.png",
+    "minLng": 18.03667,
+    "maxLng": 18.76103,
+    "minLat": 53.63558,
+    "maxLat": 54.16272,
+    "aspect": 0.8097,
+    "gminy": [
+      "Bobowo",
+      "Czarna Woda",
+      "Kaliska",
+      "Lubichowo",
+      "Osieczna",
+      "Osiek",
+      "Skarszewy",
+      "Skórcz",
+      "Skórcz",
+      "Smętowo Graniczne",
+      "Starogard Gdański",
+      "Starogard Gdański",
+      "Zblewo"
+    ],
+    "subdivided": true
+  },
+  "2214": {
+    "name": "tczewski",
+    "file": "powiat_tczewski.png",
+    "minLng": 18.53657,
+    "maxLng": 18.90193,
+    "minLat": 53.66561,
+    "maxLat": 54.17289,
+    "aspect": 0.4242,
+    "gminy": [
+      "Gniew",
+      "Morzeszczyn",
+      "Pelplin",
+      "Subkowy",
+      "Tczew",
+      "Tczew"
+    ],
+    "subdivided": true
+  },
+  "2215": {
+    "name": "wejherowski",
+    "file": "powiat_wejherowski.png",
+    "minLng": 17.63592,
+    "maxLng": 18.46158,
+    "minLat": 54.39143,
+    "maxLat": 54.84417,
+    "aspect": 1.056,
+    "gminy": [
+      "Choczewo",
+      "Gniewino",
+      "Linia",
+      "Luzino",
+      "Reda",
+      "Rumia",
+      "Szemud",
+      "Wejherowo",
+      "Wejherowo",
+      "Łęczyce"
+    ],
+    "subdivided": true
+  },
+  "2216": {
+    "name": "sztumski",
+    "file": "powiat_sztumski.png",
+    "minLng": 18.82882,
+    "maxLng": 19.61138,
+    "minLat": 53.76501,
+    "maxLat": 54.03739,
+    "aspect": 1.6927,
+    "gminy": [
+      "Dzierzgoń",
+      "Mikołajki Pomorskie",
+      "Stary Dzierzgoń",
+      "Stary Targ",
+      "Sztum"
+    ],
+    "subdivided": true
+  },
+  "2261": {
+    "name": "Gdańsk",
+    "file": "powiat_gdansk.png",
+    "minLng": 18.40436,
+    "maxLng": 19.09664,
+    "minLat": 54.26331,
+    "maxLat": 54.59519,
+    "aspect": 1.2134,
+    "gminy": [
+      "Gdańsk"
+    ],
+    "subdivided": false
+  },
+  "2262": {
+    "name": "Gdynia",
+    "file": "powiat_gdynia.png",
+    "minLng": 18.33612,
+    "maxLng": 18.93218,
+    "minLat": 54.41474,
+    "maxLat": 54.63226,
+    "aspect": 1.5904,
+    "gminy": [
+      "Gdynia"
+    ],
+    "subdivided": false
+  },
+  "2263": {
+    "name": "Słupsk",
+    "file": "powiat_slupsk.png",
+    "minLng": 16.91042,
+    "maxLng": 17.11248,
+    "minLat": 54.41956,
+    "maxLat": 54.50694,
+    "aspect": 1.344,
+    "gminy": [
+      "Słupsk"
+    ],
+    "subdivided": false
+  },
+  "2264": {
+    "name": "Sopot",
+    "file": "powiat_sopot.png",
+    "minLng": 18.50002,
+    "maxLng": 18.62098,
+    "minLat": 54.41783,
+    "maxLat": 54.46827,
+    "aspect": 1.3945,
+    "gminy": [
+      "Sopot"
+    ],
+    "subdivided": false
+  }
+}

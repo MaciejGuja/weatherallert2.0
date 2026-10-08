@@ -1,0 +1,503 @@
+{
+  "0601": {
+    "name": "bialski",
+    "file": "powiat_bialski.png",
+    "minLng": 22.57464,
+    "maxLng": 23.73186,
+    "minLat": 51.63094,
+    "maxLat": 52.31306,
+    "aspect": 1.0451,
+    "gminy": [
+      "Biała Podlaska",
+      "Drelów",
+      "Janów Podlaski",
+      "Kodeń",
+      "Konstantynów",
+      "Leśna Podlaska",
+      "Międzyrzec Podlaski",
+      "Międzyrzec Podlaski",
+      "Piszczac",
+      "Rokitno",
+      "Rossosz",
+      "Sosnówka",
+      "Sławatycze",
+      "Terespol",
+      "Terespol",
+      "Tuczna",
+      "Wisznice",
+      "Zalesie",
+      "Łomazy"
+    ],
+    "subdivided": true
+  },
+  "0602": {
+    "name": "biłgorajski",
+    "file": "powiat_bilgorajski.png",
+    "minLng": 22.37338,
+    "maxLng": 23.21102,
+    "minLat": 50.26321,
+    "maxLat": 50.90829,
+    "aspect": 0.8245,
+    "gminy": [
+      "Aleksandrów",
+      "Biszcza",
+      "Biłgoraj",
+      "Biłgoraj",
+      "Frampol",
+      "Goraj",
+      "Józefów",
+      "Księżpol",
+      "Obsza",
+      "Potok Górny",
+      "Tarnogród",
+      "Tereszpol",
+      "Turobin",
+      "Łukowa"
+    ],
+    "subdivided": true
+  },
+  "0603": {
+    "name": "chełmski",
+    "file": "powiat_chelmski.png",
+    "minLng": 23.00124,
+    "maxLng": 23.98026,
+    "minLat": 50.85005,
+    "maxLat": 51.39415,
+    "aspect": 1.1294,
+    "gminy": [
+      "Białopole",
+      "Chełm",
+      "Dorohusk",
+      "Dubienka",
+      "Kamień",
+      "Leśniowice",
+      "Rejowiec",
+      "Rejowiec Fabryczny",
+      "Rejowiec Fabryczny",
+      "Ruda-Huta",
+      "Sawin",
+      "Siedliszcze",
+      "Wierzbica",
+      "Wojsławice",
+      "Żmudź"
+    ],
+    "subdivided": true
+  },
+  "0604": {
+    "name": "hrubieszowski",
+    "file": "powiat_hrubieszowski.png",
+    "minLng": 23.5578,
+    "maxLng": 24.1681,
+    "minLat": 50.38845,
+    "maxLat": 51.02705,
+    "aspect": 0.6052,
+    "gminy": [
+      "Dołhobyczów",
+      "Horodło",
+      "Hrubieszów",
+      "Hrubieszów",
+      "Mircze",
+      "Trzeszczany",
+      "Uchanie",
+      "Werbkowice"
+    ],
+    "subdivided": true
+  },
+  "0605": {
+    "name": "janowski",
+    "file": "powiat_janowski.png",
+    "minLng": 22.12022,
+    "maxLng": 22.70278,
+    "minLat": 50.562,
+    "maxLat": 50.9293,
+    "aspect": 1.0036,
+    "gminy": [
+      "Batorz",
+      "Chrzanów",
+      "Dzwola",
+      "Godziszów",
+      "Janów Lubelski",
+      "Modliborzyce",
+      "Potok Wielki"
+    ],
+    "subdivided": true
+  },
+  "0606": {
+    "name": "krasnostawski",
+    "file": "powiat_krasnostawski.png",
+    "minLng": 22.72945,
+    "maxLng": 23.50835,
+    "minLat": 50.79125,
+    "maxLat": 51.13555,
+    "aspect": 1.4248,
+    "gminy": [
+      "Fajsławice",
+      "Gorzków",
+      "Izbica",
+      "Krasnystaw",
+      "Krasnystaw",
+      "Kraśniczyn",
+      "Rudnik",
+      "Siennica Różana",
+      "Łopiennik Górny",
+      "Żółkiewka"
+    ],
+    "subdivided": true
+  },
+  "0607": {
+    "name": "kraśnicki",
+    "file": "powiat_krasnicki.png",
+    "minLng": 21.78508,
+    "maxLng": 22.50642,
+    "minLat": 50.76009,
+    "maxLat": 51.07081,
+    "aspect": 1.4636,
+    "gminy": [
+      "Annopol",
+      "Dzierzkowice",
+      "Gościeradów",
+      "Kraśnik",
+      "Kraśnik",
+      "Szastarka",
+      "Trzydnik Duży",
+      "Urzędów",
+      "Wilkołaz",
+      "Zakrzówek"
+    ],
+    "subdivided": true
+  },
+  "0608": {
+    "name": "lubartowski",
+    "file": "powiat_lubartowski.png",
+    "minLng": 22.15405,
+    "maxLng": 23.05185,
+    "minLat": 51.34179,
+    "maxLat": 51.72811,
+    "aspect": 1.4456,
+    "gminy": [
+      "Abramów",
+      "Firlej",
+      "Jeziorzany",
+      "Kamionka",
+      "Kock",
+      "Lubartów",
+      "Lubartów",
+      "Michów",
+      "Niedźwiada",
+      "Ostrów Lubelski",
+      "Ostrówek",
+      "Serniki",
+      "Uścimów"
+    ],
+    "subdivided": true
+  },
+  "0609": {
+    "name": "lubelski",
+    "file": "powiat_lubelski.png",
+    "minLng": 22.09184,
+    "maxLng": 22.84126,
+    "minLat": 50.81474,
+    "maxLat": 51.45366,
+    "aspect": 0.736,
+    "gminy": [
+      "Bełżyce",
+      "Borzechów",
+      "Bychawa",
+      "Garbów",
+      "Głusk",
+      "Jabłonna",
+      "Jastków",
+      "Konopnica",
+      "Krzczonów",
+      "Niedrzwica Duża",
+      "Niemce",
+      "Strzyżewice",
+      "Wojciechów",
+      "Wysokie",
+      "Wólka",
+      "Zakrzew"
+    ],
+    "subdivided": true
+  },
+  "0610": {
+    "name": "łęczyński",
+    "file": "powiat_leczynski.png",
+    "minLng": 22.64062,
+    "maxLng": 23.29348,
+    "minLat": 51.16358,
+    "maxLat": 51.44502,
+    "aspect": 1.4502,
+    "gminy": [
+      "Cyców",
+      "Ludwin",
+      "Milejów",
+      "Puchaczów",
+      "Spiczyn",
+      "Łęczna"
+    ],
+    "subdivided": true
+  },
+  "0611": {
+    "name": "łukowski",
+    "file": "powiat_lukowski.png",
+    "minLng": 21.81316,
+    "maxLng": 22.66744,
+    "minLat": 51.62023,
+    "maxLat": 52.08657,
+    "aspect": 1.1315,
+    "gminy": [
+      "Adamów",
+      "Krzywda",
+      "Serokomla",
+      "Stanin",
+      "Stoczek Łukowski",
+      "Stoczek Łukowski",
+      "Trzebieszów",
+      "Wojcieszków",
+      "Wola Mysłowska",
+      "Łuków",
+      "Łuków"
+    ],
+    "subdivided": true
+  },
+  "0612": {
+    "name": "opolski",
+    "file": "powiat_opolski.png",
+    "minLng": 21.7651,
+    "maxLng": 22.2537,
+    "minLat": 50.93503,
+    "maxLat": 51.32307,
+    "aspect": 0.7902,
+    "gminy": [
+      "Chodel",
+      "Józefów nad Wisłą",
+      "Karczmiska",
+      "Opole Lubelskie",
+      "Poniatowa",
+      "Wilków",
+      "Łaziska"
+    ],
+    "subdivided": true
+  },
+  "0613": {
+    "name": "parczewski",
+    "file": "powiat_parczewski.png",
+    "minLng": 22.64325,
+    "maxLng": 23.34935,
+    "minLat": 51.39394,
+    "maxLat": 51.80596,
+    "aspect": 1.0645,
+    "gminy": [
+      "Dębowa Kłoda",
+      "Jabłoń",
+      "Milanów",
+      "Parczew",
+      "Podedwórze",
+      "Siemień",
+      "Sosnowica"
+    ],
+    "subdivided": true
+  },
+  "0614": {
+    "name": "puławski",
+    "file": "powiat_pulawski.png",
+    "minLng": 21.73892,
+    "maxLng": 22.33518,
+    "minLat": 51.23879,
+    "maxLat": 51.59821,
+    "aspect": 1.0346,
+    "gminy": [
+      "Baranów",
+      "Janowiec",
+      "Kazimierz Dolny",
+      "Końskowola",
+      "Kurów",
+      "Markuszów",
+      "Nałęczów",
+      "Puławy",
+      "Puławy",
+      "Wąwolnica",
+      "Żyrzyn"
+    ],
+    "subdivided": true
+  },
+  "0615": {
+    "name": "radzyński",
+    "file": "powiat_radzynski.png",
+    "minLng": 22.3242,
+    "maxLng": 23.091,
+    "minLat": 51.57578,
+    "maxLat": 51.98932,
+    "aspect": 1.1471,
+    "gminy": [
+      "Borki",
+      "Czemierniki",
+      "Komarówka Podlaska",
+      "Kąkolewnica",
+      "Radzyń Podlaski",
+      "Radzyń Podlaski",
+      "Ulan-Majorat",
+      "Wohyń"
+    ],
+    "subdivided": true
+  },
+  "0616": {
+    "name": "rycki",
+    "file": "powiat_rycki.png",
+    "minLng": 21.5904,
+    "maxLng": 22.2681,
+    "minLat": 51.51888,
+    "maxLat": 51.80562,
+    "aspect": 1.466,
+    "gminy": [
+      "Dęblin",
+      "Kłoczew",
+      "Nowodwór",
+      "Ryki",
+      "Stężyca",
+      "Ułęż"
+    ],
+    "subdivided": true
+  },
+  "0617": {
+    "name": "świdnicki",
+    "file": "powiat_swidnicki.png",
+    "minLng": 22.62158,
+    "maxLng": 23.08642,
+    "minLat": 50.95243,
+    "maxLat": 51.29727,
+    "aspect": 0.846,
+    "gminy": [
+      "Mełgiew",
+      "Piaski",
+      "Rybczewice",
+      "Trawniki",
+      "Świdnik"
+    ],
+    "subdivided": true
+  },
+  "0618": {
+    "name": "tomaszowski",
+    "file": "powiat_tomaszowski.png",
+    "minLng": 23.01018,
+    "maxLng": 24.03142,
+    "minLat": 50.23369,
+    "maxLat": 50.72261,
+    "aspect": 1.3292,
+    "gminy": [
+      "Bełżec",
+      "Jarczów",
+      "Krynice",
+      "Lubycza Królewska",
+      "Rachanie",
+      "Susiec",
+      "Tarnawatka",
+      "Telatyn",
+      "Tomaszów Lubelski",
+      "Tomaszów Lubelski",
+      "Tyszowce",
+      "Ulhówek",
+      "Łaszczów"
+    ],
+    "subdivided": true
+  },
+  "0619": {
+    "name": "włodawski",
+    "file": "powiat_wlodawski.png",
+    "minLng": 23.03288,
+    "maxLng": 23.73532,
+    "minLat": 51.24417,
+    "maxLat": 51.80123,
+    "aspect": 0.7846,
+    "gminy": [
+      "Hanna",
+      "Hańsk",
+      "Stary Brus",
+      "Urszulin",
+      "Wola Uhruska",
+      "Wyryki",
+      "Włodawa",
+      "Włodawa"
+    ],
+    "subdivided": true
+  },
+  "0620": {
+    "name": "zamojski",
+    "file": "powiat_zamojski.png",
+    "minLng": 22.7186,
+    "maxLng": 23.7067,
+    "minLat": 50.4568,
+    "maxLat": 50.9266,
+    "aspect": 1.3324,
+    "gminy": [
+      "Adamów",
+      "Grabowiec",
+      "Komarów-Osada",
+      "Krasnobród",
+      "Miączyn",
+      "Nielisz",
+      "Radecznica",
+      "Sitno",
+      "Skierbieszów",
+      "Stary Zamość",
+      "Sułów",
+      "Szczebrzeszyn",
+      "Zamość",
+      "Zwierzyniec",
+      "Łabunie"
+    ],
+    "subdivided": true
+  },
+  "0661": {
+    "name": "Biała Podlaska",
+    "file": "powiat_biala_podlaska.png",
+    "minLng": 23.05924,
+    "maxLng": 23.21736,
+    "minLat": 51.99379,
+    "maxLat": 52.06431,
+    "aspect": 1.3795,
+    "gminy": [
+      "Biała Podlaska"
+    ],
+    "subdivided": false
+  },
+  "0662": {
+    "name": "Chełm",
+    "file": "powiat_chelm.png",
+    "minLng": 23.41494,
+    "maxLng": 23.57846,
+    "minLat": 51.10352,
+    "maxLat": 51.17038,
+    "aspect": 1.5346,
+    "gminy": [
+      "Chełm"
+    ],
+    "subdivided": false
+  },
+  "0663": {
+    "name": "Lublin",
+    "file": "powiat_lublin.png",
+    "minLng": 22.44553,
+    "maxLng": 22.68227,
+    "minLat": 51.13353,
+    "maxLat": 51.30287,
+    "aspect": 0.8757,
+    "gminy": [
+      "Lublin"
+    ],
+    "subdivided": false
+  },
+  "0664": {
+    "name": "Zamość",
+    "file": "powiat_zamosc.png",
+    "minLng": 23.18565,
+    "maxLng": 23.31115,
+    "minLat": 50.69009,
+    "maxLat": 50.75251,
+    "aspect": 1.2729,
+    "gminy": [
+      "Zamość"
+    ],
+    "subdivided": false
+  }
+}

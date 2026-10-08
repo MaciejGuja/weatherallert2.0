@@ -1,0 +1,462 @@
+{
+  "1801": {
+    "name": "bieszczadzki",
+    "file": "powiat_bieszczadzki.png",
+    "minLng": 22.37504,
+    "maxLng": 22.91406,
+    "minLat": 48.97523,
+    "maxLat": 49.69797,
+    "aspect": 0.486,
+    "gminy": [
+      "Czarna",
+      "Lutowiska",
+      "Ustrzyki Dolne"
+    ],
+    "subdivided": true
+  },
+  "1802": {
+    "name": "brzozowski",
+    "file": "powiat_brzozowski.png",
+    "minLng": 21.83131,
+    "maxLng": 22.34939,
+    "minLat": 49.60911,
+    "maxLat": 49.84639,
+    "aspect": 1.4114,
+    "gminy": [
+      "Brzozów",
+      "Domaradz",
+      "Dydnia",
+      "Haczów",
+      "Jasienica Rosielna",
+      "Nozdrzec"
+    ],
+    "subdivided": true
+  },
+  "1803": {
+    "name": "dębicki",
+    "file": "powiat_debicki.png",
+    "minLng": 21.12766,
+    "maxLng": 21.58494,
+    "minLat": 49.81496,
+    "maxLat": 50.18324,
+    "aspect": 0.7981,
+    "gminy": [
+      "Brzostek",
+      "Czarna",
+      "Dębica",
+      "Dębica",
+      "Jodłowa",
+      "Pilzno",
+      "Żyraków"
+    ],
+    "subdivided": true
+  },
+  "1804": {
+    "name": "jarosławski",
+    "file": "powiat_jaroslawski.png",
+    "minLng": 22.38077,
+    "maxLng": 23.18353,
+    "minLat": 49.82238,
+    "maxLat": 50.22782,
+    "aspect": 1.272,
+    "gminy": [
+      "Chłopice",
+      "Jarosław",
+      "Jarosław",
+      "Laszki",
+      "Pawłosiów",
+      "Pruchnik",
+      "Radymno",
+      "Radymno",
+      "Rokietnica",
+      "Roźwienica",
+      "Wiązownica"
+    ],
+    "subdivided": true
+  },
+  "1805": {
+    "name": "jasielski",
+    "file": "powiat_jasielski.png",
+    "minLng": 21.22544,
+    "maxLng": 21.66726,
+    "minLat": 49.39381,
+    "maxLat": 49.89039,
+    "aspect": 0.5762,
+    "gminy": [
+      "Brzyska",
+      "Dębowiec",
+      "Jasło",
+      "Jasło",
+      "Kołaczyce",
+      "Krempna",
+      "Nowy Żmigród",
+      "Osiek Jasielski",
+      "Skołyszyn",
+      "Tarnowiec"
+    ],
+    "subdivided": true
+  },
+  "1806": {
+    "name": "kolbuszowski",
+    "file": "powiat_kolbuszowski.png",
+    "minLng": 21.50775,
+    "maxLng": 22.11925,
+    "minLat": 50.13713,
+    "maxLat": 50.49547,
+    "aspect": 1.0897,
+    "gminy": [
+      "Cmolas",
+      "Dzikowiec",
+      "Kolbuszowa",
+      "Majdan Królewski",
+      "Niwiska",
+      "Raniżów"
+    ],
+    "subdivided": true
+  },
+  "1807": {
+    "name": "krośnieński",
+    "file": "powiat_krosnienski.png",
+    "minLng": 21.55348,
+    "maxLng": 21.98862,
+    "minLat": 49.3263,
+    "maxLat": 49.8636,
+    "aspect": 0.5249,
+    "gminy": [
+      "Chorkówka",
+      "Dukla",
+      "Iwonicz-Zdrój",
+      "Jaśliska",
+      "Jedlicze",
+      "Korczyna",
+      "Krościenko Wyżne",
+      "Miejsce Piastowe",
+      "Rymanów",
+      "Wojaszówka"
+    ],
+    "subdivided": true
+  },
+  "1808": {
+    "name": "leżajski",
+    "file": "powiat_lezajski.png",
+    "minLng": 22.16874,
+    "maxLng": 22.70766,
+    "minLat": 50.11191,
+    "maxLat": 50.41129,
+    "aspect": 1.1508,
+    "gminy": [
+      "Grodzisko Dolne",
+      "Kuryłówka",
+      "Leżajsk",
+      "Leżajsk",
+      "Nowa Sarzyna"
+    ],
+    "subdivided": true
+  },
+  "1809": {
+    "name": "lubaczowski",
+    "file": "powiat_lubaczowski.png",
+    "minLng": 22.7678,
+    "maxLng": 23.5779,
+    "minLat": 49.96361,
+    "maxLat": 50.42769,
+    "aspect": 1.1175,
+    "gminy": [
+      "Cieszanów",
+      "Horyniec-Zdrój",
+      "Lubaczów",
+      "Lubaczów",
+      "Narol",
+      "Oleszyce",
+      "Stary Dzików",
+      "Wielkie Oczy"
+    ],
+    "subdivided": true
+  },
+  "1810": {
+    "name": "łańcucki",
+    "file": "powiat_lancucki.png",
+    "minLng": 22.07104,
+    "maxLng": 22.46676,
+    "minLat": 49.91369,
+    "maxLat": 50.25961,
+    "aspect": 0.734,
+    "gminy": [
+      "Białobrzegi",
+      "Czarna",
+      "Markowa",
+      "Rakszawa",
+      "Łańcut",
+      "Łańcut",
+      "Żołynia"
+    ],
+    "subdivided": true
+  },
+  "1811": {
+    "name": "mielecki",
+    "file": "powiat_mielecki.png",
+    "minLng": 21.12227,
+    "maxLng": 21.66043,
+    "minLat": 50.1167,
+    "maxLat": 50.511,
+    "aspect": 0.8716,
+    "gminy": [
+      "Borowa",
+      "Czermin",
+      "Gawłuszowice",
+      "Mielec",
+      "Mielec",
+      "Padew Narodowa",
+      "Przecław",
+      "Radomyśl Wielki",
+      "Tuszów Narodowy",
+      "Wadowice Górne"
+    ],
+    "subdivided": true
+  },
+  "1812": {
+    "name": "niżański",
+    "file": "powiat_nizanski.png",
+    "minLng": 21.94202,
+    "maxLng": 22.61108,
+    "minLat": 50.29023,
+    "maxLat": 50.63777,
+    "aspect": 1.2255,
+    "gminy": [
+      "Harasiuki",
+      "Jarocin",
+      "Jeżowe",
+      "Krzeszów",
+      "Nisko",
+      "Rudnik nad Sanem",
+      "Ulanów"
+    ],
+    "subdivided": true
+  },
+  "1813": {
+    "name": "przemyski",
+    "file": "powiat_przemyski.png",
+    "minLng": 22.22045,
+    "maxLng": 23.12635,
+    "minLat": 49.55804,
+    "maxLat": 49.96456,
+    "aspect": 1.4395,
+    "gminy": [
+      "Bircza",
+      "Dubiecko",
+      "Fredropol",
+      "Krasiczyn",
+      "Krzywcza",
+      "Medyka",
+      "Orły",
+      "Przemyśl",
+      "Stubno",
+      "Żurawica"
+    ],
+    "subdivided": true
+  },
+  "1814": {
+    "name": "przeworski",
+    "file": "powiat_przeworski.png",
+    "minLng": 22.20794,
+    "maxLng": 22.86566,
+    "minLat": 49.85537,
+    "maxLat": 50.32323,
+    "aspect": 0.902,
+    "gminy": [
+      "Adamówka",
+      "Gać",
+      "Jawornik Polski",
+      "Kańczuga",
+      "Przeworsk",
+      "Przeworsk",
+      "Sieniawa",
+      "Tryńcza",
+      "Zarzecze"
+    ],
+    "subdivided": true
+  },
+  "1815": {
+    "name": "ropczycko-sędziszowski",
+    "file": "powiat_ropczycko_sedziszowski.png",
+    "minLng": 21.44985,
+    "maxLng": 21.83725,
+    "minLat": 49.87432,
+    "maxLat": 50.22198,
+    "aspect": 0.7155,
+    "gminy": [
+      "Iwierzyce",
+      "Ostrów",
+      "Ropczyce",
+      "Sędziszów Małopolski",
+      "Wielopole Skrzyńskie"
+    ],
+    "subdivided": true
+  },
+  "1816": {
+    "name": "rzeszowski",
+    "file": "powiat_rzeszowski.png",
+    "minLng": 21.72467,
+    "maxLng": 22.35993,
+    "minLat": 49.71956,
+    "maxLat": 50.39554,
+    "aspect": 0.6033,
+    "gminy": [
+      "Boguchwała",
+      "Błażowa",
+      "Chmielnik",
+      "Dynów",
+      "Dynów",
+      "Głogów Małopolski",
+      "Hyżne",
+      "Kamień",
+      "Krasne",
+      "Lubenia",
+      "Sokołów Małopolski",
+      "Trzebownisko",
+      "Tyczyn",
+      "Świlcza"
+    ],
+    "subdivided": true
+  },
+  "1817": {
+    "name": "sanocki",
+    "file": "powiat_sanocki.png",
+    "minLng": 21.88752,
+    "maxLng": 22.44868,
+    "minLat": 49.15395,
+    "maxLat": 49.70615,
+    "aspect": 0.6609,
+    "gminy": [
+      "Besko",
+      "Bukowsko",
+      "Komańcza",
+      "Sanok",
+      "Sanok",
+      "Tyrawa Wołoska",
+      "Zagórz",
+      "Zarszyn"
+    ],
+    "subdivided": true
+  },
+  "1818": {
+    "name": "stalowowolski",
+    "file": "powiat_stalowowolski.png",
+    "minLng": 21.82367,
+    "maxLng": 22.28083,
+    "minLat": 50.34314,
+    "maxLat": 50.83886,
+    "aspect": 0.5855,
+    "gminy": [
+      "Bojanów",
+      "Pysznica",
+      "Radomyśl nad Sanem",
+      "Stalowa Wola",
+      "Zaklików",
+      "Zaleszany"
+    ],
+    "subdivided": true
+  },
+  "1819": {
+    "name": "strzyżowski",
+    "file": "powiat_strzyzowski.png",
+    "minLng": 21.45489,
+    "maxLng": 22.04371,
+    "minLat": 49.77343,
+    "maxLat": 49.98057,
+    "aspect": 1.8319,
+    "gminy": [
+      "Czudec",
+      "Frysztak",
+      "Niebylec",
+      "Strzyżów",
+      "Wiśniowa"
+    ],
+    "subdivided": true
+  },
+  "1820": {
+    "name": "tarnobrzeski",
+    "file": "powiat_tarnobrzeski.png",
+    "minLng": 21.46181,
+    "maxLng": 22.00969,
+    "minLat": 50.37218,
+    "maxLat": 50.75332,
+    "aspect": 0.9131,
+    "gminy": [
+      "Baranów Sandomierski",
+      "Gorzyce",
+      "Grębów",
+      "Nowa Dęba"
+    ],
+    "subdivided": true
+  },
+  "1821": {
+    "name": "leski",
+    "file": "powiat_leski.png",
+    "minLng": 22.17246,
+    "maxLng": 22.56774,
+    "minLat": 49.0672,
+    "maxLat": 49.5722,
+    "aspect": 0.5102,
+    "gminy": [
+      "Baligród",
+      "Cisna",
+      "Lesko",
+      "Olszanica",
+      "Solina"
+    ],
+    "subdivided": true
+  },
+  "1861": {
+    "name": "Krosno",
+    "file": "powiat_krosno.png",
+    "minLng": 21.68942,
+    "maxLng": 21.83198,
+    "minLat": 49.64362,
+    "maxLat": 49.73478,
+    "aspect": 1.0117,
+    "gminy": [
+      "Krosno"
+    ],
+    "subdivided": false
+  },
+  "1862": {
+    "name": "Przemyśl",
+    "file": "powiat_przemysl.png",
+    "minLng": 22.70742,
+    "maxLng": 22.86088,
+    "minLat": 49.74343,
+    "maxLat": 49.82357,
+    "aspect": 1.2364,
+    "gminy": [
+      "Przemyśl"
+    ],
+    "subdivided": false
+  },
+  "1863": {
+    "name": "Rzeszów",
+    "file": "powiat_rzeszow.png",
+    "minLng": 21.84939,
+    "maxLng": 22.10341,
+    "minLat": 49.92614,
+    "maxLat": 50.10066,
+    "aspect": 0.9353,
+    "gminy": [
+      "Rzeszów"
+    ],
+    "subdivided": false
+  },
+  "1864": {
+    "name": "Tarnobrzeg",
+    "file": "powiat_tarnobrzeg.png",
+    "minLng": 21.59343,
+    "maxLng": 21.80317,
+    "minLat": 50.50679,
+    "maxLat": 50.66091,
+    "aspect": 0.8641,
+    "gminy": [
+      "Tarnobrzeg"
+    ],
+    "subdivided": false
+  }
+}

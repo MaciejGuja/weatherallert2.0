@@ -1,0 +1,531 @@
+{
+  "0201": {
+    "name": "bolesławiecki",
+    "file": "powiat_boleslawiecki.png",
+    "minLng": 15.18012,
+    "maxLng": 15.87888,
+    "minLat": 51.09545,
+    "maxLat": 51.54775,
+    "aspect": 0.9655,
+    "gminy": [
+      "Bolesławiec",
+      "Bolesławiec",
+      "Gromadka",
+      "Nowogrodziec",
+      "Osiecznica",
+      "Warta Bolesławiecka"
+    ],
+    "subdivided": true
+  },
+  "0202": {
+    "name": "dzierżoniowski",
+    "file": "powiat_dzierzoniowski.png",
+    "minLng": 16.46275,
+    "maxLng": 16.92035,
+    "minLat": 50.61619,
+    "maxLat": 50.85401,
+    "aspect": 1.2178,
+    "gminy": [
+      "Bielawa",
+      "Dzierżoniów",
+      "Dzierżoniów",
+      "Niemcza",
+      "Pieszyce",
+      "Piława Górna",
+      "Łagiewniki"
+    ],
+    "subdivided": true
+  },
+  "0203": {
+    "name": "głogowski",
+    "file": "powiat_glogowski.png",
+    "minLng": 15.81346,
+    "maxLng": 16.37624,
+    "minLat": 51.52722,
+    "maxLat": 51.81548,
+    "aspect": 1.2108,
+    "gminy": [
+      "Głogów",
+      "Głogów",
+      "Jerzmanowa",
+      "Kotla",
+      "Pęcław",
+      "Żukowice"
+    ],
+    "subdivided": true
+  },
+  "0204": {
+    "name": "górowski",
+    "file": "powiat_gorowski.png",
+    "minLng": 16.24538,
+    "maxLng": 16.85082,
+    "minLat": 51.47319,
+    "maxLat": 51.80011,
+    "aspect": 1.1494,
+    "gminy": [
+      "Góra",
+      "Jemielno",
+      "Niechlów",
+      "Wąsosz"
+    ],
+    "subdivided": true
+  },
+  "0205": {
+    "name": "jaworski",
+    "file": "powiat_jaworski.png",
+    "minLng": 15.90821,
+    "maxLng": 16.50189,
+    "minLat": 50.84114,
+    "maxLat": 51.16136,
+    "aspect": 1.1667,
+    "gminy": [
+      "Bolków",
+      "Jawor",
+      "Męcinka",
+      "Mściwojów",
+      "Paszowice",
+      "Wądroże Wielkie"
+    ],
+    "subdivided": true
+  },
+  "0206": {
+    "name": "karkonoski",
+    "file": "powiat_karkonoski.png",
+    "minLng": 15.34237,
+    "maxLng": 15.98583,
+    "minLat": 50.72485,
+    "maxLat": 51.02315,
+    "aspect": 1.3612,
+    "gminy": [
+      "Janowice Wielkie",
+      "Jeżów Sudecki",
+      "Karpacz",
+      "Kowary",
+      "Mysłakowice",
+      "Piechowice",
+      "Podgórzyn",
+      "Stara Kamienica",
+      "Szklarska Poręba"
+    ],
+    "subdivided": true
+  },
+  "0207": {
+    "name": "kamiennogórski",
+    "file": "powiat_kamiennogorski.png",
+    "minLng": 15.81592,
+    "maxLng": 16.19348,
+    "minLat": 50.58601,
+    "maxLat": 50.92589,
+    "aspect": 0.7028,
+    "gminy": [
+      "Kamienna Góra",
+      "Kamienna Góra",
+      "Lubawka",
+      "Marciszów"
+    ],
+    "subdivided": true
+  },
+  "0208": {
+    "name": "kłodzki",
+    "file": "powiat_klodzki.png",
+    "minLng": 16.1624,
+    "maxLng": 17.0616,
+    "minLat": 50.07291,
+    "maxLat": 50.70449,
+    "aspect": 0.9077,
+    "gminy": [
+      "Bystrzyca Kłodzka",
+      "Duszniki-Zdrój",
+      "Kudowa-Zdrój",
+      "Kłodzko",
+      "Kłodzko",
+      "Lewin Kłodzki",
+      "Lądek-Zdrój",
+      "Międzylesie",
+      "Nowa Ruda",
+      "Nowa Ruda",
+      "Polanica-Zdrój",
+      "Radków",
+      "Stronie Śląskie",
+      "Szczytna"
+    ],
+    "subdivided": true
+  },
+  "0209": {
+    "name": "legnicki",
+    "file": "powiat_legnicki.png",
+    "minLng": 15.71432,
+    "maxLng": 16.50208,
+    "minLat": 51.08762,
+    "maxLat": 51.39498,
+    "aspect": 1.6045,
+    "gminy": [
+      "Chojnów",
+      "Chojnów",
+      "Krotoszyce",
+      "Kunice",
+      "Legnickie Pole",
+      "Miłkowice",
+      "Prochowice",
+      "Ruja"
+    ],
+    "subdivided": true
+  },
+  "0210": {
+    "name": "lubański",
+    "file": "powiat_lubanski.png",
+    "minLng": 15.1085,
+    "maxLng": 15.4488,
+    "minLat": 50.87824,
+    "maxLat": 51.21186,
+    "aspect": 0.6413,
+    "gminy": [
+      "Leśna",
+      "Lubań",
+      "Lubań",
+      "Olszyna",
+      "Platerówka",
+      "Siekierczyn",
+      "Świeradów-Zdrój"
+    ],
+    "subdivided": true
+  },
+  "0211": {
+    "name": "lubiński",
+    "file": "powiat_lubinski.png",
+    "minLng": 15.98498,
+    "maxLng": 16.50132,
+    "minLat": 51.2568,
+    "maxLat": 51.6266,
+    "aspect": 0.8703,
+    "gminy": [
+      "Lubin",
+      "Lubin",
+      "Rudna",
+      "Ścinawa"
+    ],
+    "subdivided": true
+  },
+  "0212": {
+    "name": "lwówecki",
+    "file": "powiat_lwowecki.png",
+    "minLng": 15.25742,
+    "maxLng": 15.78598,
+    "minLat": 50.81835,
+    "maxLat": 51.21385,
+    "aspect": 0.8408,
+    "gminy": [
+      "Gryfów Śląski",
+      "Lubomierz",
+      "Lwówek Śląski",
+      "Mirsk",
+      "Wleń"
+    ],
+    "subdivided": true
+  },
+  "0213": {
+    "name": "milicki",
+    "file": "powiat_milicki.png",
+    "minLng": 16.96603,
+    "maxLng": 17.59977,
+    "minLat": 51.35618,
+    "maxLat": 51.65922,
+    "aspect": 1.3016,
+    "gminy": [
+      "Cieszków",
+      "Krośnice",
+      "Milicz"
+    ],
+    "subdivided": true
+  },
+  "0214": {
+    "name": "oleśnicki",
+    "file": "powiat_olesnicki.png",
+    "minLng": 17.21592,
+    "maxLng": 17.81758,
+    "minLat": 51.03525,
+    "maxLat": 51.47395,
+    "aspect": 0.8583,
+    "gminy": [
+      "Bierutów",
+      "Dobroszyce",
+      "Dziadowa Kłoda",
+      "Międzybórz",
+      "Oleśnica",
+      "Oleśnica",
+      "Syców",
+      "Twardogóra"
+    ],
+    "subdivided": true
+  },
+  "0215": {
+    "name": "oławski",
+    "file": "powiat_olawski.png",
+    "minLng": 17.04918,
+    "maxLng": 17.56272,
+    "minLat": 50.80605,
+    "maxLat": 51.11515,
+    "aspect": 1.0464,
+    "gminy": [
+      "Domaniów",
+      "Jelcz-Laskowice",
+      "Oława",
+      "Oława"
+    ],
+    "subdivided": true
+  },
+  "0216": {
+    "name": "polkowicki",
+    "file": "powiat_polkowicki.png",
+    "minLng": 15.6778,
+    "maxLng": 16.3527,
+    "minLat": 51.31283,
+    "maxLat": 51.68727,
+    "aspect": 1.122,
+    "gminy": [
+      "Chocianów",
+      "Gaworzyce",
+      "Grębocice",
+      "Polkowice",
+      "Przemków",
+      "Radwanice"
+    ],
+    "subdivided": true
+  },
+  "0217": {
+    "name": "strzeliński",
+    "file": "powiat_strzelinski.png",
+    "minLng": 16.83844,
+    "maxLng": 17.37456,
+    "minLat": 50.60091,
+    "maxLat": 50.93279,
+    "aspect": 1.0217,
+    "gminy": [
+      "Borów",
+      "Kondratowice",
+      "Przeworno",
+      "Strzelin",
+      "Wiązów"
+    ],
+    "subdivided": true
+  },
+  "0218": {
+    "name": "średzki",
+    "file": "powiat_sredzki.png",
+    "minLng": 16.30923,
+    "maxLng": 16.92937,
+    "minLat": 50.98019,
+    "maxLat": 51.27211,
+    "aspect": 1.3333,
+    "gminy": [
+      "Kostomłoty",
+      "Malczyce",
+      "Miękinia",
+      "Udanin",
+      "Środa Śląska"
+    ],
+    "subdivided": true
+  },
+  "0219": {
+    "name": "świdnicki",
+    "file": "powiat_swidnicki.png",
+    "minLng": 16.13772,
+    "maxLng": 16.72318,
+    "minLat": 50.69849,
+    "maxLat": 51.04171,
+    "aspect": 1.0765,
+    "gminy": [
+      "Dobromierz",
+      "Jaworzyna Śląska",
+      "Marcinowice",
+      "Strzegom",
+      "Świdnica",
+      "Świdnica",
+      "Świebodzice",
+      "Żarów"
+    ],
+    "subdivided": true
+  },
+  "0220": {
+    "name": "trzebnicki",
+    "file": "powiat_trzebnicki.png",
+    "minLng": 16.73584,
+    "maxLng": 17.36386,
+    "minLat": 51.14826,
+    "maxLat": 51.59764,
+    "aspect": 0.8724,
+    "gminy": [
+      "Oborniki Śląskie",
+      "Prusice",
+      "Trzebnica",
+      "Wisznia Mała",
+      "Zawonia",
+      "Żmigród"
+    ],
+    "subdivided": true
+  },
+  "0221": {
+    "name": "wałbrzyski",
+    "file": "powiat_walbrzyski.png",
+    "minLng": 16.05088,
+    "maxLng": 16.51052,
+    "minLat": 50.6168,
+    "maxLat": 50.8975,
+    "aspect": 1.0359,
+    "gminy": [
+      "Boguszów-Gorce",
+      "Czarny Bór",
+      "Głuszyca",
+      "Jedlina-Zdrój",
+      "Mieroszów",
+      "Stare Bogaczowice",
+      "Szczawno-Zdrój",
+      "Walim"
+    ],
+    "subdivided": true
+  },
+  "0222": {
+    "name": "wołowski",
+    "file": "powiat_wolowski.png",
+    "minLng": 16.39984,
+    "maxLng": 16.82816,
+    "minLat": 51.21454,
+    "maxLat": 51.52946,
+    "aspect": 0.8491,
+    "gminy": [
+      "Brzeg Dolny",
+      "Wińsko",
+      "Wołów"
+    ],
+    "subdivided": true
+  },
+  "0223": {
+    "name": "wrocławski",
+    "file": "powiat_wroclawski.png",
+    "minLng": 16.5337,
+    "maxLng": 17.4084,
+    "minLat": 50.7922,
+    "maxLat": 51.2944,
+    "aspect": 1.0951,
+    "gminy": [
+      "Czernica",
+      "Długołęka",
+      "Jordanów Śląski",
+      "Kobierzyce",
+      "Kąty Wrocławskie",
+      "Mietków",
+      "Siechnice",
+      "Sobótka",
+      "Żórawina"
+    ],
+    "subdivided": true
+  },
+  "0224": {
+    "name": "ząbkowicki",
+    "file": "powiat_zabkowicki.png",
+    "minLng": 16.55608,
+    "maxLng": 17.18832,
+    "minLat": 50.38476,
+    "maxLat": 50.72864,
+    "aspect": 1.1681,
+    "gminy": [
+      "Bardo",
+      "Ciepłowody",
+      "Kamieniec Ząbkowicki",
+      "Stoszowice",
+      "Ziębice",
+      "Ząbkowice Śląskie",
+      "Złoty Stok"
+    ],
+    "subdivided": true
+  },
+  "0225": {
+    "name": "zgorzelecki",
+    "file": "powiat_zgorzelecki.png",
+    "minLng": 14.7965,
+    "maxLng": 15.3608,
+    "minLat": 50.83782,
+    "maxLat": 51.48808,
+    "aspect": 0.5442,
+    "gminy": [
+      "Bogatynia",
+      "Pieńsk",
+      "Sulików",
+      "Węgliniec",
+      "Zawidów",
+      "Zgorzelec",
+      "Zgorzelec"
+    ],
+    "subdivided": true
+  },
+  "0226": {
+    "name": "złotoryjski",
+    "file": "powiat_zlotoryjski.png",
+    "minLng": 15.68194,
+    "maxLng": 16.07776,
+    "minLat": 50.90662,
+    "maxLat": 51.27608,
+    "aspect": 0.6729,
+    "gminy": [
+      "Pielgrzymka",
+      "Wojcieszów",
+      "Zagrodno",
+      "Złotoryja",
+      "Złotoryja",
+      "Świerzawa"
+    ],
+    "subdivided": true
+  },
+  "0261": {
+    "name": "Jelenia Góra",
+    "file": "powiat_jelenia_gora.png",
+    "minLng": 15.56593,
+    "maxLng": 15.88917,
+    "minLat": 50.76121,
+    "maxLat": 50.93919,
+    "aspect": 1.1466,
+    "gminy": [
+      "Jelenia Góra"
+    ],
+    "subdivided": false
+  },
+  "0262": {
+    "name": "Legnica",
+    "file": "powiat_legnica.png",
+    "minLng": 16.07879,
+    "maxLng": 16.23831,
+    "minLat": 51.15718,
+    "maxLat": 51.25232,
+    "aspect": 1.0505,
+    "gminy": [
+      "Legnica"
+    ],
+    "subdivided": false
+  },
+  "0264": {
+    "name": "Wrocław",
+    "file": "powiat_wroclaw.png",
+    "minLng": 16.79255,
+    "maxLng": 17.19085,
+    "minLat": 51.036,
+    "maxLat": 51.2168,
+    "aspect": 1.3826,
+    "gminy": [
+      "Wrocław"
+    ],
+    "subdivided": false
+  },
+  "0265": {
+    "name": "Wałbrzych",
+    "file": "powiat_walbrzych.png",
+    "minLng": 16.22249,
+    "maxLng": 16.36041,
+    "minLat": 50.71193,
+    "maxLat": 50.85957,
+    "aspect": 0.5906,
+    "gminy": [
+      "Wałbrzych"
+    ],
+    "subdivided": false
+  }
+}
