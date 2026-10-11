@@ -29,12 +29,23 @@ export interface MeteoStation {
     precipitation10minDate: string | null;
 }
 
+/**
+ * @brief Zamiana znaków specjalnych HTML na encje
+ * @param text Tekst do zabezpieczenia.
+ * @return Tekst z zamienionymi znakami &, <, >, " oraz '.
+ */
 function escapeHtml(text: string): string {
     return text.replace(/[&<>"']/g, (c) => (
         { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string
     ));
 }
 
+/**
+ * @brief Tworzenie ikony znacznika stacji METEO
+ * @param label Nazwa stacji.
+ * @param temp Temperatura powietrza wyświetlana pod nazwą.
+ * @return Ikona Leaflet typu DivIcon.
+ */
 function makeMeteoDotIcon(label: string, temp?: number | null): L.DivIcon {
     const tempText = temp !== undefined && temp !== null ? `${temp}°C` : '';
 
@@ -53,6 +64,12 @@ function makeMeteoDotIcon(label: string, temp?: number | null): L.DivIcon {
     });
 }
 
+/**
+ * @brief Znacznik stacji METEO na mapie z tooltipem (po najechaniu) i oknem szczegółów (po kliknięciu).
+ * @param item Dane stacji METEO.
+ * @param position Pozycja znacznika na mapie [y, x].
+ * @return Znacznik Leaflet z podpowiedzią i oknem szczegółów.
+ */
 export function MeteoMarker({ item, position }: { item: MeteoStation; position: [number, number] }) {
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -130,6 +147,12 @@ interface MeteoPresentationProps {
     getPosition: (lat: number, lon: number) => [number, number];
 }
 
+/**
+ * @brief Warstwa prezentacji stacji METEO: renderuje znaczniki dla stacji posiadających współrzędne.
+ * @param stations Lista stacji do pokazania.
+ * @param getPosition Funkcja przeliczająca współrzędne GPS na pozycję na mapie.
+ * @return Zestaw znaczników stacji METEO.
+ */
 export const MeteoPresentation: React.FC<MeteoPresentationProps> = ({ stations, getPosition }) => {
     return (
         <>

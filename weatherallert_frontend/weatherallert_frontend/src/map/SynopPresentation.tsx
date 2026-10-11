@@ -39,6 +39,11 @@ const CAPITAL_ALIASES: Record<string, string[]> = {
     'Toruń': ['TORUŃ'],
 };
 
+/**
+ * @brief Wybieranie stacji SYNOP położonych w miastach wojewódzkich.
+ * @param stations Lista wszystkich stacji SYNOP.
+ * @return Stacje miast wojewódzkich.
+ */
 export function filterCapitalStations(stations: SynopStation[]): SynopStation[] {
     const matchedCapitals: SynopStation[] = [];
 
@@ -62,12 +67,23 @@ export function filterCapitalStations(stations: SynopStation[]): SynopStation[] 
     return matchedCapitals;
 }
 
+/**
+ * @brief Zamiana znaków specjalnych HTML na encje
+ * @param text Tekst do zabezpieczenia.
+ * @return Tekst z zamienionymi znakami &, <, >, " oraz '.
+ */
 function escapeHtml(text: string): string {
     return text.replace(/[&<>"']/g, (c) => (
         { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string
     ));
 }
 
+/**
+ * @brief Tworzenie ikony znacznika stacji SYNOP.
+ * @param label Nazwa stacji.
+ * @param temp Temperatura powietrza wyświetlana pod nazwą.
+ * @return Ikona Leaflet typu DivIcon.
+ */
 function makeSynopDotIcon(label: string, temp?: string | null): L.DivIcon {
     const tempText = temp !== undefined && temp !== null && temp !== '' ? `${temp}°C` : '';
 
@@ -86,6 +102,12 @@ function makeSynopDotIcon(label: string, temp?: string | null): L.DivIcon {
     });
 }
 
+/**
+ * @brief Znacznik stacji SYNOP na mapie z tooltipem (po najechaniu) i oknem szczegółów (po kliknięciu).
+ * @param item Dane stacji SYNOP.
+ * @param position Pozycja znacznika na mapie [y, x].
+ * @return Znacznik Leaflet z podpowiedzią i oknem szczegółów.
+ */
 export function SynopMarker({ item, position }: { item: SynopStation; position: [number, number] }) {
     const [popupOpen, setPopupOpen] = useState(false);
 
@@ -150,6 +172,12 @@ interface SynopPresentationProps {
     getPosition: (lat: number, lon: number) => [number, number];
 }
 
+/**
+ * @brief Warstwa prezentacji stacji SYNOP: renderuje znaczniki dla stacji posiadających współrzędne.
+ * @param stations Lista stacji do pokazania.
+ * @param getPosition Funkcja przeliczająca współrzędne GPS na pozycję na mapie.
+ * @return Zestaw znaczników stacji SYNOP.
+ */
 export const SynopPresentation: React.FC<SynopPresentationProps> = ({ stations, getPosition }) => {
     return (
         <>
