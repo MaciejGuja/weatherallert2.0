@@ -69,7 +69,7 @@ export function MeteoMarker({ item, position }: { item: MeteoStation; position: 
             </div>
             {item.stationCode && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Kod stacji: {item.stationCode}</p>}
             {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Województwo: {item.province}</p>}
-            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Kraj: {item.country}</p>}
+            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Powiat: {item.country}</p>}
             {item.stationEstablishmentYear && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Rok założenia: {item.stationEstablishmentYear}</p>}
             {item.heightAboveSeaLevel && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Wysokość npm: {item.heightAboveSeaLevel} m</p>}
             <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />

@@ -7,7 +7,7 @@ import { SynopPresentation, filterCapitalStations, SynopMarker, type SynopStatio
 import { MeteoPresentation, MeteoMarker, type MeteoStation } from './MeteoPresentation';
 import { POWIAT_DETAIL_MAPS, type PowiatDetailMapInfo } from './powiatDetailMaps';
 
-type DataType = 'synop' | 'meteo';
+type DataType = 'synop' | 'meteo' | 'hydro';
 
 type StationData = SynopStation | MeteoStation;
 
@@ -170,6 +170,88 @@ function stationsInGeometry(stations: StationData[], geometry?: GeoJSON.Geometry
     return stations.filter(s => {
         if (s.latitudeGeo == null || s.longitudeGeo == null) return false;
         return pointInGeometry(s.longitudeGeo, s.latitudeGeo, geometry);
+    });
+}
+
+function stationKey(s: StationData): string {
+    return 'stationId' in s ? `synop:${s.stationId ?? s.station}` : `meteo:${s.stationCode ?? s.stationName}`;
+}
+
+function stationLabel(s: StationData): string {
+    return 'stationId' in s ? s.station : s.stationName;
+}
+
+// Bez polskich znaków, wielkie litery: "Łódź" -> "LODZ", "Gorzów Wlkp." -> "GORZOW WLKP."
+function normName(name: string): string {
+    return name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[łŁ]/g, 'l').toUpperCase().trim();
+}
+
+// Miasta wojewódzkie dla trybu METEO (Synop ma własny filtr w SynopPresentation.tsx).
+// Stacja pasuje, gdy nazwa == alias albo zaczyna się od aliasu + separator
+// ("Katowice-Muchowiec", "Gorzów Wlkp."), więc "Lubliniec" nie pasuje do "Lublin".
+// Dodatkowo stacja musi leżeć w TYM województwie (wtedy "Opole Lubelskie" nie
+// zostanie wzięte za Opole). Z każdego miasta bierzemy JEDNĄ stację: dokładną
+// nazwę, a gdy jej nie ma - pierwszą alfabetycznie.
+const CAPITALS_FOR_METEO: { woj: string; aliases: string[] }[] = [
+    { woj: 'podlaskie', aliases: ['BIALYSTOK'] },
+    { woj: 'śląskie', aliases: ['KATOWICE'] },
+    { woj: 'pomorskie', aliases: ['GDANSK'] },
+    { woj: 'lubuskie', aliases: ['GORZOW WIELKOPOLSKI', 'GORZOW WLKP', 'GORZOW'] },
+    { woj: 'lubuskie', aliases: ['ZIELONA GORA'] },
+    { woj: 'dolnośląskie', aliases: ['WROCLAW'] },
+    { woj: 'wielkopolskie', aliases: ['POZNAN'] },
+    { woj: 'małopolskie', aliases: ['KRAKOW'] },
+    { woj: 'zachodniopomorskie', aliases: ['SZCZECIN'] },
+    { woj: 'warmińsko-mazurskie', aliases: ['OLSZTYN'] },
+    { woj: 'świętokrzyskie', aliases: ['KIELCE'] },
+    { woj: 'mazowieckie', aliases: ['WARSZAWA'] },
+    { woj: 'podkarpackie', aliases: ['RZESZOW'] },
+    { woj: 'lubelskie', aliases: ['LUBLIN'] },
+    { woj: 'łódzkie', aliases: ['LODZ'] },
+    { woj: 'opolskie', aliases: ['OPOLE'] },
+    { woj: 'kujawsko-pomorskie', aliases: ['TORUN'] },
+];
+
+function filterCapitalMeteo(stations: MeteoStation[], geoData: GeoJSON.FeatureCollection | null): MeteoStation[] {
+    const result: MeteoStation[] = [];
+    for (const cap of CAPITALS_FOR_METEO) {
+        const feature = geoData?.features.find(
+            f => ((f.properties as any)?.nazwa as string | undefined)?.toLowerCase() === cap.woj
+        );
+        const candidates = stations.filter(s => {
+            if (s.latitudeGeo == null || s.longitudeGeo == null) return false;
+            const n = normName(s.stationName);
+            const nameOk = cap.aliases.some(a => n === a || (n.startsWith(a) && /[\s\-/(,.]/.test(n.charAt(a.length))));
+            if (!nameOk) return false;
+            return feature ? pointInGeometry(s.longitudeGeo, s.latitudeGeo, feature.geometry) : true;
+        });
+        if (candidates.length === 0) continue;
+        const exact = candidates.filter(s => cap.aliases.includes(normName(s.stationName)));
+        const pool = exact.length > 0 ? exact : candidates;
+        result.push([...pool].sort((a, b) => a.stationName.localeCompare(b.stationName, 'pl'))[0]);
+    }
+    return result;
+}
+
+// Widok województwa: z każdego powiatu zostaje JEDNA stacja. Pierwszeństwo ma stacja
+// pokazywana na mapie głównej (miasto wojewódzkie), potem pierwsza alfabetycznie.
+// Stacja leżąca poza granicami wszystkich powiatów (przy samej krawędzi) zostaje
+// pokazana osobno, żeby nie zniknęła.
+function pickOnePerPowiat(stations: StationData[], powiatFeatures: GeoJSON.Feature[], preferKeys: Set<string>): StationData[] {
+    const groups = new Map<string, StationData[]>();
+    stations.forEach((s, i) => {
+        const lat = s.latitudeGeo;
+        const lng = s.longitudeGeo;
+        if (lat == null || lng == null) return;
+        const feature = powiatFeatures.find(pf => pointInGeometry(lng, lat, pf.geometry));
+        const groupId: string = (feature?.properties as any)?.code ?? `poza-${i}`;
+        const list = groups.get(groupId);
+        if (list) list.push(s); else groups.set(groupId, [s]);
+    });
+    return [...groups.values()].map(list => {
+        const preferred = list.filter(s => preferKeys.has(stationKey(s)));
+        const pool = preferred.length > 0 ? preferred : list;
+        return [...pool].sort((a, b) => stationLabel(a).localeCompare(stationLabel(b), 'pl'))[0];
     });
 }
 
@@ -483,13 +565,16 @@ export default function App() {
     };
 
     const displayedSynop = useMemo(() => filterCapitalStations(synopStations), [synopStations]);
-    const displayedMeteo = meteoStations;
+    const displayedMeteo = useMemo(() => filterCapitalMeteo(meteoStations, geoData), [meteoStations, geoData]);
 
     const activeStations: StationData[] = dataType === 'synop' ? displayedSynop : displayedMeteo;
     const allStations: StationData[] = dataType === 'synop' ? synopStations : meteoStations;
 
     const provinceInfo = selectedProvince ? POWIAT_MAPS[selectedProvince.toLowerCase()] : undefined;
-    const provinceStations = selectedProvince ? stationsInProvince(allStations, geoData, selectedProvince) : [];
+    const provinceStations = useMemo(
+        () => (selectedProvince ? stationsInProvince(allStations, geoData, selectedProvince) : []),
+        [allStations, geoData, selectedProvince]
+    );
     const provinceGeometry = selectedProvince
         ? geoData?.features.find(
             f => ((f.properties as any)?.nazwa as string | undefined)?.toLowerCase() === selectedProvince.toLowerCase()
@@ -506,6 +591,11 @@ export default function App() {
             : []),
         [powiatGeoData, provinceCode]
     );
+    const preferKeys = useMemo(() => new Set(activeStations.map(stationKey)), [activeStations]);
+    const provinceStationsShown = useMemo(
+        () => pickOnePerPowiat(provinceStations, provincePowiatFeatures, preferKeys),
+        [provinceStations, provincePowiatFeatures, preferKeys]
+    );
     const powiatInfo = selectedPowiat ? POWIAT_DETAIL_MAPS[selectedPowiat] : undefined;
     const powiatGeometry = selectedPowiat
         ? powiatGeoData?.features.find(f => (f.properties as any)?.code === selectedPowiat)?.geometry
@@ -516,7 +606,7 @@ export default function App() {
         ? ''
         : selectedPowiat && powiatInfo
             ? `${powiatLabel(powiatInfo)} (woj. ${capitalizeWoj(selectedProvince)}) – ${powiatStations.length} stacji ${dataType.toUpperCase()}`
-            : `Województwo ${capitalizeWoj(selectedProvince)} (${provinceStations.length} stacji ${dataType.toUpperCase()})`;
+            : `Województwo ${capitalizeWoj(selectedProvince)}`;
 
     return (
         <div style={{ position: 'fixed', inset: 0, background: '#ffffff', overflow: 'hidden' }}>
@@ -535,7 +625,7 @@ export default function App() {
                 borderBottom: '1px solid #e0e0e0',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
             }}>
-                <span style={{ fontWeight: 600, fontSize: '15px', color: '#333' }}>Źródło danych:</span>
+                <span style={{ fontWeight: 600, fontSize: '15px', color: '#333' }}>Rodzaj danych:</span>
 
                 <div style={{
                     display: 'inline-flex',
@@ -559,7 +649,7 @@ export default function App() {
                             boxShadow: dataType === 'synop' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
                         }}
                     >
-                        Synoptyczne
+                        Synoptyczne ({synopStations.length} stacji)
                     </button>
                     <button
                         onClick={() => setDataType('meteo')}
@@ -577,6 +667,23 @@ export default function App() {
                         }}
                     >
                         Meteorologiczne ({meteoStations.length} stacji)
+                    </button>
+                    <button
+                        onClick={() => setDataType('hydro')}
+                        style={{
+                            border: 'none',
+                            padding: '8px 18px',
+                            borderRadius: '20px',
+                            cursor: 'pointer',
+                            fontSize: '14px',
+                            fontWeight: dataType === 'hydro' ? 'bold' : 'normal',
+                            background: dataType === 'hydro' ? '#777e1a' : 'transparent',
+                            color: dataType === 'hydro' ? '#ffffff' : '#424242',
+                            transition: 'all 0.2s ease',
+                            boxShadow: dataType === 'hydro' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
+                        }}
+                    >
+                        Hydrologiczne ({synopStations.length} stacji)
                     </button>
                 </div>
             </div>
@@ -700,7 +807,7 @@ export default function App() {
                             key={`woj-${selectedProvince}`}
                             imageUrl={`/powiaty/${provinceInfo.file}`}
                             geo={provinceInfo}
-                            stations={provinceStations}
+                            stations={provinceStationsShown}
                             dataType={dataType}
                             geometry={provinceGeometry}
                             onClose={closeModal}
