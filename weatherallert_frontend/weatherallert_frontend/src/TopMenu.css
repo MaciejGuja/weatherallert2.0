@@ -1,0 +1,83 @@
+.ghost-button-top-menu-options {
+    border: none;
+    border-radius: 9999px;
+    outline: none;
+    width: 150px;
+    background: transparent;
+    color: #373e46;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-family: 'Optimistic', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+ 
+.ghost-button-top-menu-options:hover {
+    background: #cccfd6;
+    color: #373e46;
+}
+.ghost-button-theme-changer {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url('/theme_changer_transparent.png');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.ghost-button-theme-changer:hover {
+    background-color: #cccfd6;
+}
+
+.ghost-button-translate {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url('/translate_transparent.png');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.ghost-button-translate:hover {
+    background-color: #cccfd6;
+}
+
+.ghost-button-settings {
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    background-color: transparent;
+    background-image: url('/settings_transparent.png');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.ghost-button-settings:hover {
+    background-color: #cccfd6;
+}

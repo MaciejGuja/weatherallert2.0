@@ -10,29 +10,23 @@ import { DataTypeMenu, MainMap, ProvinceModal } from './components';
 export default function MapView() {
     const [dataType, setDataType] = useState<DataType>('synop');
 
-    const { synopStations, meteoStations, loading } = useStations(dataType);
+    const { synopStations, meteoStations, hydroStations, loading } = useStations(dataType);
     const { geoData, powiatGeoData } = useGeoData();
-    const { displayedSynop, displayedMeteo, activeStations, allStations } = useDisplayedStations(
-        dataType, synopStations, meteoStations, geoData
+    const { displayedSynopStations, displayedMeteoStations, activeStations, allStations, stationCount } = useDisplayedStations(
+        dataType, synopStations, meteoStations
     );
     const modal = useProvinceModal({ dataType, geoData, powiatGeoData, allStations, activeStations });
 
     return (
         <div style={{ position: 'fixed', inset: 0, background: '#ffffff', overflow: 'hidden' }}>
-            <DataTypeMenu
-                dataType={dataType}
-                synopCount={synopStations.length}
-                meteoCount={meteoStations.length}
-                onChange={setDataType}
-            />
 
             <MainMap
                 dataType={dataType}
                 loading={loading}
                 isModalOpen={modal.isModalOpen}
                 geoData={geoData}
-                displayedSynop={displayedSynop}
-                displayedMeteo={displayedMeteo}
+                displayedSynop={displayedSynopStations}
+                displayedMeteo={displayedMeteoStations}
                 onSelectProvince={modal.handleSelectProvince}
             />
 
@@ -53,6 +47,12 @@ export default function MapView() {
                     onClose={modal.closeModal}
                 />
             )}
+            <DataTypeMenu
+                dataType={dataType}
+                synopCount={synopStations.length}
+                meteoCount={meteoStations.length}
+                onChange={setDataType}
+            />
         </div>
     );
 }

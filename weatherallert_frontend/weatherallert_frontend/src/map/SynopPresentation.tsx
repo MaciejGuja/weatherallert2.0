@@ -19,25 +19,27 @@ export interface SynopStation {
     longitudeGeo: number | null;
 }
 
-const CAPITAL_ALIASES: Record<string, string[]> = {
-    'Białystok': ['BIAŁYSTOK'],
-    'Katowice': ['KATOWICE'],
-    'Gdańsk': ['GDAŃSK'],
-    'Gorzów': ['GORZÓW WIELKOPOLSKI', 'GORZÓW WLKP', 'GORZÓW'],
-    'Zielona Góra': ['ZIELONA GÓRA'],
-    'Wrocław': ['WROCŁAW'],
-    'Poznań': ['POZNAŃ'],
-    'Kraków': ['KRAKÓW'],
-    'Szczecin': ['SZCZECIN'],
-    'Olsztyn': ['OLSZTYN'],
-    'Kielce': ['KIELCE'],
-    'Warszawa': ['WARSZAWA'],
-    'Rzeszów': ['RZESZÓW'],
-    'Lublin': ['LUBLIN'],
-    'Łódź': ['ŁÓDŹ'],
-    'Opole': ['OPOLE'],
-    'Toruń': ['TORUŃ'],
-};
+const CAPITAL_ALIASES: Array<string> = [
+    'BIAŁYSTOK',
+    'KATOWICE',
+    'GDAŃSK',
+    'GORZÓW WIELKOPOLSKI',
+    'GORZÓW WLKP',
+    'GORZÓW',
+    'ZIELONA GÓRA',
+    'WROCŁAW',
+    'POZNAŃ',
+    'KRAKÓW',
+    'SZCZECIN',
+    'OLSZTYN',
+    'KIELCE',
+    'WARSZAWA',
+    'RZESZÓW',
+    'LUBLIN',
+    'ŁÓDŹ',
+    'OPOLE',
+    'TORUŃ',
+];
 
 /**
  * @brief Wybieranie stacji SYNOP położonych w miastach wojewódzkich.
@@ -47,20 +49,10 @@ const CAPITAL_ALIASES: Record<string, string[]> = {
 export function filterCapitalStations(stations: SynopStation[]): SynopStation[] {
     const matchedCapitals: SynopStation[] = [];
 
-    Object.entries(CAPITAL_ALIASES).forEach(([capitalCanonicalName, aliases]) => {
-        const found = stations.find(s => {
-            const nameUpper = s.station.trim().toUpperCase();
-            return aliases.some(alias => nameUpper === alias);
-        }) || stations.find(s => {
-            const nameUpper = s.station.trim().toUpperCase();
-            return aliases.some(alias => nameUpper.includes(alias));
-        });
-
-        if (found) {
-            matchedCapitals.push({
-                ...found,
-                station: capitalCanonicalName
-            });
+    CAPITAL_ALIASES.forEach((capitalName) => {
+        const found = stations.find(s => s.station.trim().toUpperCase().includes(capitalName));
+        if (found){
+            matchedCapitals.push(found);
         }
     });
 

@@ -164,3 +164,46 @@ export const MeteoPresentation: React.FC<MeteoPresentationProps> = ({ stations, 
         </>
     );
 };
+const CAPITAL_ALIASES: Array<string> = [
+    'BIAŁYSTOK',
+    'KATOWICE',
+    'GDAŃSK',
+    'GORZÓW WIELKOPOLSKI',
+    'ZIELONA GÓRA',
+    'WROCŁAW',
+    'POZNAŃ',
+    'KRAKÓW',
+    'SZCZECIN',
+    'OLSZTYN',
+    'KIELCE',
+    'WARSZAWA',
+    'RZESZÓW',
+    'LUBLIN',
+    'ŁÓDŹ',
+    'OPOLE',
+    'TORUŃ',
+    'BYDGOSZCZ',
+];
+/**
+ * @brief Wybiera stacje METEO położone w miastach wojewódzkich.
+ * @param stations Lista wszystkich stacji METEO.
+ * @return Po jednej stacji dla każdego znalezionego miasta wojewódzkiego.
+ */
+export function filterCapitalMeteo(stations: MeteoStation[]): MeteoStation[] {
+    const matchedCapitals: MeteoStation[] = [];
+ 
+    CAPITAL_ALIASES.forEach((capitalName) => {
+        const found = stations.find(s => {
+            const name = s.stationName.toUpperCase();
+            if (name === capitalName) return true;
+            if (name.startsWith(capitalName)) return true;
+            const words = name.split(/[\s\-]+/);
+            return words.includes(capitalName);
+        });
+        if (found) {
+            matchedCapitals.push(found);
+        }
+    });
+ 
+    return matchedCapitals;
+}
