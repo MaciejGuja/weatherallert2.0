@@ -57,7 +57,7 @@ function makeMeteoDotIcon(label: string, temp?: number | null): L.DivIcon {
         html: `
             <div style="position:absolute;left:-4px;top:-4px;width:8px;height:8px;border-radius:50%;background:#2e7d32;border:1px solid #fff;box-shadow:0 0 2px rgba(0,0,0,0.6);cursor:pointer;"></div>
             <div style="position:absolute;left:0;top:6px;transform:translateX(-50%);white-space:nowrap;text-align:center;cursor:pointer;pointer-events:none;">
-                <div style="font-size:11px;line-height:1;font-weight:600;color:#1b5e20;text-shadow:0 0 2px #fff,0 0 2px #fff;">${escapeHtml(label)}</div>
+                <div style="font-size:7.5px;line-height:1;font-weight:600;color:#1b5e20;text-shadow:0 0 2px #fff,0 0 2px #fff;">${escapeHtml(label)}</div>
                 ${tempText ? `<div style="font-size:11px;line-height:1;font-weight:700;color:#2e7d32;text-shadow:0 0 2px #fff;">${escapeHtml(tempText)}</div>` : ''}
             </div>
         `,
@@ -182,7 +182,6 @@ const CAPITAL_ALIASES: Array<string> = [
     'ŁÓDŹ',
     'OPOLE',
     'TORUŃ',
-    'BYDGOSZCZ',
 ];
 /**
  * @brief Wybiera stacje METEO położone w miastach wojewódzkich.

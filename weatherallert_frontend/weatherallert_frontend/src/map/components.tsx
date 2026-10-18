@@ -6,7 +6,21 @@ import { SynopMarker, SynopPresentation, type SynopStation } from './SynopPresen
 import { MeteoMarker, MeteoPresentation, type MeteoStation } from './MeteoPresentation';
 import { POWIAT_DETAIL_MAPS, type PowiatDetailMapInfo } from '../Powiatdetailmaps';
 import type { DataType, GeoRect, StationData } from './types';
-import { DEFAULT_STYLE, HOVER_STYLE, imageBounds, MAP_FRAME_SIZE, MAP_HEIGHT, MAP_WIDTH, MENU_HEIGHT } from './constans';
+import {
+    DEFAULT_STYLE,
+    HOVER_STYLE,
+    imageBounds,
+    MAP_FIT_PADDING,
+    MAP_FRAME_HEIGHT,
+    MAP_FRAME_WIDTH,
+    MAP_HEIGHT,
+    MAP_WIDTH,
+    MODAL_FIT_PADDING,
+    MODAL_MAP_HEIGHT,
+    MODAL_MAP_WIDTH,
+    SIDE_MENU_WIDTH,
+    TOP_MENU_HEIGHT,
+} from './constans';
 import { capitalizeWoj, coordsToLatLng, parseGpsToMapCoords, pointInGeometry, powiatLabel } from './utils';
 import { useMapFit } from './hooks';
 
@@ -27,10 +41,10 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
     return (
         <div style={{
             position: 'absolute',
-            top: 56,                 
+            top: TOP_MENU_HEIGHT,                 
             bottom: 0,
             right: 0,                
-            width: 200,              
+            width: SIDE_MENU_WIDTH,              
             display: 'flex',
             flexDirection: 'column', 
             alignItems: 'stretch',
@@ -278,8 +292,8 @@ export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geomet
             <MapContainer
                 crs={L.CRS.Simple}
                 bounds={bounds}
-                boundsOptions={{ padding: [30, 30] }}
-                zoomSnap={0.1}
+                boundsOptions={{ padding: MODAL_FIT_PADDING}}
+                zoomSnap={0}
                 minZoom={-3}
                 maxZoom={3}
                 maxBounds={bounds}
@@ -290,8 +304,8 @@ export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geomet
                 dragging={false}
                 keyboard={false}
                 style={{
-                    height: 'min(85vh, 95vw)',
-                    width: 'min(85vh, 95vw)',
+                    height: MODAL_MAP_HEIGHT,
+                    width: MODAL_MAP_WIDTH,
                     background: 'transparent',
                 }}
             >
@@ -334,67 +348,79 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
     useMapFit(mapRef, loading);
 
     return (
+    <div
+        style={{
+            position: 'absolute',
+            top: TOP_MENU_HEIGHT,
+            left: 0,
+            right: SIDE_MENU_WIDTH,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        }}
+    >
         <div
             style={{
-                position: 'absolute',
-                top: 56,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                position: 'relative',
+                width: MAP_FRAME_WIDTH,
+                height: MAP_FRAME_HEIGHT,
+                flex: 'none',
+                background: '#ffffff',
+                borderRadius: 8,
+                overflow: 'hidden',
+                filter: isModalOpen ? 'blur(6px) brightness(0.7)' : 'none',
+                transition: 'filter 0.25s ease',
             }}
         >
-            {loading ? (
-                <div style={{ fontSize: '16px', color: dataType === 'synop' ? '#1a237e' : '#2e7d32', fontWeight: 600 }}>
+            <MapContainer
+                ref={mapRef}
+                crs={L.CRS.Simple}
+                center={[MAP_HEIGHT / 2, MAP_WIDTH / 2]}
+                bounds={imageBounds}
+                boundsOptions={{ padding: MAP_FIT_PADDING }}
+                zoomSnap={0}
+                minZoom={-3}
+                maxZoom={5}
+                maxBounds={imageBounds}
+                maxBoundsViscosity={1.0}
+                doubleClickZoom={false}
+                dragging={false}
+                keyboard={false}
+                style={{ height: '100%', width: '100%', background: '#ffffff' }}
+            >
+                <ImageOverlay url="/polska_mapa_szara.png" bounds={imageBounds} />
+
+                <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
+
+                {dataType === 'synop' ? (
+                    <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} />
+                ) : (
+                    <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} />
+                )}
+            </MapContainer>
+
+            {loading && (
+                <div style={{
+                    position: 'absolute',
+                    top: 12,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 1100,
+                    padding: '6px 14px',
+                    borderRadius: 16,
+                    background: 'rgba(255,255,255,0.92)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.25)',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: dataType === 'synop' ? '#1a237e' : '#2e7d32',
+                }}>
                     Ładowanie stacji ({dataType === 'synop' ? 'Synop' : 'Meteo'})...
-                </div>
-            ) : (
-                <div
-                    style={{
-                        width: MAP_FRAME_SIZE+MAP_FRAME_SIZE,
-                        height: MAP_FRAME_SIZE,
-                        flex: 'none',
-                        background: '#ffffff',
-                        borderRadius: 8,
-                        overflow: 'hidden',
-                        filter: isModalOpen ? 'blur(6px) brightness(0.7)' : 'none',
-                        transition: 'filter 0.25s ease',
-                    }}
-                >
-                    <MapContainer
-                        ref={mapRef}
-                        crs={L.CRS.Simple}
-                        center={[MAP_HEIGHT / 2, MAP_WIDTH / 2]}
-                        bounds={imageBounds}
-                        zoomSnap={0.1}
-                        minZoom={-3}
-                        maxZoom={5}
-                        maxBounds={imageBounds}
-                        maxBoundsViscosity={1.0}
-                        doubleClickZoom={false}
-                        dragging={false}
-                        keyboard={false}
-                        style={{ height: '100%', width: '100%', background: '#ffffff' }}
-                    >
-                        <ImageOverlay
-                            url="/polska_mapa_szara.png"
-                            bounds={imageBounds}
-                        />
-
-                        <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
-
-                        {dataType === 'synop' ? (
-                            <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} />
-                        ) : (
-                            <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} />
-                        )}
-                    </MapContainer>
                 </div>
             )}
         </div>
-    );
+    </div>
+);
 }
 
 interface ProvinceModalProps {

@@ -3,7 +3,7 @@ import L from 'leaflet';
 import type {DataType,StationData} from './types';
 import { filterCapitalMeteo, type MeteoStation } from './MeteoPresentation';
 import { filterCapitalStations, type SynopStation } from './SynopPresentation';
-import {imageBounds, MAP_HEIGHT, MAP_WIDTH, POWIAT_MAPS, WOJ_TERYT} from './constans';
+import {imageBounds, MAP_FIT_PADDING, MAP_HEIGHT, MAP_WIDTH, POWIAT_MAPS, WOJ_TERYT} from './constans';
 import {POWIAT_DETAIL_MAPS} from '../Powiatdetailmaps';
 import {
     capitalizeWoj,
@@ -17,6 +17,20 @@ import {
     stationsInProvince,
 } from './utils';
 
+const CACHE_TTL_MS= 5*60*1000;
+let synopCache: SynopStation[]=[];
+let synopTimeCache=0;
+let meteoCache: MeteoStation[]=[];
+let meteoTimeCache=0;
+
+/**
+ * @brief Sprawdza, czy dane zapisane w podanym momencie są jeszcze świeże (młodsze niż CACHE_TTL_MS).
+ * @param savedAt Moment zapisu danych w milisekundach.
+ * @return true, jeśli dane można jeszcze użyć.
+ */
+function isCacheFresh(savedAt: number): boolean{
+    return Date.now()-savedAt<CACHE_TTL_MS;
+}
 /**
  * @brief Pobiera z backendu stacje SYNOP lub METEO zależnie od wybranego rodzaju danych.
  *        Przy każdej zmianie rodzaju danych ponawia pobieranie i ustawia flagę ładowania.
@@ -29,6 +43,16 @@ export function useStations(dataType: DataType) {
     const [hydroStations, setHydroStations] = useState<StationData[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
+    if(dataType==='synop'&&isCacheFresh(synopTimeCache)){
+        setSynopStations(synopCache);
+        setLoading(false);
+        return;
+    }
+    if(dataType==='meteo'&&isCacheFresh(meteoTimeCache)){
+        setMeteoStations(meteoCache);
+        setLoading(false);
+        return;
+    }
     setLoading(true);
     fetch(`http://localhost:8080/api/${dataType}/grouped`)
         .then(res => {
@@ -40,9 +64,13 @@ export function useStations(dataType: DataType) {
         .then(data => {
             const rawList = flattenBackendResponse(data);
                 if (dataType === 'synop') {
-                    setSynopStations(rawList.map(normalizeSynopData));
+                    synopCache=rawList.map(normalizeSynopData);
+                    synopTimeCache=Date.now();
+                    setSynopStations(synopCache);
                 } else if (dataType === 'meteo') {
-                    setMeteoStations(rawList.map(normalizeMeteoData));
+                    meteoCache=rawList.map(normalizeMeteoData);
+                    meteoTimeCache=Date.now();
+                    setMeteoStations(meteoCache);
                 } else if (dataType === 'hydro') {
                     // setHydroStations(rawList.map(normalizeHydroData));
                 }
@@ -203,7 +231,7 @@ export function useMapFit(mapRef: RefObject<L.Map | null>, loading: boolean) {
 
         const raf = requestAnimationFrame(() => {
             map.invalidateSize();
-            map.fitBounds(imageBounds, { padding: [10, 10] });
+            map.fitBounds(imageBounds, { padding: MAP_FIT_PADDING });
             map.panTo([MAP_HEIGHT / 2, MAP_WIDTH / 2], { animate: false });
         });
 

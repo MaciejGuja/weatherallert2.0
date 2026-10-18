@@ -1,0 +1,14 @@
+.btn-primary {
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #a9b1c0;
+  color: #f0f0f0;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2), 0 2px 4px -1px rgba(37, 99, 235, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #646977;
+  transform: translateY(-2px); /* Delikatne uniesienie przy najechaniu */
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}

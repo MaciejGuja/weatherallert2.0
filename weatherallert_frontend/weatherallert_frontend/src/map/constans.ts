@@ -1,9 +1,16 @@
 import L, { type LatLngBoundsExpression } from 'leaflet';
 import type { ProvinceMapInfo } from './types';
 
-export const MENU_HEIGHT = 30;
+export const TOP_MENU_HEIGHT = 56;
+export const SIDE_MENU_WIDTH = 200;
 export const PAGE_GAP = 16;
-export const MAP_FRAME_SIZE = `min(calc(100vh - ${MENU_HEIGHT}px - ${PAGE_GAP * 2}px), calc(100vw - ${PAGE_GAP * 2}px))`;
+export const MAP_FRAME_WIDTH = `calc(100% - ${PAGE_GAP * 2}px)`;
+export const MAP_FRAME_HEIGHT = `calc(100% - ${PAGE_GAP * 2}px)`;
+export const MAP_FIT_PADDING: [number, number] = [0, 0];
+
+export const MODAL_MAP_WIDTH = 'min(95vw, 1500px)';
+export const MODAL_MAP_HEIGHT = 'calc(100vh - 100px)';
+export const MODAL_FIT_PADDING: [number, number] = [15, 15];
 
 export const MAP_HEIGHT = 1000;
 export const MAP_WIDTH = 1000;

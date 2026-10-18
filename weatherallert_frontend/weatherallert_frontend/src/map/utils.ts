@@ -179,7 +179,7 @@ export function normalizeMeteoData(item: any): MeteoStation {
  * @param geometry Geometria GeoJSON.
  * @return Stacje znajdujące się w geometrii.
  */
-export function stationsInGeometry(stations: StationData[], geometry: GeoJSON.Geometry | null): StationData[] {
+export function stationsInGeometry(stations: StationData[], geometry?: GeoJSON.Geometry | null | undefined): StationData[] {
     if (!geometry) return [];
     return stations.filter(s=> {
         if(s.latitudeGeo === null || s.longitudeGeo === null) return false;

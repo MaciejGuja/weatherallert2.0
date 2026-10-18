@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import MapView from './map/MapView';
+import {SideSettingsMenu} from './SideSettingsMenu';
 import './TopMenu.css';
 type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 type TopMenuProps = {
     onViewChanged: (view: ViewType) => void;
+    
 };
 export function TopMenu({onViewChanged}: TopMenuProps){
+    const [isSideSettingsOpen, setSettingsOpen]=useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
+    const settingsBtnRef = useRef<HTMLButtonElement | null>(null);
     return(
         <div
             ref={menuRef}
@@ -44,14 +47,18 @@ export function TopMenu({onViewChanged}: TopMenuProps){
                 <button className="ghost-button-translate">
 
                 </button>
-                <button className="ghost-button-settings">
-                    <ul className='dropdown-settings'>
-                        <li>Moje Konto</li>
-                        <li>Kontakt</li>
-                        <li>Wyloguj</li>
-                    </ul>
+                <button ref={settingsBtnRef}  className="ghost-button-settings" onClick={(e)=> {
+                    e.stopPropagation(); 
+                    setSettingsOpen(!isSideSettingsOpen);
+                }
+                }>
+                    
                 </button>
+                
             </div>
+            <SideSettingsMenu
+                        isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef}
+                    />
         </div>
     )
 }

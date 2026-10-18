@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MapView from './map/MapView';
 import { TopMenu } from './TopMenu';
-
+import { LoginView } from './LoginView';
 export type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 
 export default function App() {
@@ -9,7 +9,8 @@ export default function App() {
 
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-            <TopMenu onViewChanged={setView} />
+            <LoginView/>
+            {/* <TopMenu onViewChanged={setView} />
             <div style={{
                 position: 'absolute',
                 top: 56,
@@ -20,7 +21,7 @@ export default function App() {
                 {view === 'conditions' && <MapView />}
                 {view === 'forecast'}
                 {view === 'allerts'}
-            </div>
+            </div> */}
         </div>
     );
 }
