@@ -1,14 +1,30 @@
 import {useEffect, useState} from 'react';
+import {LoginAuthentication} from './LoginAuthentication'
 type LoginProps = {
-    isLogin: boolean;
+    isLoginProps: boolean;
+     onLoginChange: (isLoggedIn: boolean) => void;
 }
 
-export function LoginView() {
+export function LoginView({isLoginProps,onLoginChange}:LoginProps) {
+    const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [responseMessage,setResponseMessage]=useState('');
     const [login,setLogin]=useState('');
     const [password,setPassword]=useState('');
     const [regexError,setRegexError]=useState({login: '',password: ''});
+    const handleLoginButton = async ()=>{
+        const result = await LoginAuthentication(login,password);
+        if(!(result.info==="Zalogowano")){
+            setResponseMessage(result.info);
+            setIsLogin(false);
+            onLoginChange(false);
+        }else{
+            setResponseMessage("");
+            setIsLogin(true);
+            onLoginChange(true);
+        }
+    };
     useEffect(()=>{
-        const regexLogin=/^[a-zA-Z0-9@._%+-]{3,15}$/;
+        const regexLogin=/^[a-zA-Z0-9@._%+\- ]{3,15}$/;
         if(login.length>0&&!regexLogin.test(login)){
             setRegexError({
                 login: 'Login musi mieć od 3 do 15 znaków',
@@ -22,7 +38,7 @@ export function LoginView() {
         } 
     }, [login]);
     useEffect(()=>{
-        const regexPassword=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+        const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?& ])[A-Za-z\d@$!%*?& ]{8,20}$/;
         if(password.length>0&&!regexPassword.test(password)){
             setRegexError({
                 login: regexError.login,
@@ -119,7 +135,7 @@ export function LoginView() {
                             }}
                             onFocus={(e) => (e.target as HTMLInputElement).style.backgroundColor = 'rgba(255, 255, 255, 0.3)'}
                             onBlur={(e) => (e.target as HTMLInputElement).style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
-                            onChange={(e) => setLogin(e.target.value)}
+                            onChange={(e) => setLogin(e.target.value.trim())}
                         />
                         {regexError.login && (
                             <span style={{ 
@@ -134,6 +150,24 @@ export function LoginView() {
                             }}>
                                 {regexError.login}
                             </span>
+                        
+                        )}
+                        {responseMessage && (
+                            <span style={{
+                                position: 'absolute',
+                                top: '-65px',
+                                left: 0,
+                                right: 0,
+                                textAlign: 'center',
+                                color: '#ff5252',
+                                fontSize: '20px',
+                                marginTop: '2px',
+                                textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
+                                whiteSpace: 'nowrap'
+                            }}>
+                                {responseMessage}
+                            </span>
+                        
                         )}
                     </div>
                 </div>
@@ -168,7 +202,7 @@ export function LoginView() {
                             }}
                             onFocus={(e) => (e.target as HTMLInputElement).style.backgroundColor = 'rgba(255, 255, 255, 0.3)'}
                             onBlur={(e) => (e.target as HTMLInputElement).style.backgroundColor = 'rgba(255, 255, 255, 0.2)'}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value.trim())}
                         />
                         {regexError.password && (
                             <span style={{ 
@@ -205,6 +239,7 @@ export function LoginView() {
                     }}
                     onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#37943f'}
                     onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#2e7d32'}
+                    onClick={handleLoginButton}
                     >
                         Zaloguj się
                     </button>

@@ -182,6 +182,7 @@ const CAPITAL_ALIASES: Array<string> = [
     'ŁÓDŹ',
     'OPOLE',
     'TORUŃ',
+
 ];
 /**
  * @brief Wybiera stacje METEO położone w miastach wojewódzkich.

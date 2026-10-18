@@ -6,11 +6,13 @@ export type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 
 export default function App() {
     const [view, setView] = useState<ViewType>('none');
-
+    const [isLogin, setIsLogin] = useState<boolean>(false);
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-            <LoginView/>
-            {/* <TopMenu onViewChanged={setView} />
+            {!isLogin && <LoginView isLoginProps={isLogin} onLoginChange={setIsLogin} />}
+            {isLogin && (
+            <>      
+            <TopMenu onViewChanged={setView} onLogout={()=>setIsLogin(false)}/>
             <div style={{
                 position: 'absolute',
                 top: 56,
@@ -21,7 +23,9 @@ export default function App() {
                 {view === 'conditions' && <MapView />}
                 {view === 'forecast'}
                 {view === 'allerts'}
-            </div> */}
+            </div>
+            </>
+            )}
         </div>
     );
 }

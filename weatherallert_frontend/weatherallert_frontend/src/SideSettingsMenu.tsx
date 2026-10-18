@@ -6,8 +6,10 @@ type SideSettingsProps={
     isOpen: boolean;
     onClose: () => void;
     toggleButtonRef: RefObject<HTMLButtonElement | null>;
+    onLogout:()=>void;
+    translateKey: Map<string, string>;
 }
-export function SideSettingsMenu({isOpen, onClose, toggleButtonRef}: SideSettingsProps){
+export function SideSettingsMenu({isOpen, onClose, toggleButtonRef, onLogout,translateKey}: SideSettingsProps){
     const menuRef = useRef<HTMLDivElement>(null);
     useEffect(()=>{
         function handleClickOutside(event: MouseEvent){
@@ -30,9 +32,7 @@ export function SideSettingsMenu({isOpen, onClose, toggleButtonRef}: SideSetting
             document.removeEventListener('mousedown',handleClickOutside);
             
         };
-    },[isOpen,onClose,toggleButtonRef]);
-
-    {
+    },[isOpen,onClose,toggleButtonRef,onLogout]);
     return(
         <aside
                 ref={menuRef}
@@ -52,10 +52,10 @@ export function SideSettingsMenu({isOpen, onClose, toggleButtonRef}: SideSetting
                 }}
             >
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0px',marginTop: '1px' }}>
-                    <li><button className="btn-primary">Moje Konto</button></li>
-                    <li><button className="btn-primary">Kontakt</button></li>
-                    <li><button className="btn-primary">Wyloguj się</button></li>
+                    <li><button className="btn-primary">{translateKey.get("side-menu-my-account")}</button></li>
+                    <li><button className="btn-primary">{translateKey.get("side-menu-contact")}</button></li>
+                    <li><button className="btn-primary" onClick={()=>onLogout()}>{translateKey.get("side-menu-logout")}</button></li>
                 </ul>
             </aside>
-    )}        
+    )   
 }

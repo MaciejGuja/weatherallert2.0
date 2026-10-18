@@ -1,15 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import {SideSettingsMenu} from './SideSettingsMenu';
+import {LanguageController} from './Language/LanguageController'
 import './TopMenu.css';
+type LanguageCode = "pl" | "en" | "de";
 type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 type TopMenuProps = {
     onViewChanged: (view: ViewType) => void;
-    
+    onLogout: ()=>void;
 };
-export function TopMenu({onViewChanged}: TopMenuProps){
+export function TopMenu({onViewChanged, onLogout}: TopMenuProps){
     const [isSideSettingsOpen, setSettingsOpen]=useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const settingsBtnRef = useRef<HTMLButtonElement | null>(null);
+    const [translateKey,setTranslateKey]=useState<Map<string,string>>(new Map());
+    const [languageCode, setLanguageCode] = useState<LanguageCode>("en");
+    useEffect(() => {
+        let canceled = false;
+        LanguageController({ languageCode })
+            .then(map => { if (!canceled) setTranslateKey(map); })
+            .catch(err => console.error("BŁĄD TŁUMACZEŃ", err));
+        return () => { canceled = true; };
+}, [languageCode]);
     return(
         <div
             ref={menuRef}
@@ -33,13 +44,13 @@ export function TopMenu({onViewChanged}: TopMenuProps){
                     alt="Logo"
                     style={{ height: '56px', width: "99px" }} />
                 <button className="ghost-button-top-menu-options" onClick={()=>onViewChanged('conditions')}>
-                    AKTUALNE WARUNKI
+                    {translateKey.get("tob-bar-current-conditions")}
                 </button>
                 <button className="ghost-button-top-menu-options" onClick={()=>onViewChanged('forecast')}>
-                    PROGNOZA POGODY
+                    {translateKey.get("tob-bar-weather-conditions")}
                 </button>
                 <button className="ghost-button-top-menu-options" onClick={()=>onViewChanged('allerts')}>
-                    ZAGROŻENIA POGODOWE
+                    {translateKey.get("tob-bar-weather-dangers")}
                 </button>
                 <button className="ghost-button-theme-changer">
 
@@ -57,7 +68,7 @@ export function TopMenu({onViewChanged}: TopMenuProps){
                 
             </div>
             <SideSettingsMenu
-                        isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef}
+                        isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef} onLogout={()=>onLogout()} translateKey={translateKey}
                     />
         </div>
     )

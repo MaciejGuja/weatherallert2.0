@@ -2,7 +2,13 @@
     border: none;
     border-radius: 9999px;
     outline: none;
-    width: 150px;
+    min-width: 150px; 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
     background: transparent;
     color: #373e46;
     padding: 10px 20px;
@@ -10,6 +16,7 @@
     font-family: 'Optimistic', sans-serif;
     cursor: pointer;
     transition: all 0.3s ease;
+    white-space: nowrap; 
 }
  
 .ghost-button-top-menu-options:hover {

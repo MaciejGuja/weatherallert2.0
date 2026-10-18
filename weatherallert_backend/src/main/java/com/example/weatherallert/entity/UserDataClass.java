@@ -12,8 +12,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserDataClass{
     @Id
-    @Table(name="login",nullable="false")
-    private string login;
-    @Table(name="password",nullable="false")
-    private string password;
+    @Column(name="login",nullable=false)
+    private String login;
+    @Column(name="password",nullable=false)
+    private String password;
 }
