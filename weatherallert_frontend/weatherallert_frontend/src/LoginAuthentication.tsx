@@ -1,4 +1,3 @@
-
 export async function LoginAuthentication(login: String ,password: String){
     let flag: Boolean=false;
     const BASE_URL="http://localhost:8080/auth/login";

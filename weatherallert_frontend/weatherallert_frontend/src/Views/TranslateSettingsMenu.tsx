@@ -1,16 +1,22 @@
 import { useEffect, useRef} from "react";
 import type { RefObject  } from "react";
-import {TOP_MENU_HEIGHT, SIDE_MENU_WIDTH} from './map/constans'
-import './SideSettingsMenu.css'
-type SideSettingsProps={
+import {TOP_MENU_HEIGHT, SIDE_MENU_WIDTH} from '../map/constans'
+import './TranslateSettingsMenu.css'
+import { FlagPL, FlagGB, FlagDE } from '../assets/Flags'
+import type { LanguageCode } from '../App';
+type TranslateSettingsProps={
     isOpen: boolean;
     onClose: () => void;
     toggleButtonRef: RefObject<HTMLButtonElement | null>;
     onLogout:()=>void;
     translateKey: Map<string, string>;
+    onLanguageChange: (code: LanguageCode) => void;
 }
-export function SideSettingsMenu({isOpen, onClose, toggleButtonRef, onLogout,translateKey}: SideSettingsProps){
+export function TranslateSettingsMenu({isOpen, onClose, toggleButtonRef, onLogout,translateKey,onLanguageChange}:TranslateSettingsProps){
     const menuRef = useRef<HTMLDivElement>(null);
+    const handleLanguage=(code: LanguageCode)=>{
+        onLanguageChange(code);
+    }
     useEffect(()=>{
         function handleClickOutside(event: MouseEvent){
                 if(!isOpen){
@@ -51,11 +57,26 @@ export function SideSettingsMenu({isOpen, onClose, toggleButtonRef, onLogout,tra
                     boxShadow: '-4px 0 15px rgba(0,0,0,0.1)'
                 }}
             >
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0px',marginTop: '1px' }}>
-                    <li><button className="btn-primary">{translateKey.get("side-menu-my-account")}</button></li>
-                    <li><button className="btn-primary">{translateKey.get("side-menu-contact")}</button></li>
-                    <li><button className="btn-primary" onClick={()=>onLogout()}>{translateKey.get("side-menu-logout")}</button></li>
-                </ul>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0px', marginTop: '1px' }}>
+                <li>
+                    <button className="btn-primary btn-language" onClick={()=>handleLanguage("pl")}>
+                        <FlagPL />
+                        <span>{translateKey.get("translate-menu-polish")}</span>
+                    </button>
+                </li>
+                <li>
+                    <button className="btn-primary btn-language" onClick={()=>handleLanguage("en")}>
+                        <FlagGB />
+                        <span>{translateKey.get("translate-menu-english")}</span>
+                    </button>
+                </li>
+                <li>
+                    <button className="btn-primary btn-language" onClick={()=>handleLanguage("de")}>
+                        <FlagDE />
+                        <span>{translateKey.get("translate-menu-german")}</span>
+                    </button>
+                </li>
+            </ul>
             </aside>
     )   
 }

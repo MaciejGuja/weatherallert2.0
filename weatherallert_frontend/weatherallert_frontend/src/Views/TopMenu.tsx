@@ -1,26 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import {useRef, useState } from 'react';
 import {SideSettingsMenu} from './SideSettingsMenu';
-import {LanguageController} from './Language/LanguageController'
 import './TopMenu.css';
-type LanguageCode = "pl" | "en" | "de";
+import { TranslateSettingsMenu } from './TranslateSettingsMenu';
+import type { LanguageCode } from '../App';
 type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 type TopMenuProps = {
     onViewChanged: (view: ViewType) => void;
     onLogout: ()=>void;
+    translateKey: Map<string, string>;
+    onLanguageChange: (code: LanguageCode) => void;
 };
-export function TopMenu({onViewChanged, onLogout}: TopMenuProps){
+export function TopMenu({onViewChanged, onLogout,translateKey,onLanguageChange}: TopMenuProps){
     const [isSideSettingsOpen, setSettingsOpen]=useState(false);
+    const [isTranslateSettingsOpen, setIsTranslateSettingsOpen]=useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const settingsBtnRef = useRef<HTMLButtonElement | null>(null);
-    const [translateKey,setTranslateKey]=useState<Map<string,string>>(new Map());
-    const [languageCode, setLanguageCode] = useState<LanguageCode>("en");
-    useEffect(() => {
-        let canceled = false;
-        LanguageController({ languageCode })
-            .then(map => { if (!canceled) setTranslateKey(map); })
-            .catch(err => console.error("BŁĄD TŁUMACZEŃ", err));
-        return () => { canceled = true; };
-}, [languageCode]);
+    const translateBtnRef=useRef<HTMLButtonElement | null>(null);
     return(
         <div
             ref={menuRef}
@@ -55,7 +50,11 @@ export function TopMenu({onViewChanged, onLogout}: TopMenuProps){
                 <button className="ghost-button-theme-changer">
 
                 </button>
-                <button className="ghost-button-translate">
+                <button ref={translateBtnRef} className="ghost-button-translate" onClick={(e)=> {
+                    e.stopPropagation(); 
+                    setIsTranslateSettingsOpen(!isTranslateSettingsOpen);
+                }
+                }>
 
                 </button>
                 <button ref={settingsBtnRef}  className="ghost-button-settings" onClick={(e)=> {
@@ -69,6 +68,9 @@ export function TopMenu({onViewChanged, onLogout}: TopMenuProps){
             </div>
             <SideSettingsMenu
                         isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef} onLogout={()=>onLogout()} translateKey={translateKey}
+                    />
+            <TranslateSettingsMenu
+                        isOpen={isTranslateSettingsOpen} onClose={()=>setIsTranslateSettingsOpen(false)} toggleButtonRef={translateBtnRef} onLogout={()=>onLogout()} translateKey={translateKey} onLanguageChange={onLanguageChange}
                     />
         </div>
     )

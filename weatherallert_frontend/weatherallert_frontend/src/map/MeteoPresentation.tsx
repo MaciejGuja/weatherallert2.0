@@ -70,13 +70,18 @@ function makeMeteoDotIcon(label: string, temp?: number | null): L.DivIcon {
  * @param position Pozycja znacznika na mapie [y, x].
  * @return Znacznik Leaflet z podpowiedzią i oknem szczegółów.
  */
-export function MeteoMarker({ item, position }: { item: MeteoStation; position: [number, number] }) {
+type MeteoMarkerProps={
+    item: MeteoStation;
+    position: [number, number];
+    translateKey: Map<string, string>;
+}
+export function MeteoMarker({ item, position,translateKey }: MeteoMarkerProps) {
     const [popupOpen, setPopupOpen] = useState(false);
 
     const name = item.stationName;
     const temp = item.airTemperature;
 
-    const dotIcon = useMemo(() => makeMeteoDotIcon(name, temp), [name, temp]);
+    const dotIcon = useMemo(() => makeMeteoDotIcon(name, temp), [name, temp, translateKey]);
 
     const popupContent = (
         <div style={{ minWidth: '230px', fontFamily: 'sans-serif' }}>
@@ -84,38 +89,38 @@ export function MeteoMarker({ item, position }: { item: MeteoStation; position: 
                 <h3 style={{ margin: 0, color: '#2e7d32', fontSize: '14px', fontWeight: 700 }}>{name}</h3>
                 <span style={{ fontSize: '10px', background: '#e8f5e9', color: '#2e7d32', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>METEO</span>
             </div>
-            {item.stationCode && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Kod stacji: {item.stationCode}</p>}
-            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Województwo: {item.province}</p>}
-            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Powiat: {item.country}</p>}
-            {item.stationEstablishmentYear && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Rok założenia: {item.stationEstablishmentYear}</p>}
-            {item.heightAboveSeaLevel && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Wysokość npm: {item.heightAboveSeaLevel} m</p>}
+            {item.stationCode && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-station-code")} {item.stationCode}</p>}
+            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-province")} {item.province}</p>}
+            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-county")} {item.country}</p>}
+            {item.stationEstablishmentYear && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-established-year")} {item.stationEstablishmentYear}</p>}
+            {item.heightAboveSeaLevel && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-height-amn")} {item.heightAboveSeaLevel} m</p>}
             <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Temp. powietrza:</strong> {item.airTemperature ?? 'b.d.'} °C</p>
-            {item.airTemperatureDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.airTemperatureDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-weather-temperature")}</strong> {item.airTemperature ?? 'b.d.'} °C</p>
+            {item.airTemperatureDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.airTemperatureDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Temp. gruntu:</strong> {item.groundTemperature ?? 'b.d.'} °C</p>
-            {item.groundTemperatureDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.groundTemperatureDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-ground-temperature")}</strong> {item.groundTemperature ?? 'b.d.'} °C</p>
+            {item.groundTemperatureDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.groundTemperatureDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Śr. prędkość wiatru:</strong> {item.windAverageSpeed ?? 'b.d.'} m/s</p>
-            {item.windAverageSpeedDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.windAverageSpeedDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-wind-avg-speed")}</strong> {item.windAverageSpeed ?? 'b.d.'} m/s</p>
+            {item.windAverageSpeedDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.windAverageSpeedDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Maks. prędkość wiatru:</strong> {item.windMaximumSpeed ?? 'b.d.'} m/s</p>
-            {item.windMaximumSpeedDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.windMaximumSpeedDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-wind-max-speed")}</strong> {item.windMaximumSpeed ?? 'b.d.'} m/s</p>
+            {item.windMaximumSpeedDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.windMaximumSpeedDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Kierunek wiatru:</strong> {item.windDirection != null ? `${item.windDirection}°` : 'b.d.'}</p>
-            {item.windDirectionDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.windDirectionDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-wind-direction")}</strong> {item.windDirection != null ? `${item.windDirection}°` : 'b.d.'}</p>
+            {item.windDirectionDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.windDirectionDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Porywy wiatru (10min):</strong> {item.windGust10min ?? 'b.d.'} m/s</p>
-            {item.windGust10minDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.windGust10minDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-wind-gusts")}</strong> {item.windGust10min ?? 'b.d.'} m/s</p>
+            {item.windGust10minDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.windGust10minDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Opad (10 min):</strong> {item.precipitation10min ?? 'b.d.'} mm</p>
-            {item.precipitation10minDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.precipitation10minDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-precipitation")}</strong> {item.precipitation10min ?? 'b.d.'} mm</p>
+            {item.precipitation10minDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.precipitation10minDate}</p>}
 
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Wilgotność względna:</strong> {item.relativeHumidity ?? 'b.d.'} %</p>
-            {item.relativeHumidityDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>Pomiar: {item.relativeHumidityDate}</p>}
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-humidity")}</strong> {item.relativeHumidity ?? 'b.d.'} %</p>
+            {item.relativeHumidityDate && <p style={{ margin: '1px 0 3px 0', fontSize: '10px', color: '#888' }}>{translateKey.get("map-marker-measure")} {item.relativeHumidityDate}</p>}
         </div>
-    );
+    );   
 
     return (
         <Marker
@@ -145,6 +150,7 @@ export function MeteoMarker({ item, position }: { item: MeteoStation; position: 
 interface MeteoPresentationProps {
     stations: MeteoStation[];
     getPosition: (lat: number, lon: number) => [number, number];
+    translateKey: Map<string, string>;
 }
 
 /**
@@ -153,13 +159,13 @@ interface MeteoPresentationProps {
  * @param getPosition Funkcja przeliczająca współrzędne GPS na pozycję na mapie.
  * @return Zestaw znaczników stacji METEO.
  */
-export const MeteoPresentation: React.FC<MeteoPresentationProps> = ({ stations, getPosition }) => {
+export const MeteoPresentation: React.FC<MeteoPresentationProps> = ({ stations, getPosition,translateKey }) => {
     return (
         <>
             {stations.map((item, index) => {
                 if (item.latitudeGeo == null || item.longitudeGeo == null) return null;
                 const mapPosition = getPosition(item.latitudeGeo, item.longitudeGeo);
-                return <MeteoMarker key={`meteo-${item.stationCode || index}`} item={item} position={mapPosition} />;
+                return <MeteoMarker key={`meteo-${item.stationCode || index}`} item={item} position={mapPosition} translateKey={translateKey} />;
             })}
         </>
     );

@@ -100,7 +100,7 @@ function makeSynopDotIcon(label: string, temp?: string | null): L.DivIcon {
  * @param position Pozycja znacznika na mapie [y, x].
  * @return Znacznik Leaflet z podpowiedzią i oknem szczegółów.
  */
-export function SynopMarker({ item, position }: { item: SynopStation; position: [number, number] }) {
+export function SynopMarker({ item, position, translateKey}: { item: SynopStation; position: [number, number];translateKey: Map<string,string> }) {
     const [popupOpen, setPopupOpen] = useState(false);
 
     const name = item.station;
@@ -111,7 +111,7 @@ export function SynopMarker({ item, position }: { item: SynopStation; position: 
     const windDirection = item.windDirection;
     const precipitation = item.totalPrecipitation;
 
-    const dotIcon = useMemo(() => makeSynopDotIcon(name, temp), [name, temp]);
+    const dotIcon = useMemo(() => makeSynopDotIcon(name, temp), [name, temp, translateKey]);
 
     const popupContent = (
         <div style={{ minWidth: '200px', fontFamily: 'sans-serif' }}>
@@ -119,18 +119,18 @@ export function SynopMarker({ item, position }: { item: SynopStation; position: 
                 <h3 style={{ margin: 0, color: '#1a237e', fontSize: '15px', fontWeight: 700 }}>{name}</h3>
                 <span style={{ fontSize: '10px', background: '#e8eaf6', color: '#1a237e', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>SYNOP</span>
             </div>
-            {item.stationId && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>ID stacji: {item.stationId}</p>}
-            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Województwo: {item.province}</p>}
-            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Kraj: {item.country}</p>}
-            {item.measurementData && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Data pomiaru: {item.measurementData}</p>}
-            {item.measurementHour && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>Godzina: {item.measurementHour}</p>}
+            {item.stationId && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-station-id")} {item.stationId}</p>}
+            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-province")} {item.province}</p>}
+            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-country")} {item.country}</p>}
+            {item.measurementData && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-measurement-date")} {item.measurementData}</p>}
+            {item.measurementHour && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-measurement-hour")} {item.measurementHour}</p>}
             <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Temperatura:</strong> {temp ?? 'b.d.'} °C</p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Ciśnienie:</strong> {pressure ?? 'b.d.'} hPa</p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Wilgotność:</strong> {humidity ?? 'b.d.'} %</p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Wiatr:</strong> {wind ?? 'b.d.'} m/s</p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Kierunek wiatru:</strong> {windDirection ?? 'b.d.'}</p>
-            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>Opad całkowity:</strong> {precipitation ?? 'b.d.'} mm</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-temperature")}</strong> {temp ?? 'b.d.'} °C</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-pressure")}</strong> {pressure ?? 'b.d.'} hPa</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-humidity")}</strong> {humidity ?? 'b.d.'} %</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-wind")}</strong> {wind ?? 'b.d.'} m/s</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-wind-direction")}</strong> {windDirection ?? 'b.d.'}</p>
+            <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-synop-precipitation")}</strong> {precipitation ?? 'b.d.'} mm</p>
         </div>
     );
 
@@ -162,6 +162,7 @@ export function SynopMarker({ item, position }: { item: SynopStation; position: 
 interface SynopPresentationProps {
     stations: SynopStation[];
     getPosition: (lat: number, lon: number) => [number, number];
+    translateKey: Map<string, string>;
 }
 
 /**
@@ -170,13 +171,13 @@ interface SynopPresentationProps {
  * @param getPosition Funkcja przeliczająca współrzędne GPS na pozycję na mapie.
  * @return Zestaw znaczników stacji SYNOP.
  */
-export const SynopPresentation: React.FC<SynopPresentationProps> = ({ stations, getPosition }) => {
+export const SynopPresentation: React.FC<SynopPresentationProps> = ({ stations, getPosition, translateKey }) => {
     return (
         <>
             {stations.map((item, index) => {
                 if (item.latitudeGeo == null || item.longitudeGeo == null) return null;
                 const mapPosition = getPosition(item.latitudeGeo, item.longitudeGeo);
-                return <SynopMarker key={`synop-${item.stationId || index}`} item={item} position={mapPosition} />;
+                return <SynopMarker key={`synop-${item.stationId || index}`} item={item} position={mapPosition} translateKey={translateKey}/>;
             })}
         </>
     );

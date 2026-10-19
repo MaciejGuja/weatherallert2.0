@@ -1,13 +1,16 @@
 import {useEffect, useState} from 'react';
-import {LoginAuthentication} from './LoginAuthentication'
+import {LoginAuthentication} from '../LoginAuthentication'
+import {RegisterView} from './RegisterView'
 type LoginProps = {
     isLoginProps: boolean;
      onLoginChange: (isLoggedIn: boolean) => void;
+    translateKey: Map<string,string>;
 }
 
-export function LoginView({isLoginProps,onLoginChange}:LoginProps) {
+export function LoginView({isLoginProps,onLoginChange,translateKey}:LoginProps) {
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [responseMessage,setResponseMessage]=useState('');
+    const [isRegisterOpen, setIsRegisterOpen]=useState(false);
     const [login,setLogin]=useState('');
     const [password,setPassword]=useState('');
     const [regexError,setRegexError]=useState({login: '',password: ''});
@@ -260,11 +263,13 @@ export function LoginView({isLoginProps,onLoginChange}:LoginProps) {
                     }}
                     onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#af98b6'}
                     onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#a57db1'}
+                    onClick={()=>setIsRegisterOpen(!isRegisterOpen)}
                     >
                         Zarejestruj się
                     </button>
                 </div>
             </div>
+            <RegisterView isOpen={isRegisterOpen} translateKey={translateKey} onClose={()=>setIsRegisterOpen(false)}/>
         </div>
     )
 }

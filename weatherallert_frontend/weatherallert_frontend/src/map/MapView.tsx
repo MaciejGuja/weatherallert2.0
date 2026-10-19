@@ -7,7 +7,10 @@ import { DataTypeMenu, MainMap, ProvinceModal } from './components';
  * @brief Inicjalizacja mapy.
  * @return Widok mapy wraz z całą obsługą stanu.
  */
-export default function MapView() {
+type MapProps={
+    translateKey: Map<string, string>;
+}
+export default function MapView({translateKey}: MapProps) {
     const [dataType, setDataType] = useState<DataType>('synop');
 
     const { synopStations, meteoStations, hydroStations, loading } = useStations(dataType);
@@ -28,6 +31,7 @@ export default function MapView() {
                 displayedSynop={displayedSynopStations}
                 displayedMeteo={displayedMeteoStations}
                 onSelectProvince={modal.handleSelectProvince}
+                translateKey={translateKey}
             />
 
             {modal.isModalOpen && modal.selectedProvince && (
@@ -45,6 +49,7 @@ export default function MapView() {
                     powiatStations={modal.powiatStations}
                     onSelectPowiat={modal.setSelectedPowiat}
                     onClose={modal.closeModal}
+                    translateKey={translateKey}
                 />
             )}
             <DataTypeMenu
@@ -52,6 +57,7 @@ export default function MapView() {
                 synopCount={synopStations.length}
                 meteoCount={meteoStations.length}
                 onChange={setDataType}
+                translateKey={translateKey}
             />
         </div>
     );

@@ -32,11 +32,12 @@ import { useMapFit } from './hooks';
  * @param onChange Wywoływane po wyborze rodzaju danych.
  * @return Pasek menu z przyciskami.
  */
-export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
+export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange,translateKey }: {
     dataType: DataType;
     synopCount: number;
     meteoCount: number;
     onChange: (type: DataType) => void;
+    translateKey: Map<string, string>;
 }) {
     return (
         <div style={{
@@ -64,7 +65,7 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
                 marginBottom: 4,
                 textAlign: 'center',
             }}>
-                Rodzaj danych:
+                {translateKey.get("map-data-type-menu-data-type")}
             </span>
 
             <button
@@ -82,7 +83,8 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
                     boxShadow: dataType === 'synop' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
                 }}
             >
-                Synoptyczne ({synopCount})
+                {translateKey.get("map-data-type-menu-synoptic-type")} ({synopCount})
+                
             </button>
 
             <button
@@ -100,7 +102,7 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
                     boxShadow: dataType === 'meteo' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
                 }}
             >
-                Meteorologiczne ({meteoCount})
+                {translateKey.get("map-data-type-menu-meteo-type")} ({meteoCount})
             </button>
 
             <button
@@ -118,7 +120,8 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange }: {
                     boxShadow: dataType === 'hydro' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
                 }}
             >
-                Hydrologiczne ({synopCount})
+                {translateKey.get("map-data-type-menu-hydrologic-type")} ({synopCount})
+                
             </button>
         </div>
     );
@@ -173,7 +176,12 @@ export function VoivodeshipsLayer({ geoData, onSelect }: { geoData: GeoJSON.Feat
  * @param onSelect Wywoływane z kodem powiatu po kliknięciu.
  * @return Warstwa GeoJSON.
  */
-export function PowiatsLayer({ features, info, onSelect }: { features: GeoJSON.Feature[]; info: GeoRect; onSelect: (code: string) => void }) {
+export function PowiatsLayer({ features, info, onSelect, translateKey }: { 
+    features: GeoJSON.Feature[]; 
+    info: GeoRect; 
+    onSelect: (code: string) => void; 
+    translateKey: Map<string, string>;
+}) {
     const geoJsonRef = useRef<L.GeoJSON | null>(null);
     const data = useMemo<GeoJSON.FeatureCollection>(() => ({ type: 'FeatureCollection', features }), [features]);
     const toLatLng = useMemo(() => (coords: number[]) => {
@@ -204,7 +212,13 @@ export function PowiatsLayer({ features, info, onSelect }: { features: GeoJSON.F
         });
 
         const fallbackName: string = (feature.properties as any)?.name ?? '';
-        layer.bindTooltip(detail ? powiatLabel(detail) : fallbackName, { sticky: true });
+        const originalLabel = detail ? powiatLabel(detail) : fallbackName;
+        
+        const prefix = `${translateKey.get("map-country") || "Powiat"} `;
+        
+        const translatedLabel = originalLabel.replace(/^Powiat\s+/i, prefix);
+
+        layer.bindTooltip(translatedLabel, { sticky: true });
     };
 
     return (
@@ -252,7 +266,7 @@ export function OutsideShapeCloser({ geo, aspect, geometry, onClose }: { geo: Ge
  * @param overlay Dodatkowa warstwa rysowana nad obrazkiem.
  * @return Mapa Leaflet w kontenerze blokującym propagację zdarzeń myszy.
  */
-export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geometry, onClose, overlay }: {
+export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geometry, onClose, overlay,translateKey }: {
     imageUrl: string;
     geo: GeoRect;
     aspect?: number;
@@ -261,6 +275,7 @@ export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geomet
     geometry?: GeoJSON.Geometry;
     onClose: () => void;
     overlay?: ReactNode;
+    translateKey: Map<string, string>;
 }) {
     const H = 1000;
     const W = 1000 * aspect;
@@ -317,10 +332,10 @@ export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geomet
                     const pos = toXY(item.latitudeGeo, item.longitudeGeo);
                     if (dataType === 'synop') {
                         const s = item as SynopStation;
-                        return <SynopMarker key={`synop-${s.stationId || index}`} item={s} position={pos} />;
+                        return <SynopMarker key={`synop-${s.stationId || index}`} item={s} position={pos} translateKey={translateKey}/>;
                     }
                     const m = item as MeteoStation;
-                    return <MeteoMarker key={`meteo-${m.stationCode || index}`} item={m} position={pos} />;
+                    return <MeteoMarker key={`meteo-${m.stationCode || index}`} item={m} position={pos} translateKey={translateKey}/>;
                 })}
             </MapContainer>
         </div>
@@ -335,6 +350,7 @@ interface MainMapProps {
     displayedSynop: SynopStation[];
     displayedMeteo: MeteoStation[];
     onSelectProvince: (rawName: string) => void;
+    translateKey: Map<string, string>;
 }
 
 /**
@@ -342,7 +358,7 @@ interface MainMapProps {
  * @param props Rodzaj danych, flagi stanu, granice województw, stacje do pokazania i obsługa wyboru województwa.
  * @return Kontener z mapą głównego ekranu.
  */
-export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo, onSelectProvince }: MainMapProps) {
+export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo, onSelectProvince,translateKey }: MainMapProps) {
     const mapRef = useRef<L.Map | null>(null);
 
     useMapFit(mapRef, loading);
@@ -394,9 +410,9 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
                 <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
 
                 {dataType === 'synop' ? (
-                    <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} />
+                    <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} translateKey={translateKey}/>
                 ) : (
-                    <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} />
+                    <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} translateKey={translateKey}/>
                 )}
             </MapContainer>
 
@@ -415,7 +431,7 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
                     fontWeight: 600,
                     color: dataType === 'synop' ? '#1a237e' : '#2e7d32',
                 }}>
-                    Ładowanie stacji ({dataType === 'synop' ? 'Synop' : 'Meteo'})...
+                    {translateKey.get("map-loading-stations")} ({dataType === 'synop' ? 'Synop' : 'Meteo'})...
                 </div>
             )}
         </div>
@@ -437,6 +453,7 @@ interface ProvinceModalProps {
     powiatStations: StationData[];
     onSelectPowiat: (code: string | null) => void;
     onClose: () => void;
+    translateKey: Map<string, string>;
 }
 
 /**
@@ -458,6 +475,7 @@ export function ProvinceModal({
     powiatStations,
     onSelectPowiat,
     onClose,
+    translateKey
 }: ProvinceModalProps) {
     return (
         <div
@@ -501,7 +519,7 @@ export function ProvinceModal({
 
             {selectedPowiat && powiatInfo ? (
                 <ModalMap
-                    key={`powiat-${selectedPowiat}`}
+                    key={`${translateKey.get("map-country")}-${selectedPowiat}`}
                     imageUrl={`/powiat_detail/${powiatInfo.file}`}
                     geo={powiatInfo}
                     aspect={powiatInfo.aspect}
@@ -509,6 +527,7 @@ export function ProvinceModal({
                     dataType={dataType}
                     geometry={powiatGeometry}
                     onClose={() => onSelectPowiat(null)}
+                    translateKey={translateKey}
                 />
             ) : provinceInfo ? (
                 <ModalMap
@@ -519,7 +538,8 @@ export function ProvinceModal({
                     dataType={dataType}
                     geometry={provinceGeometry}
                     onClose={onClose}
-                    overlay={<PowiatsLayer features={provincePowiatFeatures} info={provinceInfo} onSelect={onSelectPowiat} />}
+                    overlay={<PowiatsLayer features={provincePowiatFeatures} info={provinceInfo} onSelect={onSelectPowiat} translateKey={translateKey}/>}
+                    translateKey={translateKey}
                 />
             ) : (
                 <p style={{ color: '#1a237e' }}>Brak mapy powiatów dla tego województwa.</p>
