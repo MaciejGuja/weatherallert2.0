@@ -38,6 +38,21 @@
     "map-marker-synop-measurement-date": "Messdatum:",
     "map-marker-synop-measurement-hour": "Uhrzeit:",
 
+    "map-marker-hydro-station-code": "Stationscode:",
+    "map-marker-hydro-river": "Fluss:",
+    "map-marker-hydro-river-kilometer": "Flusskilometer:",
+    "map-marker-hydro-province": "Woiwodschaft:",
+    "map-marker-hydro-established-year": "Gründungsjahr der Station:",
+    "map-marker-hydro-zero-gauge-elevation": "Höhe des Pegelnullpunkts:",
+    "map-marker-hydro-water-level": "Wasserstand:",
+    "map-marker-hydro-warning-level": "Warnstand:",
+    "map-marker-hydro-alarm-level": "Alarmstand:",
+    "map-marker-hydro-water-temperature": "Wassertemperatur:",
+    "map-marker-hydro-flow": "Durchfluss:",
+    "map-marker-hydro-ice-phenomenon": "Eiserscheinung:",
+    "map-marker-hydro-overgrowth-phenomenon": "Verwachsung:",
+    "map-marker-hydro-measurement-date": "Messdatum:",
+
     "map-country": "Landkreis",
 
     "translate-menu-polish": "Polnisch",

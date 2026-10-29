@@ -3,6 +3,7 @@ import L from 'leaflet';
 import type {DataType,StationData} from './types';
 import { filterCapitalMeteo, type MeteoStation } from './MeteoPresentation';
 import { filterCapitalStations, type SynopStation } from './SynopPresentation';
+import { filterCapitalHydro, type HydroStation } from './HydroPresentation';
 import {imageBounds, MAP_FIT_PADDING, MAP_HEIGHT, MAP_WIDTH, POWIAT_MAPS, WOJ_TERYT} from './constans';
 import {POWIAT_DETAIL_MAPS} from '../Powiatdetailmaps';
 import {
@@ -10,6 +11,7 @@ import {
     flattenBackendResponse,
     normalizeMeteoData,
     normalizeSynopData,
+    normalizeHydroData,
     pickOnePerPowiat,
     powiatLabel,
     stationKey,
@@ -22,6 +24,8 @@ let synopCache: SynopStation[]=[];
 let synopTimeCache=0;
 let meteoCache: MeteoStation[]=[];
 let meteoTimeCache=0;
+let hydroCache: HydroStation[]=[];
+let hydroTimeCache=0;
 
 /**
  * @brief Sprawdza, czy dane zapisane w podanym momencie są jeszcze świeże (młodsze niż CACHE_TTL_MS).
@@ -40,7 +44,7 @@ function isCacheFresh(savedAt: number): boolean{
 export function useStations(dataType: DataType) {
     const [synopStations, setSynopStations] = useState<SynopStation[]>([]);
     const [meteoStations, setMeteoStations] = useState<MeteoStation[]>([]);
-    const [hydroStations, setHydroStations] = useState<StationData[]>([]);
+    const [hydroStations, setHydroStations] = useState<HydroStation[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     useEffect(() => {
     if(dataType==='synop'&&isCacheFresh(synopTimeCache)){
@@ -50,6 +54,11 @@ export function useStations(dataType: DataType) {
     }
     if(dataType==='meteo'&&isCacheFresh(meteoTimeCache)){
         setMeteoStations(meteoCache);
+        setLoading(false);
+        return;
+    }
+    if(dataType==='hydro'&&isCacheFresh(hydroTimeCache)){
+        setHydroStations(hydroCache);
         setLoading(false);
         return;
     }
@@ -72,7 +81,9 @@ export function useStations(dataType: DataType) {
                     meteoTimeCache=Date.now();
                     setMeteoStations(meteoCache);
                 } else if (dataType === 'hydro') {
-                    // setHydroStations(rawList.map(normalizeHydroData));
+                    hydroCache=rawList.map(normalizeHydroData);
+                    hydroTimeCache=Date.now();
+                    setHydroStations(hydroCache);
                 }
                 setLoading(false);
             })
@@ -116,13 +127,26 @@ export function useGeoData() {
  * @param geoData Granice województw (GeoJSON).
  * @return Stacje wyświetlane (SYNOP, METEO), aktywne, wszystkie oraz liczba stacji.
  */
-export function useDisplayedStations(dataType: DataType, synopStations: SynopStation[], meteoStations: MeteoStation[]) {
+export function useDisplayedStations(dataType: DataType, synopStations: SynopStation[], meteoStations: MeteoStation[], hydroStations: HydroStation[]) {
     const displayedSynopStations = useMemo(() =>  filterCapitalStations(synopStations), [synopStations]);
     const displayedMeteoStations = useMemo(() => filterCapitalMeteo(meteoStations), [meteoStations]);
-    const allStations: StationData[] = dataType === 'synop' ? synopStations : meteoStations;
-    const activeStations : StationData[] = dataType === 'synop' ? displayedSynopStations : displayedMeteoStations;
-    const stationCount = dataType === 'synop' ? synopStations.length : meteoStations.length;
-    return { displayedSynopStations, displayedMeteoStations, activeStations, allStations, stationCount };
+    const displayedHydroStations=useMemo(()=>filterCapitalHydro(hydroStations), [hydroStations]);
+    const allStations: StationData[] = dataType === 'synop'
+        ? synopStations
+        : dataType === 'meteo'
+            ? meteoStations
+            : hydroStations;
+    const activeStations: StationData[] = dataType === 'synop'
+        ? displayedSynopStations
+        : dataType === 'meteo'
+            ? displayedMeteoStations
+            : displayedHydroStations;
+    const stationCount = dataType === 'synop'
+        ? synopStations.length
+        : dataType === 'meteo'
+            ? meteoStations.length
+            : hydroStations.length;
+    return { displayedSynopStations, displayedMeteoStations,displayedHydroStations, activeStations, allStations, stationCount };
 }
 interface UseProvinceModalParams {
     dataType: DataType;
@@ -238,4 +262,3 @@ export function useMapFit(mapRef: RefObject<L.Map | null>, loading: boolean) {
         return () => cancelAnimationFrame(raf);
     }, [loading]);
 }
-

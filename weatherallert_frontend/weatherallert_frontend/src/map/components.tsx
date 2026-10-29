@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { MapContainer, ImageOverlay, GeoJSON, useMapEvents } from 'react-leaflet';
 import L, { type LatLngBoundsExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { SynopMarker, SynopPresentation, type SynopStation } from './SynopPresentation';
 import { MeteoMarker, MeteoPresentation, type MeteoStation } from './MeteoPresentation';
+import { HydroMarker, HydroPresentation, type HydroStation } from './HydroPresentation';
 import { POWIAT_DETAIL_MAPS, type PowiatDetailMapInfo } from '../Powiatdetailmaps';
 import type { DataType, GeoRect, StationData } from './types';
 import {
@@ -32,10 +33,11 @@ import { useMapFit } from './hooks';
  * @param onChange Wywoływane po wyborze rodzaju danych.
  * @return Pasek menu z przyciskami.
  */
-export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange,translateKey }: {
+export function DataTypeMenu({ dataType, synopCount, meteoCount,hydroCount, onChange,translateKey }: {
     dataType: DataType;
     synopCount: number;
     meteoCount: number;
+    hydroCount: number;
     onChange: (type: DataType) => void;
     translateKey: Map<string, string>;
 }) {
@@ -120,13 +122,63 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount, onChange,transl
                     boxShadow: dataType === 'hydro' ? '0 2px 5px rgba(0,0,0,0.2)' : 'none',
                 }}
             >
-                {translateKey.get("map-data-type-menu-hydrologic-type")} ({synopCount})
+                {translateKey.get("map-data-type-menu-hydrologic-type")} ({hydroCount})
                 
             </button>
         </div>
     );
 }
-
+/**
+ * @brief Wyszukiwarka stacji
+ * 
+ * @return 
+ */
+interface CityScanProps{
+    dataType: DataType;
+}
+export function CityScan(dataType:CityScanProps){
+    const [query,setQuery]=useState('');
+    return(
+        <div style={{
+            position: 'absolute',
+            top: TOP_MENU_HEIGHT,                 
+            bottom: 0,
+            right: 0,                
+            width: SIDE_MENU_WIDTH,              
+            display: 'flex',
+            flexDirection: 'column', 
+            alignItems: 'stretch',
+            justifyContent: 'flex-start',
+            gap: '8px',
+            padding: '16px 12px',
+            zIndex: 1000,
+            background: '#f8f9fa',
+            borderLeft: '1px solid #e0e0e0',   
+            boxShadow: '-2px 0 4px rgba(0,0,0,0.05)',
+            boxSizing: 'border-box',
+        }}>
+            <input
+                style={{
+                        width: '100%',
+                        boxSizing: 'border-box',
+                        padding: '12px 16px',
+                        borderRadius: '8px',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        color: 'white',
+                        fontSize: '16px',
+                        outline: 'none',
+                        transition: 'background-color 0.2s, border-color 0.2s'
+                        }}
+                type="search"
+                value={query}
+                onChange={(e)=>{setQuery(e.target.value)}}
+                placeholder="Szukaj stacji..."
+                aria-label="Szukaj stacji"
+            />
+        </div>
+    )
+}
 /**
  * @brief Warstwa województw na mapie głównej
  * @param geoData Granice województw (GeoJSON).
@@ -334,8 +386,14 @@ export function ModalMap({ imageUrl, geo, aspect = 1, stations, dataType, geomet
                         const s = item as SynopStation;
                         return <SynopMarker key={`synop-${s.stationId || index}`} item={s} position={pos} translateKey={translateKey}/>;
                     }
-                    const m = item as MeteoStation;
-                    return <MeteoMarker key={`meteo-${m.stationCode || index}`} item={m} position={pos} translateKey={translateKey}/>;
+                    if(dataType==='meteo'){
+                        const m = item as MeteoStation;
+                        return <MeteoMarker key={`meteo-${m.stationCode || index}`} item={m} position={pos} translateKey={translateKey}/>;
+                    }
+                    if(dataType==='hydro'){
+                        const h = item as HydroStation;
+                        return <HydroMarker key={`hydro-${h.stationCode || index}`} item={h} position={pos} translateKey={translateKey}/>;
+                    }
                 })}
             </MapContainer>
         </div>
@@ -349,6 +407,7 @@ interface MainMapProps {
     geoData: GeoJSON.FeatureCollection | null;
     displayedSynop: SynopStation[];
     displayedMeteo: MeteoStation[];
+    displayedHydro: HydroStation[];
     onSelectProvince: (rawName: string) => void;
     translateKey: Map<string, string>;
 }
@@ -358,7 +417,7 @@ interface MainMapProps {
  * @param props Rodzaj danych, flagi stanu, granice województw, stacje do pokazania i obsługa wyboru województwa.
  * @return Kontener z mapą głównego ekranu.
  */
-export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo, onSelectProvince,translateKey }: MainMapProps) {
+export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo,displayedHydro, onSelectProvince,translateKey }: MainMapProps) {
     const mapRef = useRef<L.Map | null>(null);
 
     useMapFit(mapRef, loading);
@@ -405,14 +464,30 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
                 keyboard={false}
                 style={{ height: '100%', width: '100%', background: '#ffffff' }}
             >
-                <ImageOverlay url="/polska_mapa_szara.png" bounds={imageBounds} />
-
-                <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
-
-                {dataType === 'synop' ? (
-                    <SynopPresentation stations={displayedSynop} getPosition={parseGpsToMapCoords} translateKey={translateKey}/>
+                {dataType==='meteo'||dataType==='synop'?(
+                    <ImageOverlay url="/polska_mapa_szara.png" bounds={imageBounds} />
                 ) : (
-                    <MeteoPresentation stations={displayedMeteo} getPosition={parseGpsToMapCoords} translateKey={translateKey}/>
+                    <ImageOverlay url="/polska_mapa_rzeki.png" bounds={imageBounds} />
+                )}
+                <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
+                {dataType === 'synop' ? (
+                    <SynopPresentation
+                        stations={displayedSynop}
+                        getPosition={parseGpsToMapCoords}
+                        translateKey={translateKey}
+                    />
+                ) : dataType === 'meteo' ? (
+                    <MeteoPresentation
+                        stations={displayedMeteo}
+                        getPosition={parseGpsToMapCoords}
+                        translateKey={translateKey}
+                    />
+                ) : (
+                    <HydroPresentation
+                        stations={displayedHydro}
+                        getPosition={parseGpsToMapCoords}
+                        translateKey={translateKey}
+                    />
                 )}
             </MapContainer>
 
@@ -431,7 +506,8 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
                     fontWeight: 600,
                     color: dataType === 'synop' ? '#1a237e' : '#2e7d32',
                 }}>
-                    {translateKey.get("map-loading-stations")} ({dataType === 'synop' ? 'Synop' : 'Meteo'})...
+                    {translateKey.get("map-loading-stations")}
+                    ({dataType === 'synop' ? 'Synop' : dataType === 'meteo' ? 'Meteo' : 'Hydro'})...
                 </div>
             )}
         </div>
@@ -520,7 +596,11 @@ export function ProvinceModal({
             {selectedPowiat && powiatInfo ? (
                 <ModalMap
                     key={`${translateKey.get("map-country")}-${selectedPowiat}`}
-                    imageUrl={`/powiat_detail/${powiatInfo.file}`}
+                    imageUrl={
+                        dataType === 'meteo' || dataType === 'synop'
+                            ? `/powiat_detail/${powiatInfo.file}`
+                            : `/rzeki/powiat_detail/${powiatInfo.file}`
+                    }
                     geo={powiatInfo}
                     aspect={powiatInfo.aspect}
                     stations={powiatStations}
@@ -532,7 +612,11 @@ export function ProvinceModal({
             ) : provinceInfo ? (
                 <ModalMap
                     key={`woj-${selectedProvince}`}
-                    imageUrl={`/powiaty/${provinceInfo.file}`}
+                    imageUrl={
+                        dataType === 'meteo' || dataType === 'synop'
+                            ? `/powiaty/${provinceInfo.file}`
+                            : `/rzeki/powiaty/${provinceInfo.file}`
+                    }
                     geo={provinceInfo}
                     stations={provinceStationsShown}
                     dataType={dataType}

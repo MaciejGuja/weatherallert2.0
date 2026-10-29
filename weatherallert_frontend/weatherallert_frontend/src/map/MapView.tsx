@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { DataType } from './types';
 import { useStations, useGeoData, useDisplayedStations, useProvinceModal } from './hooks';
-import { DataTypeMenu, MainMap, ProvinceModal } from './components';
+import { DataTypeMenu, MainMap, ProvinceModal, CityScan } from './components';
 
 /**
  * @brief Inicjalizacja mapy.
@@ -15,8 +15,8 @@ export default function MapView({translateKey}: MapProps) {
 
     const { synopStations, meteoStations, hydroStations, loading } = useStations(dataType);
     const { geoData, powiatGeoData } = useGeoData();
-    const { displayedSynopStations, displayedMeteoStations, activeStations, allStations, stationCount } = useDisplayedStations(
-        dataType, synopStations, meteoStations
+    const { displayedSynopStations, displayedMeteoStations,displayedHydroStations, activeStations, allStations, stationCount } = useDisplayedStations(
+        dataType, synopStations, meteoStations, hydroStations
     );
     const modal = useProvinceModal({ dataType, geoData, powiatGeoData, allStations, activeStations });
 
@@ -30,6 +30,7 @@ export default function MapView({translateKey}: MapProps) {
                 geoData={geoData}
                 displayedSynop={displayedSynopStations}
                 displayedMeteo={displayedMeteoStations}
+                displayedHydro={displayedHydroStations}
                 onSelectProvince={modal.handleSelectProvince}
                 translateKey={translateKey}
             />
@@ -52,10 +53,13 @@ export default function MapView({translateKey}: MapProps) {
                     translateKey={translateKey}
                 />
             )}
+            <CityScan
+                dataType={dataType}/>
             <DataTypeMenu
                 dataType={dataType}
                 synopCount={synopStations.length}
                 meteoCount={meteoStations.length}
+                hydroCount={hydroStations.length}
                 onChange={setDataType}
                 translateKey={translateKey}
             />

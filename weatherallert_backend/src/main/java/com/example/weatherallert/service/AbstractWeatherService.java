@@ -18,3 +18,5 @@ public abstract class AbstractWeatherService<RAW_DATA_DTO, RESPONSE_DTO, ENTITY,
     public abstract Map<String, List<RESPONSE_DTO>> getAndCollectData();
 }
 
+
+

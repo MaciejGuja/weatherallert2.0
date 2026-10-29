@@ -1,6 +1,7 @@
 import L from 'leaflet';
 import type { SynopStation } from './SynopPresentation';
 import type { MeteoStation } from './MeteoPresentation';
+import type { HydroStation } from './HydroPresentation';
 import type { PowiatDetailMapInfo } from '../Powiatdetailmaps';
 import type { Ring, StationData } from './types';
 import {GEO_BOUNDS, MAP_HEIGHT, MAP_WIDTH } from './constans';
@@ -172,7 +173,36 @@ export function normalizeMeteoData(item: any): MeteoStation {
         precipitation10minDate: item.precipitation10minDate ?? null,
     };
 }
-
+/**
+ * @brief Normalizuje surowy rekord stacji HYDRO do typu HydroStation.
+ * @param item Surowy rekord z backendu.
+ * @return Znormalizowana stacja HYDRO.
+ */
+export function normalizeHydroData(item: any): HydroStation {
+    return {
+        stationCode: item.stationCode ?? null,
+        stationName: item.stationName ?? 'Nieznana stacja',
+        river: item.river ?? null,
+        province: item.province ?? null,
+        longitudeGeo: item.longitude ?? null,
+        latitudeGeo: item.latitude ?? null,
+        stationEstablishmentYear: item.stationEstablishmentYear ?? null,
+        zeroGaugeElevation: item.zeroGaugeElevation ?? null,
+        riverKilometer: item.riverKilometer ?? null,
+        alarmLevel: item.alarmLevel ?? null,
+        warningLevel: item.warningLevel ?? null,
+        waterLevel: item.waterLevel ?? null,
+        waterLevelMeasurementDate: item.waterLevelMeasurementDate ?? null,
+        waterTemperature: item.waterTemperature ?? null,
+        waterTemperatureMeasurementDate: item.waterTemperatureMeasurementDate ?? null,
+        flow: item.flow ?? null,
+        flowDate: item.flowDate ?? null,
+        icePhenomenon: item.icePhenomenon ?? null,
+        icePhenomenonMeasurementDate: item.icePhenomenonMeasurementDate ?? null,
+        overgrowthPhenomenon: item.overgrowthPhenomenon ?? null,
+        overgrowthPhenomenonMeasurementDate: item.overgrowthPhenomenonMeasurementDate ?? null,
+    };
+}
 /**
  * @brief Zwraca stacje leżące wewnątrz podanej geometrii.
  * @param stations Lista stacji.

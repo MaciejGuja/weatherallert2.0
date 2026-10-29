@@ -89,11 +89,11 @@ export function MeteoMarker({ item, position,translateKey }: MeteoMarkerProps) {
                 <h3 style={{ margin: 0, color: '#2e7d32', fontSize: '14px', fontWeight: 700 }}>{name}</h3>
                 <span style={{ fontSize: '10px', background: '#e8f5e9', color: '#2e7d32', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>METEO</span>
             </div>
-            {item.stationCode && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-station-code")} {item.stationCode}</p>}
-            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-province")} {item.province}</p>}
-            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-county")} {item.country}</p>}
-            {item.stationEstablishmentYear && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-established-year")} {item.stationEstablishmentYear}</p>}
-            {item.heightAboveSeaLevel && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-synop-height-amn")} {item.heightAboveSeaLevel} m</p>}
+            {item.stationCode && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-meteo-station-code")} {item.stationCode}</p>}
+            {item.province && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-meteo-province")} {item.province}</p>}
+            {item.country && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-meteo-county")} {item.country}</p>}
+            {item.stationEstablishmentYear && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-meteo-established-year")} {item.stationEstablishmentYear}</p>}
+            {item.heightAboveSeaLevel && <p style={{ margin: '2px 0', fontSize: '11px', color: '#666' }}>{translateKey.get("map-marker-meteo-height-amn")} {item.heightAboveSeaLevel} m</p>}
             <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />
 
             <p style={{ margin: '3px 0', fontSize: '12px' }}><strong>{translateKey.get("map-marker-weather-temperature")}</strong> {item.airTemperature ?? 'b.d.'} °C</p>
@@ -197,19 +197,23 @@ const CAPITAL_ALIASES: Array<string> = [
  */
 export function filterCapitalMeteo(stations: MeteoStation[]): MeteoStation[] {
     const matchedCapitals: MeteoStation[] = [];
- 
+
     CAPITAL_ALIASES.forEach((capitalName) => {
         const found = stations.find(s => {
             const name = s.stationName.toUpperCase();
             if (name === capitalName) return true;
-            if (name.startsWith(capitalName)) return true;
+            const boundary = name.slice(capitalName.length, capitalName.length + 1);
+            if (name.startsWith(capitalName) && (boundary === '' || /[\s\-]/.test(boundary))) {
+                return true;
+            }
             const words = name.split(/[\s\-]+/);
             return words.includes(capitalName);
         });
+
         if (found) {
             matchedCapitals.push(found);
         }
     });
- 
+
     return matchedCapitals;
 }

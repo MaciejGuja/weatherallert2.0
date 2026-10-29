@@ -1,7 +1,8 @@
 import type { SynopStation} from './SynopPresentation';
 import type { MeteoStation } from './MeteoPresentation';
+import type { HydroStation } from './HydroPresentation';
 export type DataType = 'synop' | 'meteo' | 'hydro';
-export type StationData= SynopStation | MeteoStation;
+export type StationData= SynopStation | MeteoStation | HydroStation;
 export interface ProvinceMapInfo{
     file: string,
     minLat: number,

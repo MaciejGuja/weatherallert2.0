@@ -38,6 +38,21 @@
     "map-marker-synop-measurement-date": "Data pomiaru:",
     "map-marker-synop-measurement-hour": "Godzina:",
 
+    "map-marker-hydro-station-code": "Kod stacji:",
+    "map-marker-hydro-river": "Rzeka:",
+    "map-marker-hydro-river-kilometer": "Kilometr rzeki:",
+    "map-marker-hydro-province": "Województwo:",
+    "map-marker-hydro-established-year": "Rok założenia stacji:",
+    "map-marker-hydro-zero-gauge-elevation": "Rzędna zera wodowskazu:",
+    "map-marker-hydro-water-level": "Stan wody:",
+    "map-marker-hydro-warning-level": "Stan ostrzegawczy:",
+    "map-marker-hydro-alarm-level": "Stan alarmowy:",
+    "map-marker-hydro-water-temperature": "Temperatura wody:",
+    "map-marker-hydro-flow": "Przepływ:",
+    "map-marker-hydro-ice-phenomenon": "Zjawisko lodowe:",
+    "map-marker-hydro-overgrowth-phenomenon": "Zjawisko zarastania:",
+    "map-marker-hydro-measurement-date": "Data pomiaru:",
+
     "map-country": "Powiat",
 
     "translate-menu-polish": "Polski",

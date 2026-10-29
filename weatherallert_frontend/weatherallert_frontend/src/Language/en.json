@@ -38,6 +38,21 @@
     "map-marker-synop-measurement-date": "Measurement date:",
     "map-marker-synop-measurement-hour": "Hour:",
 
+    "map-marker-hydro-station-code": "Station code:",
+    "map-marker-hydro-river": "River:",
+    "map-marker-hydro-river-kilometer": "River kilometer:",
+    "map-marker-hydro-province": "Voivodeship:",
+    "map-marker-hydro-established-year": "Station established year:",
+    "map-marker-hydro-zero-gauge-elevation": "Gauge zero elevation:",
+    "map-marker-hydro-water-level": "Water level:",
+    "map-marker-hydro-warning-level": "Warning level:",
+    "map-marker-hydro-alarm-level": "Alarm level:",
+    "map-marker-hydro-water-temperature": "Water temperature:",
+    "map-marker-hydro-flow": "Flow rate:",
+    "map-marker-hydro-ice-phenomenon": "Ice phenomenon:",
+    "map-marker-hydro-overgrowth-phenomenon": "Overgrowth phenomenon:",
+    "map-marker-hydro-measurement-date": "Measurement date:",
+
     "map-country": "County",
 
     "translate-menu-polish": "Polish",
