@@ -1,5 +1,3 @@
-// Wygenerowane automatycznie (make_powiat_detail.py). Klucz = kod TERYT powiatu.
-// Obrazki trzymaj w public/powiat_detail/<wojewodztwo>/, pole file zawiera tę ścieżkę.
 export interface PowiatDetailMapInfo {
     name: string; wojewodztwo: string; file: string;
     minLng: number; maxLng: number; minLat: number; maxLat: number;

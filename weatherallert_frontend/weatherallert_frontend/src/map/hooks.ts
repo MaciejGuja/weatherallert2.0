@@ -1,4 +1,4 @@
-import {useEffect,useMemo,useState,type RefObject} from 'react';
+import {useEffect,useMemo,useState,useCallback,type RefObject} from 'react';
 import L from 'leaflet';
 import type {DataType,StationData} from './types';
 import { filterCapitalMeteo, type MeteoStation } from './MeteoPresentation';
@@ -17,6 +17,7 @@ import {
     stationKey,
     stationsInGeometry,
     stationsInProvince,
+    pointInGeometry,
 } from './utils';
 
 const CACHE_TTL_MS= 5*60*1000;
@@ -171,6 +172,36 @@ export function useProvinceModal({ dataType, geoData, powiatGeoData, allStations
         setIsModalOpen(true);
     };
     const provinceInfo = selectedProvince ? POWIAT_MAPS[selectedProvince.toLowerCase()] : undefined;
+    const openStation = useCallback((station: StationData): boolean => {
+        const lat = station.latitudeGeo;
+        const lng = station.longitudeGeo;
+        if (lat == null || lng == null) return false;
+
+        const powiatFeature = powiatGeoData?.features.find(
+            f => f.geometry && pointInGeometry(lng, lat, f.geometry)
+        );
+        const rawCode = powiatFeature?.properties?.code;
+        const code = rawCode != null ? String(rawCode) : null;
+        const powiatCode = code && POWIAT_DETAIL_MAPS[code] ? code : null;
+
+        let provinceName: string | null = null;
+        if (code) {
+            provinceName = Object.entries(WOJ_TERYT).find(([, teryt]) => code.startsWith(teryt))?.[0] ?? null;
+        }
+        if (!provinceName) {
+            const provinceFeature = geoData?.features.find(
+                f => f.geometry && pointInGeometry(lng, lat, f.geometry)
+            );
+            const rawName: string | undefined = provinceFeature?.properties?.nazwa;
+            provinceName = rawName ? rawName.toLowerCase() : null;
+        }
+        if (!provinceName || !POWIAT_MAPS[provinceName]) return false;
+
+        setSelectedProvince(provinceName);
+        setSelectedPowiat(powiatCode);
+        setIsModalOpen(true);
+        return true;
+    }, [geoData, powiatGeoData]);
     const closeModal = () => {
         setIsModalOpen(false);
         setSelectedPowiat(null);
@@ -232,6 +263,7 @@ return {
         setSelectedPowiat,
         isModalOpen,
         handleSelectProvince,
+        openStation,
         closeModal,
         provinceInfo,
         provinceGeometry,
@@ -243,6 +275,7 @@ return {
         modalTitle,
     };
 }
+
 /**
  * @brief Dopasowuje widok mapy głównej do granic obrazka po zmianie stanu ładowania.
  * @param mapRef Referencja do instancji mapy Leaflet.

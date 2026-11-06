@@ -23,7 +23,8 @@ import {
     TOP_MENU_HEIGHT,
 } from './constans';
 import { capitalizeWoj, coordsToLatLng, parseGpsToMapCoords, pointInGeometry, powiatLabel } from './utils';
-import { useMapFit } from './hooks';
+import { useMapFit} from './hooks';
+import Draggable from 'react-draggable';
 
 /**
  * @brief Górne menu wyboru rodzaju danych (Synoptyczne / Meteorologiczne / Hydrologiczne).
@@ -133,51 +134,131 @@ export function DataTypeMenu({ dataType, synopCount, meteoCount,hydroCount, onCh
  * 
  * @return 
  */
-interface CityScanProps{
+interface CityScanProps {
     dataType: DataType;
+    stationData: StationData[];
+    onSelectStation: (station: StationData) => void;
+    translateKey: Map<string, string>;
 }
-export function CityScan(dataType:CityScanProps){
-    const [query,setQuery]=useState('');
-    return(
-        <div style={{
-            position: 'absolute',
-            top: TOP_MENU_HEIGHT,                 
-            bottom: 0,
-            right: 0,                
-            width: SIDE_MENU_WIDTH,              
-            display: 'flex',
-            flexDirection: 'column', 
-            alignItems: 'stretch',
-            justifyContent: 'flex-start',
-            gap: '8px',
-            padding: '16px 12px',
-            zIndex: 1000,
-            background: '#f8f9fa',
-            borderLeft: '1px solid #e0e0e0',   
-            boxShadow: '-2px 0 4px rgba(0,0,0,0.05)',
-            boxSizing: 'border-box',
-        }}>
-            <input
-                style={{
-                        width: '100%',
+export function CityScan({ dataType, stationData, onSelectStation, translateKey }: CityScanProps) {
+    const [query, setQuery] = useState('');
+    const nodeRef = useRef<HTMLDivElement>(null);
+
+    const filterStation = useMemo<StationData[]>(() => {
+        const prefix = query.toLocaleUpperCase();
+        if (dataType === 'synop') {
+            return (stationData as SynopStation[]).filter((s) =>
+                s.station.toLocaleUpperCase().startsWith(prefix)
+            );
+        }
+        if (dataType === 'meteo') {
+            return (stationData as MeteoStation[]).filter((s) =>
+                s.stationName.toLocaleUpperCase().startsWith(prefix)
+            );
+        }
+        if (dataType === 'hydro') {
+            return (stationData as HydroStation[]).filter((s) =>
+                s.stationName.toLocaleUpperCase().startsWith(prefix)
+            );
+        }
+        return [];
+    }, [query, dataType, stationData]);
+
+    const handlePick = (station: StationData, name: string) => {
+        setQuery(name);
+        onSelectStation(station);
+    };
+
+    return (
+        <>
+            <Draggable cancel="input,textarea,button,select" nodeRef={nodeRef}>
+                <div
+                    ref={nodeRef}
+                    style={{
+                        position: 'fixed',
+                        top: TOP_MENU_HEIGHT + 200,
+                        left: window.innerWidth - SIDE_MENU_WIDTH,
+                        width: SIDE_MENU_WIDTH,
+                        padding: '12px 12px',
+                        zIndex: 3000,
+                        background: '#f8f9fa',
+                        borderLeft: '1px solid #e0e0e0',
+                        boxShadow: '-2px 0 4px rgba(0,0,0,0.05)',
                         boxSizing: 'border-box',
-                        padding: '12px 16px',
-                        borderRadius: '8px',
-                        border: '1px solid rgba(255, 255, 255, 0.3)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                        color: 'white',
-                        fontSize: '16px',
-                        outline: 'none',
-                        transition: 'background-color 0.2s, border-color 0.2s'
+                        cursor: 'move',
+                    }}
+                >
+                    <input
+                        style={{
+                            width: '100%',
+                            boxSizing: 'border-box',
+                            padding: '10px 12px',
+                            borderRadius: 8,
+                            border: '1px solid #c0c0c0',
+                            backgroundColor: '#ffffff',
+                            color: '#222',
+                            fontSize: 14,
+                            outline: 'none',
+                            cursor: 'text',
                         }}
-                type="search"
-                value={query}
-                onChange={(e)=>{setQuery(e.target.value)}}
-                placeholder="Szukaj stacji..."
-                aria-label="Szukaj stacji"
-            />
-        </div>
-    )
+                        type="search"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder="Szukaj stacji..."
+                        aria-label="Szukaj stacji"
+                    />
+                    {query.trim() !== '' && (
+                        <div
+                            style={{
+                                marginTop: 8,
+                                maxHeight: 260,
+                                overflowY: 'auto',
+                                background: '#fff',
+                                border: '1px solid #e0e0e0',
+                                borderRadius: 8,
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                            }}
+                        >
+                            {filterStation.length === 0 ? (
+                                <div style={{ padding: '10px 12px', fontSize: 13, color: '#888' }}>
+                                    Brak wyników
+                                </div>
+                            ) : (
+                                filterStation.map((s, i) => {
+                                    const name = 'station' in s ? s.station : s.stationName;
+                                    return (
+                                        <div
+                                            key={`${name}-${i}`}
+                                            onMouseDown={(e) => e.preventDefault()}
+                                            onClick={() => handlePick(s, name)}
+                                            style={{
+                                                padding: '8px 12px',
+                                                fontSize: 14,
+                                                color: '#222',
+                                                cursor: 'pointer',
+                                                borderBottom:
+                                                    i === filterStation.length - 1
+                                                        ? 'none'
+                                                        : '1px solid #f0f0f0',
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                (e.currentTarget as HTMLDivElement).style.background = '#eef3ff';
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                (e.currentTarget as HTMLDivElement).style.background = 'transparent';
+                                            }}
+                                        >
+                                            {name}
+                                        </div>
+                                    );
+                                })
+                            )}
+                        </div>
+                    )}
+                </div>
+            </Draggable>
+        </>
+    );
 }
 /**
  * @brief Warstwa województw na mapie głównej

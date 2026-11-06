@@ -54,7 +54,11 @@ export default function MapView({translateKey}: MapProps) {
                 />
             )}
             <CityScan
-                dataType={dataType}/>
+                dataType={dataType}
+                stationData={allStations}
+                onSelectStation={modal.openStation}
+                translateKey={translateKey}
+            />
             <DataTypeMenu
                 dataType={dataType}
                 synopCount={synopStations.length}
