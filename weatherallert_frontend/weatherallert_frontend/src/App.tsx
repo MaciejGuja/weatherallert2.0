@@ -3,6 +3,7 @@ import MapView from './map/MapView';
 import { TopMenu } from './Views/TopMenu';
 import { LoginView } from './Views/LoginView';
 import {LanguageController} from './Language/LanguageController'
+import {WeatherForecastView} from './Views/WeatherForecast';
 export type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 export type LanguageCode = "pl" | "en" | "de";
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
                 bottom: 0,
             }}>
                 {view === 'conditions' && <MapView translateKey={translateKey}/>}
-                {view === 'forecast'}
+                {view === 'forecast' && <WeatherForecastView/>}
                 {view === 'allerts'}
             </div>
             </>

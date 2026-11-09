@@ -4,7 +4,27 @@ export interface PowiatDetailMapInfo {
     aspect: number;      // szerokość / wysokość obrazka -> bounds Leafleta: [[0,0],[1000, 1000 * aspect]]
     subdivided: boolean; // false = miasto na prawach powiatu (jedna gmina)
 }
-
+export interface VoidewodztwoDetailMapInfo {
+    Lan: number; Lon: number;
+}
+export const VoidewodztwoDetailMapInfo: Record<string, VoidewodztwoDetailMapInfo> = {
+    "Warszawa": { Lan: 52.2297, Lon: 21.0122 },
+    "Kraków": { Lan: 50.0647, Lon: 19.9450 },
+    "Łódź": { Lan: 51.7592, Lon: 19.4560 },
+    "Wrocław": { Lan: 51.1079, Lon: 17.0385 },
+    "Poznań": { Lan: 52.4064, Lon: 16.9252 },
+    "Gdańsk": { Lan: 54.3520, Lon: 18.6466 },
+    "Szczecin": { Lan: 53.4285, Lon: 14.5528 },
+    "Bydgoszcz": { Lan: 53.1235, Lon: 18.0084 },
+    "Lublin": { Lan: 51.2465, Lon: 22.5684 },
+    "Białystok": { Lan: 53.1325, Lon: 23.1688 },
+    "Katowice": { Lan: 50.2649, Lon: 19.0238 },
+    "Rzeszów": { Lan: 50.0412, Lon: 21.9991 },
+    "Kielce": { Lan: 50.8661, Lon: 20.6286 },
+    "Olsztyn": { Lan: 53.7784, Lon: 20.4801 },
+    "Opole": { Lan: 50.6751, Lon: 17.9213 },
+    "Zielona Góra": { Lan: 51.9356, Lon: 15.5062 }
+}
 export const POWIAT_DETAIL_MAPS: Record<string, PowiatDetailMapInfo> = {
     "0201": {"name": "bolesławiecki", "minLng": 15.18012, "maxLng": 15.87888, "minLat": 51.09545, "maxLat": 51.54775, "aspect": 0.9655, "subdivided": true, "wojewodztwo": "dolnośląskie", "file": "dolnoslaskie/powiat_boleslawiecki.png"},
     "0202": {"name": "dzierżoniowski", "minLng": 16.46275, "maxLng": 16.92035, "minLat": 50.61619, "maxLat": 50.85401, "aspect": 1.2178, "subdivided": true, "wojewodztwo": "dolnośląskie", "file": "dolnoslaskie/powiat_dzierzoniowski.png"},
