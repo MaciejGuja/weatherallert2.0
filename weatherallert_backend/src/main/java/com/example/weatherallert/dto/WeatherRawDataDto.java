@@ -1,54 +1,55 @@
 package com.example.weatherallert.dto;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import java.util.List;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherRawDataDto {
 
-    @JsonProperty("success")
-    private Boolean success;
+    @JsonProperty("latitude")
+    private Double latitude;
 
-    @JsonProperty("response")
-    private List<Response> response;
+    @JsonProperty("longitude")
+    private Double longitude;
+
+    @JsonProperty("timezone")
+    private String timezone;
+
+    @JsonProperty("daily")
+    private Daily daily;
 
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Response {
-        @JsonProperty("periods")
-        private List<Period> periods;
-    }
+    public static class Daily {
+        
+        @JsonProperty("time")
+        private List<String> dateTimeISO;
 
-    @Data
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Period {
+        @JsonProperty("weather_code")
+        private List<Integer> icon;
 
-        @JsonProperty("dateTimeISO")
-        private String dateTimeISO;
+        @JsonProperty("temperature_2m_max")
+        private List<Double> maxTempC;
 
-        @JsonProperty("maxTempC")
-        private Double maxTempC;
+        @JsonProperty("temperature_2m_min")
+        private List<Double> minTempC;
 
-        @JsonProperty("minTempC")
-        private Double minTempC;
+        @JsonProperty("wind_speed_10m_max")
+        private List<Double> windSpeedKPH;
 
-        @JsonProperty("feelslikeC")
-        private Double feelslikeC;
+        @JsonProperty("wind_gusts_10m_max")
+        private List<Double> windGustKPH;
 
-        @JsonProperty("windSpeedKPH")
-        private Double windSpeedKPH;
+        @JsonProperty("wind_direction_10m_dominant")
+        private List<Integer> windDirDEG;
 
-        @JsonProperty("windGustKPH")
-        private Double windGustKPH;
+        @JsonProperty("rain_sum")
+        private List<Double> rainSum;
 
-        @JsonProperty("windDir")
-        private String windDir;
-
-        @JsonProperty("windDirDEG")
-        private Integer windDirDEG;
-
-        @JsonProperty("icon")
-        private String icon;
+        @JsonProperty("precipitation_sum")
+        private List<Double> precipitationSum;
     }
 }

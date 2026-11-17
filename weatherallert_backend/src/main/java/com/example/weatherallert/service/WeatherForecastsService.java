@@ -1,50 +1,100 @@
 package com.example.weatherallert.service;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import com.example.weatherallert.dto.WeatherRawDataDto;
 import com.example.weatherallert.dto.WeatherForecastResponseDto;
+import com.example.weatherallert.dto.GeocodingResponseDto;
 import org.springframework.stereotype.Service;
 @Service
 public class WeatherForecastsService{
     protected final WebClient webClient;
-    protected final String BASE_URL="https://data.api.xweather.com/forecasts";
-    protected final String NAME_URL="/{cityName},PL";
     WeatherForecastsService(WebClient.Builder webClientBuilder){
         this.webClient = webClientBuilder
             .clone()
-            .baseUrl(BASE_URL)
             .build();
     }
-    public List<WeatherForecastResponseDto> getCityForecast(String cityName){
-            WeatherRawDataDto rawResponse = webClient.get()
-                .uri(uriBuilder -> uriBuilder
-                    .path(NAME_URL)                     
-                    .queryParam("limit", "14")          
-                    .queryParam("client_id", "qyr7Uum9yBHJcuVHQlHUU")
-                    .queryParam("client_secret", "ScPBDpz5IPlfkoVYu4zWXEHZR0bOHqyxs5pYfFdc")
-                    .build(cityName)) 
-                .retrieve()
-                .bodyToMono(WeatherRawDataDto.class)
-                .block();
-            if (rawResponse == null
-                || rawResponse.getResponse() == null
-                || rawResponse.getResponse().isEmpty()) {
-            throw new IllegalStateException("Brak danych dla miasta: " + cityName);
+     private static String mapWmoToIcon(Integer code) {
+            if (code == null) return "NULL";
+            return switch (code) {
+                case 0 -> "sunny.png";
+                case 1 -> "fair.png";
+                case 2 -> "pcloudy.png";
+                case 3 -> "cloudy.png";
+                case 45, 48 -> "fog.png";
+                case 51, 53 -> "drizzle.png";
+                case 55 -> "drizzle.png";
+                case 56, 57, 66, 67 -> "freezingrain.png";
+                case 61, 63 -> "rain.png";
+                case 65 -> "rainw.png";
+                case 71 -> "flurries.png";
+                case 73 -> "flurriesw.png";
+                case 75, 86 -> "blizzard.png";
+                case 77 -> "sleet.png";
+                case 80, 81 -> "showers.png";
+                case 82 -> "showersw.png";
+                case 85 -> "snowshowers.png";
+                case 95 -> "tstorm.png";
+                case 96, 99 -> "tstorms.png";
+                default -> "NULL";
+            };
         }
-    List<WeatherRawDataDto.Period> dni = rawResponse.getResponse().get(0).getPeriods();
-    return dni.stream()
-            .map(period -> WeatherForecastResponseDto.builder()
-                    .date(period.getDateTimeISO().substring(0, 10))
-                    .tempMaxC(period.getMaxTempC())
-                    .tempMinC(period.getMinTempC())
-                    .windSpeedKph(period.getWindSpeedKPH())
-                    .windGustKph(period.getWindGustKPH())
-                    .windDir(period.getWindDir())
-                    .windDirDeg(period.getWindDirDEG())
-                    .icon(period.getIcon())
+    public List<WeatherForecastResponseDto> getCityForecast(String cityName){
+            GeocodingResponseDto geoResponse = webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .scheme("https")
+                        .host("geocoding-api.open-meteo.com")
+                        .path("/v1/search")
+                        .queryParam("name", cityName)
+                        .queryParam("count", 1)
+                        .queryParam("language", "pl")
+                        .queryParam("format", "json")
+                        .build())
+                .retrieve()
+                .bodyToMono(GeocodingResponseDto.class)
+                .block();
+            if (geoResponse == null || geoResponse.getResults() == null) {
+                throw new IllegalStateException("Nie znaleziono miasta: " + cityName);
+            }
+            Double lat = geoResponse.getResults().get(0).getLatitude();
+            Double lon = geoResponse.getResults().get(0).getLongitude();
+            WeatherRawDataDto rawResponse = webClient.get()
+                    .uri(uriBuilder -> uriBuilder
+                    .scheme("https")
+                    .host("api.open-meteo.com")
+                    .path("/v1/forecast")
+                    .queryParam("latitude", lat)
+                    .queryParam("longitude", lon)
+                    .queryParam("daily", "weather_code,temperature_2m_max,temperature_2m_min,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,rain_sum,precipitation_sum")
+                    .queryParam("forecast_days", 14)
+                    .queryParam("timezone", "auto")
                     .build())
-            .collect(Collectors.toList());
-}
+            .retrieve()
+            .bodyToMono(WeatherRawDataDto.class)
+            .block();
+                if (rawResponse == null
+                    || rawResponse.getDaily() == null) {
+                throw new IllegalStateException("Brak danych dla miasta: " + cityName);
+            }
+            WeatherRawDataDto.Daily daily = rawResponse.getDaily();
+            List<WeatherForecastResponseDto> result = new ArrayList<>();
+
+            for (int i = 0; i < daily.getDateTimeISO().size(); i++) {
+                WeatherForecastResponseDto dto = WeatherForecastResponseDto.builder()
+                        .date(daily.getDateTimeISO().get(i))
+                        .tempMaxC(daily.getMaxTempC().get(i))
+                        .tempMinC(daily.getMinTempC().get(i))
+                        .windSpeedKph(daily.getWindSpeedKPH().get(i))
+                        .windGustKph(daily.getWindGustKPH().get(i))
+                        .windDir(null)
+                        .windDirDeg(daily.getWindDirDEG().get(i))
+                        .icon(mapWmoToIcon(daily.getIcon().get(i))) 
+                        .rainMm(daily.getRainSum().get(i)) 
+                        .build();
+                result.add(dto);
+                }
+                return result;
+        }
 }

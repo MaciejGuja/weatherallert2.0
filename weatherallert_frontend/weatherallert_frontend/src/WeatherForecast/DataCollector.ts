@@ -17,6 +17,7 @@ export async function DataCollector(cityName: string): Promise<ForecastDay[]> {
         tempMinC: d.tempMinC,
         windSpeedKph: parseFloat(String(d.windSpeedKph).replace(",", ".")),
         windGustKph: parseFloat(String(d.windGustKph).replace(",", ".")),
+        rainMm: d.rainMm ? parseFloat(d.rainMm) : 0,
         windDir: d.windDir,
         windDirDeg: d.windDirDeg,
         icon: d.icon
@@ -24,11 +25,12 @@ export async function DataCollector(cityName: string): Promise<ForecastDay[]> {
 }
 export interface ForecastDay {
     date: string;
-    tempMaxC: number;
-    tempMinC: number;
+    tempMaxC: string;
+    tempMinC: string;
     windSpeedKph: number;
     windGustKph: number;
     windDir: string;
     windDirDeg: number;
     icon: string;
+    rainMm: number;
 }

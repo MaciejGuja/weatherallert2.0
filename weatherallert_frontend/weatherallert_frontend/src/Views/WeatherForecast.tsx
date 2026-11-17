@@ -29,10 +29,17 @@ export function WeatherForecastView() {
     const [query, setQuery] = useState('');
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
-
     const days = Array.from({ length: TOTAL_DAYS }, (_, index) => index);
-
-    return (
+    const dayList = Array.from({ length: TOTAL_DAYS }, (_, index) =>{
+        const today=new Date();
+        today.setDate(today.getDate() + index);
+        return new Intl.DateTimeFormat('pl-PL', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        }).format(today);   
+    });
+     return (
         <div
             style={{
                 position: 'absolute',
@@ -58,6 +65,7 @@ export function WeatherForecastView() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     padding: '24px',
+                    overflow: 'hidden',
                 }}
             >
                 <Draggable cancel="input,textarea,button,select">
@@ -72,6 +80,7 @@ export function WeatherForecastView() {
                             boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
                             boxSizing: 'border-box',
                             cursor: 'move',
+                            flexShrink: 0,
                         }}
                     >
                         <input
@@ -92,6 +101,40 @@ export function WeatherForecastView() {
                         />
                     </div>
                 </Draggable>
+
+                <div
+                    style={{
+                        width: '100%',
+                        marginTop: '16px',
+                        overflow: 'hidden',
+                        flex: 1,
+                        position: 'relative',
+                    }}
+                >
+                    <div
+                        style={{
+                            display: 'flex',
+                            width: `${TOTAL_DAYS * 100}%`,
+                            height: '100%',
+                            transform: `translateX(-${(activeDayIndex * 100) / TOTAL_DAYS}%)`,
+                            transition: 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
+                        }}
+                    >
+                        {days.map((index) => (
+                            <div
+                                key={index}
+                                style={{
+                                    width: `${100 / TOTAL_DAYS}%`,
+                                    height: '100%',
+                                    flexShrink: 0,
+                                    boxSizing: 'border-box',
+                                }}
+                            >
+                                <ForecastMarkerInput city={query} index={index} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <div
@@ -199,7 +242,7 @@ export function WeatherForecastView() {
                                     fontSize: '13px',
                                 }}
                             >
-                                <span>Dzień {index + 1}</span>
+                                <span>{dayList[index]}</span>
                             </button>
                         ))}
                     </div>
@@ -276,7 +319,60 @@ export function ForecastMap({ dayIndex }: { dayIndex: number }) {
         </div>
     );
 }
-
+export function ForecastMarkerInput({city,index}: { city: string; index: number }) {
+    const [forecast, setForecast] = useState<{ 
+    date?: string | null;
+    tempMaxC?: number | string | null; 
+    tempMinC?: number | string | null; 
+    windSpeedKph?: number | null;
+    windGustKph?: number | null;
+    windDir?: string | null;
+    windDirDeg?: number | null;
+    icon?: string | null; 
+    rainMm?: number | null;
+}[]>([]);
+    let iconURL = '';
+    useEffect(() => {
+        DataCollector(city)
+            .then((data) => setForecast(data))
+            .catch((error) => setForecast([]));
+    }, [city]);
+    return (
+                    <div style={{ minWidth: '230px', fontFamily: 'sans-serif' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+                <h3 style={{ margin: 0, color: '#333', fontSize: '14px', fontWeight: 700 }}>{city}</h3>
+               <span style={{ fontSize: '10px', background: '#f0f0f0', color: '#333', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>PROGNOZA</span>
+            </div>
+            <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '4px',
+            }}>
+                {forecast[index]?.icon && (
+                    <img
+                        src={`/weather_icons/${forecast[index]?.icon}`}
+                        alt="Weather Icon"
+                        style={{ width: '180px', height: '180px' }}
+                    />
+                )}
+                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                    <strong>Temperatura: </strong> {forecast[index]?.tempMaxC} °C
+                </span>
+                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                    <strong>Wiatr: </strong> {forecast[index]?.windSpeedKph} km/h
+                </span>
+                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                    <strong>Podmuch: </strong> {forecast[index]?.windGustKph} km/h
+                </span>
+                <span style={{ fontSize: '12px', color: '#333' }}>
+                    <strong>Deszcz: </strong> {forecast[index]?.rainMm} mm
+                </span> 
+            </div>
+        </div>
+    )
+}
 export function ForecastMarker({ city, dayIndex }: { city: string; dayIndex: number }) {
     const [forecast, setForecast] = useState<{ tempMaxC?: string | null; icon?: string | null }[]>([]);
 

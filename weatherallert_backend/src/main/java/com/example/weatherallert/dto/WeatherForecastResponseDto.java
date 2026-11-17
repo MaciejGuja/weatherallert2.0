@@ -16,4 +16,5 @@ public class WeatherForecastResponseDto {
     private String windDir;
     private Integer windDirDeg;
     private String icon;
+    private Double rainMm;
 }
