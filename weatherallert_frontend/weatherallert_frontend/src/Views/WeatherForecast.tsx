@@ -29,8 +29,17 @@ export function WeatherForecastView() {
     const [query, setQuery] = useState('');
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const [activeDayIndexLeft, setActiveDayIndexLeft] = useState(0);
+    const [inputValue, setInputValue] = useState('');
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const days = Array.from({ length: TOTAL_DAYS }, (_, index) => index);
+    const handleSearch = () => {
+        if (inputValue.trim()) {
+            setQuery(inputValue.trim());
+        }
+        if(inputValue===""){
+            setQuery('');
+        }
+    };
     const dayList = Array.from({ length: TOTAL_DAYS }, (_, index) =>{
         const today=new Date();
         today.setDate(today.getDate() + index);
@@ -65,7 +74,7 @@ export function WeatherForecastView() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    padding: '24px',
+                    padding: '20px 40px',
                     overflow: 'hidden',
                 }}
             >
@@ -77,74 +86,178 @@ export function WeatherForecastView() {
                             background: '#f8f9fa',
                             border: '1px solid #e0e0e0',
                             borderRadius: 10,
-                            padding: '14px',
+                            padding: '8px',
                             boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
                             boxSizing: 'border-box',
                             cursor: 'move',
                             flexShrink: 0,
                         }}
                     >
+                        <div style={{ display: 'flex', gap: '8px', width: '100%' }}>
                         <input
                             style={{
-                                width: '100%',
+                                flex: 1,
                                 boxSizing: 'border-box',
-                                padding: '12px 14px',
+                                padding: '10px 12px',
                                 borderRadius: 8,
                                 border: '1px solid #c0c0c0',
                                 backgroundColor: '#ffffff',
                                 color: '#222',
+                                fontSize: '10px',
                             }}
                             type="search"
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                             placeholder="Szukaj Miasta..."
                             aria-label="Szukaj Miasta"
                         />
+                        <button
+                            onClick={handleSearch}
+                            style={{
+                                padding: '0 8px',
+                                backgroundColor: '#0077b6',
+                                color: '#ffffff',
+                                border: 'none',
+                                borderRadius: 8,
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                fontSize: '10px',
+                                transition: 'background 0.2s',
+                            }}
+                        >
+                            Szukaj
+                        </button>
+                    </div>
                     </div>
                 </Draggable>
 
-                {query&&<div
-                    style={{
-                        width: '100%',
-                        maxWidth: SIDE_MENU_WIDTH * 1.5,
-                        background: '#f8f9fa',
-                        border: '1px solid #e0e0e0',
-                        borderRadius: 10,
-                        height: 'calc(80% - 100px)',
-                        padding: '14px',
-                        boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
-                        boxSizing: 'border-box',
-                        marginTop: '16px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                    }}
-                >
+                {query && (
                     <div
                         style={{
+                            width: '100%',
+                            maxWidth: SIDE_MENU_WIDTH * 1.5,
+                            background: '#f8f9fa',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: 10,
+                            height: 'calc(80% - 60px)',
+                            padding: '14px',
+                            boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
+                            boxSizing: 'border-box',
+                            marginTop: '16px',
+                            overflow: 'hidden',
+                            position: 'relative',
+                        }}
+                    >
+                        <div
+                            style={{
+                                display: 'flex',
+                                width: `${TOTAL_DAYS * 100}%`,
+                                height: '100%',
+                                transform: `translateX(-${(activeDayIndexLeft * 100) / TOTAL_DAYS}%)`,
+                                transition: 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
+                            }}
+                        >
+                            {days.map((index) => (
+                                <div
+                                    key={index}
+                                    style={{
+                                        width: `${100 / TOTAL_DAYS}%`,
+                                        height: '100%',
+                                        flexShrink: 0,
+                                        boxSizing: 'border-box',
+                                        overflow: 'hidden', 
+                                        padding: '0 6px',
+                                    }}
+                                >
+                                    <ForecastMarkerInput city={query} index={index} query={query} />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            {query&&<div
+                    style={{
+                        width: '85%',
+                        marginTop: '16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        background: '#0077b6',
+                        borderRadius: 8,
+                        padding: '4px',
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                    }}
+                >
+                    <button
+                        onClick={() => scrollContainerRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                        style={{
+                            background: 'transparent',
+                            border: 'none',
+                            color: '#ffffff',
+                            fontSize: '18px',
+                            cursor: 'pointer',
+                            padding: '8px 12px',
+                        }}
+                    >
+                        &lt;
+                    </button>
+
+                    <div
+                        ref={scrollContainerRef}
+                        style={{
                             display: 'flex',
-                            width: `${TOTAL_DAYS * 100}%`,
-                            height: '100%',
-                            transform: `translateX(-${(activeDayIndexLeft * 100) / TOTAL_DAYS}%)`,
-                            transition: 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
+                            overflowX: 'auto',
+                            scrollBehavior: 'smooth',
+                            gap: '4px',
+                            flex: 1,
+                            scrollbarWidth: 'none',
+                            msOverflowStyle: 'none',
                         }}
                     >
                         {days.map((index) => (
-                            <div
+                            <button
                                 key={index}
+                                onClick={() => setActiveDayIndexLeft(index)}
                                 style={{
-                                    width: `${100 / TOTAL_DAYS}%`,
-                                    height: '100%',
-                                    flexShrink: 0,
-                                    boxSizing: 'border-box',
+                                    flex: '0 0 auto',
+                                    background: activeDayIndexLeft === index ? '#03045e' : 'transparent',
+                                    border: 'none',
+                                    borderRadius: 6,
+                                    padding: '8px 14px',
+                                    color: '#ffffff',
+                                    cursor: 'pointer',
+                                    textAlign: 'center',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    transition: 'background 0.2s',
+                                    fontWeight: 'bold',
+                                    fontSize: '13px',
                                 }}
                             >
-                                <ForecastMarkerInput city={query} index={index } query={query} />
-                            </div>
+                                <span>{dayList[index]}</span>
+                            </button>
                         ))}
                     </div>
+
+                    <button
+                        onClick={() => scrollContainerRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                        style={{
+                            background: 'transparent',
+                            border: 'none',
+                            color: '#ffffff',
+                            fontSize: '18px',
+                            cursor: 'pointer',
+                            padding: '8px 12px',
+                        }}
+                    >
+                        &gt;
+                    </button>
                 </div>
 }
             </div>
+
+{/* L / P */}
 
             <div
                 style={{
@@ -328,59 +441,98 @@ export function ForecastMap({ dayIndex }: { dayIndex: number }) {
         </div>
     );
 }
-export function ForecastMarkerInput({city,index,query}: { city: string; index: number, query?: string }) {
+export function ForecastMarkerInput({city, index, query}: { city: string; index: number, query?: string }) {
     const [forecast, setForecast] = useState<{ 
-    date?: string | null;
-    tempMaxC?: number | string | null; 
-    tempMinC?: number | string | null; 
-    windSpeedKph?: number | null;
-    windGustKph?: number | null;
-    windDir?: string | null;
-    windDirDeg?: number | null;
-    icon?: string | null; 
-    rainMm?: number | null;
-}[]>([]);
-    let iconURL = '';
+        date?: string | null;
+        tempMaxC?: number | string | null; 
+        tempMinC?: number | string | null; 
+        windSpeedKph?: number | null;
+        windGustKph?: number | null;
+        windDir?: string | null;
+        windDirDeg?: number | null;
+        icon?: string | null; 
+        rainMm?: number | null;
+    }[]>([]);
+
     useEffect(() => {
         DataCollector(city)
             .then((data) => setForecast(data))
             .catch((error) => setForecast([]));
     }, [city]);
+
     return (
-            <div style={{ minWidth: '230px', fontFamily: 'sans-serif' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
-                <h3 style={{ margin: 0, color: '#333', fontSize: '14px', fontWeight: 700 }}>{city}</h3>
-               <span style={{ fontSize: '10px', background: '#f0f0f0', color: '#333', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>PROGNOZA</span>
+        <div style={{ 
+            width: '100%', 
+            height: '100%', 
+            boxSizing: 'border-box', 
+            fontFamily: 'sans-serif',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '2px 8px',
+            overflow: 'hidden',
+        }}>
+            <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'space-between', 
+                marginBottom: '6px',
+                width: '100%'
+            }}>
+                <h3 style={{ 
+                    margin: 0, 
+                    color: '#333', 
+                    fontSize: '15px', 
+                    fontWeight: 700,
+                    lineHeight: '1.2',
+                    overflow: 'hidden',        
+                    textOverflow: 'ellipsis',   
+                    whiteSpace: 'nowrap'
+                }}>
+                    {city}
+                </h3>
+                <span style={{ 
+                    fontSize: '10px', 
+                    background: '#f0f0f0', 
+                    color: '#333', 
+                    padding: '3px 6px', 
+                    borderRadius: '4px', 
+                    fontWeight: 'bold',
+                    flexShrink: 0 
+                }}>
+                    PROGNOZA
+                </span>
             </div>
-            <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '6px 0' }} />
+            <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '4px 0 12px 0', width: '100%' }} />
             <div style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '4px',
+                gap: '6px',
+                flex: 1,
+                justifyContent: 'center'
             }}>
                 {forecast[index]?.icon && (
                     <img
                         src={`/weather_icons/${forecast[index]?.icon}`}
                         alt="Weather Icon"
-                        style={{ width: '100px', height: '100px' }}
+                        style={{ width: '90px', height: '90px', objectFit: 'contain' }}
                     />
                 )}
-                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
                     <strong>Temperatura: </strong> {forecast[index]?.tempMaxC} °C
                 </span>
-                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
                     <strong>Wiatr: </strong> {forecast[index]?.windSpeedKph} km/h
                 </span>
-                <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
+                <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
                     <strong>Podmuch: </strong> {forecast[index]?.windGustKph} km/h
                 </span>
-                <span style={{ fontSize: '12px', color: '#333' }}>
+                <span style={{ fontSize: '11px', color: '#333' }}>
                     <strong>Deszcz: </strong> {forecast[index]?.rainMm} mm
                 </span> 
             </div>
         </div>
-    )
+    );
 }
 export function ForecastMarker({ city, dayIndex }: { city: string; dayIndex: number }) {
     const [forecast, setForecast] = useState<{ tempMaxC?: string | null; icon?: string | null }[]>([]);
