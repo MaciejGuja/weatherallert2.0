@@ -28,6 +28,7 @@ const MAP_ORIGIN = '50% 40%';
 export function WeatherForecastView() {
     const [query, setQuery] = useState('');
     const [activeDayIndex, setActiveDayIndex] = useState(0);
+    const [activeDayIndexLeft, setActiveDayIndexLeft] = useState(0);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const days = Array.from({ length: TOTAL_DAYS }, (_, index) => index);
     const dayList = Array.from({ length: TOTAL_DAYS }, (_, index) =>{
@@ -102,12 +103,19 @@ export function WeatherForecastView() {
                     </div>
                 </Draggable>
 
-                <div
+                {query&&<div
                     style={{
                         width: '100%',
+                        maxWidth: SIDE_MENU_WIDTH * 1.5,
+                        background: '#f8f9fa',
+                        border: '1px solid #e0e0e0',
+                        borderRadius: 10,
+                        height: 'calc(80% - 100px)',
+                        padding: '14px',
+                        boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
+                        boxSizing: 'border-box',
                         marginTop: '16px',
                         overflow: 'hidden',
-                        flex: 1,
                         position: 'relative',
                     }}
                 >
@@ -116,7 +124,7 @@ export function WeatherForecastView() {
                             display: 'flex',
                             width: `${TOTAL_DAYS * 100}%`,
                             height: '100%',
-                            transform: `translateX(-${(activeDayIndex * 100) / TOTAL_DAYS}%)`,
+                            transform: `translateX(-${(activeDayIndexLeft * 100) / TOTAL_DAYS}%)`,
                             transition: 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)',
                         }}
                     >
@@ -130,11 +138,12 @@ export function WeatherForecastView() {
                                     boxSizing: 'border-box',
                                 }}
                             >
-                                <ForecastMarkerInput city={query} index={index} />
+                                <ForecastMarkerInput city={query} index={index } query={query} />
                             </div>
                         ))}
                     </div>
                 </div>
+}
             </div>
 
             <div
@@ -319,7 +328,7 @@ export function ForecastMap({ dayIndex }: { dayIndex: number }) {
         </div>
     );
 }
-export function ForecastMarkerInput({city,index}: { city: string; index: number }) {
+export function ForecastMarkerInput({city,index,query}: { city: string; index: number, query?: string }) {
     const [forecast, setForecast] = useState<{ 
     date?: string | null;
     tempMaxC?: number | string | null; 
@@ -338,7 +347,7 @@ export function ForecastMarkerInput({city,index}: { city: string; index: number 
             .catch((error) => setForecast([]));
     }, [city]);
     return (
-                    <div style={{ minWidth: '230px', fontFamily: 'sans-serif' }}>
+            <div style={{ minWidth: '230px', fontFamily: 'sans-serif' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
                 <h3 style={{ margin: 0, color: '#333', fontSize: '14px', fontWeight: 700 }}>{city}</h3>
                <span style={{ fontSize: '10px', background: '#f0f0f0', color: '#333', padding: '2px 6px', borderRadius: '4px', fontWeight: 'bold' }}>PROGNOZA</span>
@@ -354,7 +363,7 @@ export function ForecastMarkerInput({city,index}: { city: string; index: number 
                     <img
                         src={`/weather_icons/${forecast[index]?.icon}`}
                         alt="Weather Icon"
-                        style={{ width: '180px', height: '180px' }}
+                        style={{ width: '100px', height: '100px' }}
                     />
                 )}
                 <span style={{ fontSize: '12px', color: '#333', textAlign: 'center' }}>
