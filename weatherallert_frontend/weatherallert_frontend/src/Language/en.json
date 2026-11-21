@@ -53,6 +53,14 @@
     "map-marker-hydro-overgrowth-phenomenon": "Overgrowth phenomenon:",
     "map-marker-hydro-measurement-date": "Measurement date:",
 
+    "forecast-input-text": "Search for city...",
+    "forecast-input-search": "Search",
+    "forecast-input-forecast-mark": "FORECAST",
+    "forecast-input-temperature": "Temperature:",
+    "forecast-input-wind": "Wind:",
+    "forecast-input-wind-2": "Gust:",
+    "forecast-input-rain": "Rain:",
+
     "map-country": "County",
 
     "translate-menu-polish": "Polish",

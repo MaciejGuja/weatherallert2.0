@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {LoginAuthentication} from '../LoginAuthentication'
+import {LoginAuthentication} from './LoginAuthentication'
 type LoginProps = {
     isLoginProps: boolean;
      onLoginChange: (isLoggedIn: boolean) => void;

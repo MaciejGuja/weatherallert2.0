@@ -24,8 +24,10 @@ const MAX_LON = 24.15;
 
 const MAP_SCALE = 1;
 const MAP_ORIGIN = '50% 40%';
-
-export function WeatherForecastView() {
+type WeatherForecastViewProps={
+    translateKey: Map<string, string>;
+}
+export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
     const [query, setQuery] = useState('');
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const [activeDayIndexLeft, setActiveDayIndexLeft] = useState(0);
@@ -109,7 +111,7 @@ export function WeatherForecastView() {
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                            placeholder="Szukaj Miasta..."
+                            placeholder={translateKey.get("forecast-input-text") || "Wpisz nazwę miasta..."}
                             aria-label="Szukaj Miasta"
                         />
                         <button
@@ -126,7 +128,7 @@ export function WeatherForecastView() {
                                 transition: 'background 0.2s',
                             }}
                         >
-                            Szukaj
+                            {translateKey.get("forecast-input-search")}
                         </button>
                     </div>
                     </div>
@@ -170,7 +172,7 @@ export function WeatherForecastView() {
                                         padding: '0 6px',
                                     }}
                                 >
-                                    <ForecastMarkerInput city={query} index={index} query={query} />
+                                    <ForecastMarkerInput city={query} index={index} query={query} translateKey={translateKey}/>
                                 </div>
                             ))}
                         </div>
@@ -441,7 +443,7 @@ export function ForecastMap({ dayIndex }: { dayIndex: number }) {
         </div>
     );
 }
-export function ForecastMarkerInput({city, index, query}: { city: string; index: number, query?: string }) {
+export function ForecastMarkerInput({city, index, query,translateKey}: { city: string; index: number, query?: string, translateKey: Map<string, string>}) {
     const [forecast, setForecast] = useState<{ 
         date?: string | null;
         tempMaxC?: number | string | null; 
@@ -499,7 +501,7 @@ export function ForecastMarkerInput({city, index, query}: { city: string; index:
                     fontWeight: 'bold',
                     flexShrink: 0 
                 }}>
-                    PROGNOZA
+                    {translateKey.get("forecast-input-forecast-mark")}
                 </span>
             </div>
             <hr style={{ border: 0, borderTop: '1px solid #e0e0e0', margin: '4px 0 12px 0', width: '100%' }} />
@@ -519,16 +521,16 @@ export function ForecastMarkerInput({city, index, query}: { city: string; index:
                     />
                 )}
                 <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
-                    <strong>Temperatura: </strong> {forecast[index]?.tempMaxC} °C
+                    <strong>{translateKey.get("forecast-input-temperature")} </strong> {forecast[index]?.tempMaxC} °C
                 </span>
                 <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
-                    <strong>Wiatr: </strong> {forecast[index]?.windSpeedKph} km/h
+                    <strong>{translateKey.get("forecast-input-wind")} </strong> {forecast[index]?.windSpeedKph} km/h
                 </span>
                 <span style={{ fontSize: '11px', color: '#333', textAlign: 'center' }}>
-                    <strong>Podmuch: </strong> {forecast[index]?.windGustKph} km/h
+                    <strong>{translateKey.get("forecast-input-wind-2")}</strong> {forecast[index]?.windGustKph} km/h
                 </span>
                 <span style={{ fontSize: '11px', color: '#333' }}>
-                    <strong>Deszcz: </strong> {forecast[index]?.rainMm} mm
+                    <strong>{translateKey.get("forecast-input-rain")} </strong> {forecast[index]?.rainMm} mm
                 </span> 
             </div>
         </div>

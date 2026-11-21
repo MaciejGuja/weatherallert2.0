@@ -55,6 +55,14 @@
 
     "map-country": "Powiat",
 
+    "forecast-input-text": "Szukaj Miasta...",
+    "forecast-input-search": "Szukaj",
+    "forecast-input-forecast-mark": "PROGNOZA",
+    "forecast-input-temperature": "Temperatura:",
+    "forecast-input-wind": "Wiatr:",
+    "forecast-input-wind-2": "Podmuch:",
+    "forecast-input-rain": "Deszcz:",
+
     "translate-menu-polish": "Polski",
     "translate-menu-english": "Angielski",
     "translate-menu-german": "Niemiecki"
