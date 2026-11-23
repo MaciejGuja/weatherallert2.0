@@ -18,7 +18,7 @@ interface CacheItem {
 const weatherCache = new Map<string, CacheItem>();
 const CACHE_DURATION_MS = 24 * 60 * 60 * 1000; 
 
-export async function DataCollector(cityName: string): Promise<ForecastDay[]> {
+export async function ForecastDataCollector(cityName: string): Promise<ForecastDay[]> {
     if (!cityName || !cityName.trim()) return [];
     
     const normalizedCity = cityName.trim().toLowerCase();

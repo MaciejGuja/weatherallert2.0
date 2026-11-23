@@ -5,6 +5,7 @@
     "side-menu-my-account": "MY ACCOUNT",
     "side-menu-contact": "CONTACT",
     "side-menu-logout": "LOGOUT",
+    "side-menu-mobile": "DOWNLOAD MOBILE APP",
     "map-data-type-menu-data-type": "Data type:",
     "map-data-type-menu-synoptic-type": "Synoptic",
     "map-data-type-menu-meteo-type": "Meteorological",
@@ -65,5 +66,29 @@
 
     "translate-menu-polish": "Polish",
     "translate-menu-english": "English",
-    "translate-menu-german": "German"
+    "translate-menu-german": "German",
+
+    "warning-storms": "Storms",
+    "warning-dense-fog": "Dense fog",
+    "warning-rapid-water-rises": "Rapid water level rises",
+    "warning-heavy-rain": "Heavy rain",
+    "warning-heavy-snow": "Heavy snow",
+    "warning-freezing-fog": "Freezing fog",
+    "warning-ice": "Ice / Black ice",
+    "warning-freezing-precipitation": "Freezing precipitation",
+    "warning-snowfall": "Snowfall",
+    "warning-frost": "Frost",
+    "warning-thaw": "Thaw",
+    "warning-heavy-rain-thunderstorms": "Heavy rain with thunderstorms",
+    "warning-severe-frost": "Severe frost",
+    "warning-strong-wind": "Strong wind",
+    "warning-heat": "Heatwave",
+    "warning-hydrological-drought": "Hydrological drought",
+    "warning-flood-alarm": "Flooding exceeding alarm levels",
+    "warning-flood-warning": "Flooding exceeding warning levels",
+    "warning-snowstorms": "Blizzards / Snowstorms",
+    "warning-unknown": "Unknown hazard",
+
+    "warnings-meteorological": "METEOROLOGICAL WARNINGS:",
+    "warnings-hydrological": "HYDROLOGICAL WARNINGS:"
 }

@@ -5,6 +5,7 @@
     "side-menu-my-account": "MEIN KONTO",
     "side-menu-contact": "KONTAKT",
     "side-menu-logout": "ABMELDEN",
+    "side-menu-mobile": "MOBILE APP HERUNTERLADEN",
     "map-data-type-menu-data-type": "Datentyp:",
     "map-data-type-menu-synoptic-type": "Synoptisch",
     "map-data-type-menu-meteo-type": "Meteorologisch",
@@ -65,5 +66,29 @@
 
     "translate-menu-polish": "Polnisch",
     "translate-menu-english": "Englisch",
-    "translate-menu-german": "Deutsch"
+    "translate-menu-german": "Deutsch",
+
+    "warning-storms": "Gewitter",
+    "warning-dense-fog": "Dichter Nebel",
+    "warning-rapid-water-rises": "Rascher Wasseranstieg",
+    "warning-heavy-rain": "Starkregen",
+    "warning-heavy-snow": "Starker Schneefall",
+    "warning-freezing-fog": "Gefrierender Nebel (Reifablagerung)",
+    "warning-ice": "Glatteis",
+    "warning-freezing-precipitation": "Gefrierender Niederschlag",
+    "warning-snowfall": "Schneefall",
+    "warning-frost": "Frost",
+    "warning-thaw": "Tauwetter",
+    "warning-heavy-rain-thunderstorms": "Starkregen mit Gewittern",
+    "warning-severe-frost": "Strenger Frost",
+    "warning-strong-wind": "Starker Wind",
+    "warning-heat": "Hitze",
+    "warning-hydrological-drought": "Hydrologische Dürre",
+    "warning-flood-alarm": "Hochwasser über Alarmstufe",
+    "warning-flood-warning": "Hochwasser über Warnstufe",
+    "warning-snowstorms": "Schneeverwehung / Schneesturm",
+    "warning-unknown": "Unbekannte Gefahr",
+
+    "warnings-meteorological": "METEOROLOGISCHE WARNHINWEISE:",
+    "warnings-hydrological": "HYDROLOGISCHE WARNHINWEISE:"
 }

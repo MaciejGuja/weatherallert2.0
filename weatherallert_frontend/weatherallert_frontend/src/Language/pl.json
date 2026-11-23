@@ -5,6 +5,7 @@
     "side-menu-my-account":"MOJE KONTO",
     "side-menu-contact":"KONTAKT",
     "side-menu-logout":"WYLOGUJ SIĘ",
+    "side-menu-mobile":"POBIERZ APLIKACJE MOBILNĄ",
     "map-data-type-menu-data-type": "Rodzaj danych:",
     "map-data-type-menu-synoptic-type": "Synoptyczne",
     "map-data-type-menu-meteo-type": "Meteorologiczne",
@@ -65,5 +66,29 @@
 
     "translate-menu-polish": "Polski",
     "translate-menu-english": "Angielski",
-    "translate-menu-german": "Niemiecki"
+    "translate-menu-german": "Niemiecki",
+
+    "warning-storms": "Burze",
+    "warning-dense-fog": "Gęsta mgła",
+    "warning-rapid-water-rises": "Gwałtowne wzrosty stanów wody",
+    "warning-heavy-rain": "Intensywne opady deszczu",
+    "warning-heavy-snow": "Intensywne opady śniegu",
+    "warning-freezing-fog": "Mgła intensywnie osadzająca szadź",
+    "warning-ice": "Oblodzenie",
+    "warning-freezing-precipitation": "Opady marznące",
+    "warning-snowfall": "Opady śniegu",
+    "warning-frost": "Przymrozki",
+    "warning-thaw": "Roztopy",
+    "warning-heavy-rain-thunderstorms": "Silny deszcz z burzami",
+    "warning-severe-frost": "Silny mróz",
+    "warning-strong-wind": "Silny wiatr",
+    "warning-heat": "Upał",
+    "warning-hydrological-drought": "Susza hydrologiczna",
+    "warning-flood-alarm": "Wezbranie z przekroczeniem stanów alarmowych",
+    "warning-flood-warning": "Wezbranie z przekroczeniem stanów ostrzegawczych",
+    "warning-snowstorms": "Zawieje i zamiecie śnieżne",
+    "warning-unknown": "Nieznane zagrożenie",
+
+    "warnings-meteorological": "OSTRZEŻENIA METEOROLOGICZNE:",
+    "warnings-hydrological": "OSTRZEŻENIA HYDROLOGICZNE:"
 }

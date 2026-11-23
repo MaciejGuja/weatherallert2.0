@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { DataType } from './types';
 import { useStations, useGeoData, useDisplayedStations, useProvinceModal } from './hooks';
 import { DataTypeMenu, MainMap, ProvinceModal, CityScan } from './components';
+import {MeteoAllertDataCollector, type MeteoAllertDataProps} from '../WeatherAPI/AllertDataCollector'
 
 /**
  * @brief Inicjalizacja mapy.
@@ -9,8 +10,9 @@ import { DataTypeMenu, MainMap, ProvinceModal, CityScan } from './components';
  */
 type MapProps={
     translateKey: Map<string, string>;
+    meteoCollector: MeteoAllertDataProps[];
 }
-export default function MapView({translateKey}: MapProps) {
+export default function MapView({translateKey,meteoCollector}: MapProps) {
     const [dataType, setDataType] = useState<DataType>('synop');
 
     const { synopStations, meteoStations, hydroStations, loading } = useStations(dataType);

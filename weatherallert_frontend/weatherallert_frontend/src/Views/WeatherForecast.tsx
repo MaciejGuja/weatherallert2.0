@@ -7,7 +7,7 @@ import {
     MAP_WIDTH,
     imageBounds
 } from '../map/constans';
-import { DataCollector } from '../WeatherForecast/DataCollector';
+import { ForecastDataCollector } from '../WeatherAPI/ForecastDataCollector';
 import { VoidewodztwoDetailMapInfo } from '../Powiatdetailmaps';
 import { MapContainer } from 'react-leaflet/MapContainer';
 import { Marker } from 'react-leaflet';
@@ -457,7 +457,7 @@ export function ForecastMarkerInput({city, index, query,translateKey}: { city: s
     }[]>([]);
 
     useEffect(() => {
-        DataCollector(city)
+        ForecastDataCollector(city)
             .then((data) => setForecast(data))
             .catch((error) => setForecast([]));
     }, [city]);
@@ -540,7 +540,7 @@ export function ForecastMarker({ city, dayIndex }: { city: string; dayIndex: num
     const [forecast, setForecast] = useState<{ tempMaxC?: string | null; icon?: string | null }[]>([]);
 
     useEffect(() => {
-        DataCollector(city)
+        ForecastDataCollector(city)
             .then((data) => setForecast(data))
             .catch(() => setForecast([]));
     }, [city]);
