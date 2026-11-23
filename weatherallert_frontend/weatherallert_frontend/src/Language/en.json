@@ -90,5 +90,14 @@
     "warning-unknown": "Unknown hazard",
 
     "warnings-meteorological": "METEOROLOGICAL WARNINGS:",
-    "warnings-hydrological": "HYDROLOGICAL WARNINGS:"
+    "warnings-hydrological": "HYDROLOGICAL WARNINGS:",
+    "warning-info-level": "Warning level:",
+    "warning-info-probability": "Probability:",
+    "warning-info-valid-from": "Valid from:",
+    "warning-info-valid-to": "Valid to:",
+    "warning-info-published": "Published at:",
+    "warning-info-content": "Content:",
+    "warning-info-comment": "Comment:",
+    "warning-info-provinces": "Provinces:",
+    "warning-info-counties": "Counties:"
 }

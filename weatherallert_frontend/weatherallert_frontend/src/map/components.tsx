@@ -22,9 +22,12 @@ import {
     SIDE_MENU_WIDTH,
     TOP_MENU_HEIGHT,
 } from './constans';
-import { capitalizeWoj, coordsToLatLng, parseGpsToMapCoords, pointInGeometry, powiatLabel } from './utils';
+import { capitalizeWoj, coordsToLatLng, makeToLatLng, parseGpsToMapCoords, pointInGeometry, powiatLabel, type AlertLevelMap } from './utils';
+import { AlertLayer } from './AlertLayer';
 import { useMapFit} from './hooks';
 import Draggable from 'react-draggable';
+
+const NO_FEATURES: GeoJSON.Feature[] = [];
 
 /**
  * @brief Górne menu wyboru rodzaju danych (Synoptyczne / Meteorologiczne / Hydrologiczne).
@@ -489,6 +492,8 @@ interface MainMapProps {
     displayedSynop: SynopStation[];
     displayedMeteo: MeteoStation[];
     displayedHydro: HydroStation[];
+    powiatGeoData: GeoJSON.FeatureCollection | null;
+    alertLevels: AlertLevelMap;
     onSelectProvince: (rawName: string) => void;
     translateKey: Map<string, string>;
 }
@@ -498,7 +503,7 @@ interface MainMapProps {
  * @param props Rodzaj danych, flagi stanu, granice województw, stacje do pokazania i obsługa wyboru województwa.
  * @return Kontener z mapą głównego ekranu.
  */
-export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo,displayedHydro, onSelectProvince,translateKey }: MainMapProps) {
+export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSynop, displayedMeteo,displayedHydro, powiatGeoData, alertLevels, onSelectProvince,translateKey }: MainMapProps) {
     const mapRef = useRef<L.Map | null>(null);
 
     useMapFit(mapRef, loading);
@@ -550,6 +555,11 @@ export function MainMap({ dataType, loading, isModalOpen, geoData, displayedSyno
                 ) : (
                     <ImageOverlay url="/polska_mapa_rzeki.png" bounds={imageBounds} />
                 )}
+                <AlertLayer
+                    features={powiatGeoData?.features ?? NO_FEATURES}
+                    toLatLng={coordsToLatLng}
+                    alertLevels={alertLevels}
+                />
                 <VoivodeshipsLayer geoData={geoData} onSelect={onSelectProvince} />
                 {dataType === 'synop' ? (
                     <SynopPresentation
@@ -607,6 +617,8 @@ interface ProvinceModalProps {
     provinceStationsShown: StationData[];
     powiatInfo?: PowiatDetailMapInfo;
     powiatGeometry?: GeoJSON.Geometry;
+    powiatAlertFeatures: GeoJSON.Feature[];
+    alertLevels: AlertLevelMap;
     powiatStations: StationData[];
     onSelectPowiat: (code: string | null) => void;
     onClose: () => void;
@@ -629,6 +641,8 @@ export function ProvinceModal({
     provinceStationsShown,
     powiatInfo,
     powiatGeometry,
+    powiatAlertFeatures,
+    alertLevels,
     powiatStations,
     onSelectPowiat,
     onClose,
@@ -688,6 +702,7 @@ export function ProvinceModal({
                     dataType={dataType}
                     geometry={powiatGeometry}
                     onClose={() => onSelectPowiat(null)}
+                    overlay={<AlertLayer features={powiatAlertFeatures} toLatLng={makeToLatLng(powiatInfo, powiatInfo.aspect ?? 1)} alertLevels={alertLevels} />}
                     translateKey={translateKey}
                 />
             ) : provinceInfo ? (
@@ -703,7 +718,12 @@ export function ProvinceModal({
                     dataType={dataType}
                     geometry={provinceGeometry}
                     onClose={onClose}
-                    overlay={<PowiatsLayer features={provincePowiatFeatures} info={provinceInfo} onSelect={onSelectPowiat} translateKey={translateKey}/>}
+                    overlay={
+                        <>
+                            <AlertLayer features={provincePowiatFeatures} toLatLng={makeToLatLng(provinceInfo)} alertLevels={alertLevels} />
+                            <PowiatsLayer features={provincePowiatFeatures} info={provinceInfo} onSelect={onSelectPowiat} translateKey={translateKey}/>
+                        </>
+                    }
                     translateKey={translateKey}
                 />
             ) : (

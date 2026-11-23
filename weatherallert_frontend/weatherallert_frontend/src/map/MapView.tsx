@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { DataType } from './types';
+import { buildAlertLevelMap, type AlertLevelMap } from './utils';
 import { useStations, useGeoData, useDisplayedStations, useProvinceModal } from './hooks';
 import { DataTypeMenu, MainMap, ProvinceModal, CityScan } from './components';
-import {MeteoAllertDataCollector, type MeteoAllertDataProps} from '../WeatherAPI/AllertDataCollector'
+import type { MeteoAllertDataProps } from '../WeatherAPI/AllertDataCollector'
 
 /**
  * @brief Inicjalizacja mapy.
@@ -16,11 +17,15 @@ export default function MapView({translateKey,meteoCollector}: MapProps) {
     const [dataType, setDataType] = useState<DataType>('synop');
 
     const { synopStations, meteoStations, hydroStations, loading } = useStations(dataType);
-    const { geoData, powiatGeoData } = useGeoData();
+    const { geoData, powiatGeoData, gminaGeoData } = useGeoData();
+    const alertLevels = useMemo<AlertLevelMap>(
+    () => (dataType === 'hydro' ? new Map() : buildAlertLevelMap(meteoCollector)),
+    [dataType, meteoCollector]
+);
     const { displayedSynopStations, displayedMeteoStations,displayedHydroStations, activeStations, allStations, stationCount } = useDisplayedStations(
         dataType, synopStations, meteoStations, hydroStations
     );
-    const modal = useProvinceModal({ dataType, geoData, powiatGeoData, allStations, activeStations });
+    const modal = useProvinceModal({ dataType, geoData, powiatGeoData, gminaGeoData, allStations, activeStations });
 
     return (
         <div style={{ position: 'fixed', inset: 0, background: '#ffffff', overflow: 'hidden' }}>
@@ -33,6 +38,8 @@ export default function MapView({translateKey,meteoCollector}: MapProps) {
                 displayedSynop={displayedSynopStations}
                 displayedMeteo={displayedMeteoStations}
                 displayedHydro={displayedHydroStations}
+                powiatGeoData={powiatGeoData}
+                alertLevels={alertLevels}
                 onSelectProvince={modal.handleSelectProvince}
                 translateKey={translateKey}
             />
@@ -49,6 +56,8 @@ export default function MapView({translateKey,meteoCollector}: MapProps) {
                     provinceStationsShown={modal.provinceStationsShown}
                     powiatInfo={modal.powiatInfo}
                     powiatGeometry={modal.powiatGeometry}
+                    powiatAlertFeatures={modal.powiatAlertFeatures}
+                    alertLevels={alertLevels}
                     powiatStations={modal.powiatStations}
                     onSelectPowiat={modal.setSelectedPowiat}
                     onClose={modal.closeModal}

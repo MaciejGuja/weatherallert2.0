@@ -90,5 +90,14 @@
     "warning-unknown": "Unbekannte Gefahr",
 
     "warnings-meteorological": "METEOROLOGISCHE WARNHINWEISE:",
-    "warnings-hydrological": "HYDROLOGISCHE WARNHINWEISE:"
+    "warnings-hydrological": "HYDROLOGISCHE WARNHINWEISE:",
+    "warning-info-level": "Warnstufe:",
+    "warning-info-probability": "Wahrscheinlichkeit:",
+    "warning-info-valid-from": "Gültig ab:",
+    "warning-info-valid-to": "Gültig bis:",
+    "warning-info-published": "Veröffentlicht am:",
+    "warning-info-content": "Inhalt:",
+    "warning-info-comment": "Kommentar:",
+    "warning-info-provinces": "Woiwodschaften:",
+    "warning-info-counties": "Landkreise:"
 }

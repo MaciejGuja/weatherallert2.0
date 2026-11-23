@@ -94,7 +94,7 @@ export function Mobile({ onClose }: { onClose: () => void }){
                         position: 'absolute',
                         width: '60vw',
                         height: '60vh',
-                        backgroundColor: 'white',
+                        backgroundColor: '#ffeb3b',
                         overflow: 'hidden',
                         borderRadius: '16px',
                         boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
@@ -110,7 +110,7 @@ export function Mobile({ onClose }: { onClose: () => void }){
                             height: '40px', 
                             zIndex: 10,
                             cursor: 'grab',
-                            backgroundColor: '#f8f9fa',
+                            backgroundColor: 'black',
                             borderBottom: '1px solid #e0e0e0'
                         }} 
                     />

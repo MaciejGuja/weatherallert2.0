@@ -90,5 +90,15 @@
     "warning-unknown": "Nieznane zagrożenie",
 
     "warnings-meteorological": "OSTRZEŻENIA METEOROLOGICZNE:",
-    "warnings-hydrological": "OSTRZEŻENIA HYDROLOGICZNE:"
+    "warnings-hydrological": "OSTRZEŻENIA HYDROLOGICZNE:",
+
+    "warning-info-level": "Stopień zagrożenia:",
+    "warning-info-probability": "Prawdopodobieństwo:",
+    "warning-info-valid-from": "Obowiązuje od:",
+    "warning-info-valid-to": "Obowiązuje do:",
+    "warning-info-published": "Opublikowano:",
+    "warning-info-content": "Treść:",
+    "warning-info-comment": "Komentarz:",
+    "warning-info-provinces": "Województwa:",
+    "warning-info-counties": "Powiaty:"
 }

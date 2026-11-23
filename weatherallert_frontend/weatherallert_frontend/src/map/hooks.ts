@@ -106,6 +106,7 @@ export function useStations(dataType: DataType) {
 export function useGeoData() {
     const [geoData, setGeoData] = useState<GeoJSON.FeatureCollection | null>(null);
     const [powiatGeoData, setPowiatGeoData] = useState<GeoJSON.FeatureCollection | null>(null);
+    const [gminaGeoData, setGminaGeoData] = useState<GeoJSON.FeatureCollection | null>(null);
     useEffect(() => {
         fetch('./wojewodztwa.geojson')
         .then(res=>res.json())
@@ -118,7 +119,13 @@ export function useGeoData() {
         .then((data: GeoJSON.FeatureCollection) => setPowiatGeoData(data))
         .catch(err => console.error('Błąd pobierania granic powiatów:', err));
     }, []);
-    return { geoData, powiatGeoData };
+    useEffect(() => {
+        fetch('./gminy_teryt.geojson')
+        .then(res=>res.json())
+        .then((data: GeoJSON.FeatureCollection) => setGminaGeoData(data))
+        .catch(err => console.error('Błąd pobierania granic gmin:', err));
+    }, []);
+    return { geoData, powiatGeoData, gminaGeoData };
 }
 /**
  * @brief Wylicza stacje pokazywane na mapie..
@@ -153,6 +160,7 @@ interface UseProvinceModalParams {
     dataType: DataType;
     geoData: GeoJSON.FeatureCollection | null;
     powiatGeoData: GeoJSON.FeatureCollection | null;    
+    gminaGeoData: GeoJSON.FeatureCollection | null;
     allStations: StationData[];
     activeStations: StationData[];
 }
@@ -162,7 +170,7 @@ interface UseProvinceModalParams {
  * @param params Rodzaj danych, granice województw i powiatów oraz listy stacji.
  * @return Stan modala, akcje otwarcia/zamknięcia i dane pochodne dla widoków województwa i powiatu.
  */
-export function useProvinceModal({ dataType, geoData, powiatGeoData, allStations, activeStations }: UseProvinceModalParams) {
+export function useProvinceModal({ dataType, geoData, powiatGeoData, gminaGeoData, allStations, activeStations }: UseProvinceModalParams) {
     const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [selectedPowiat, setSelectedPowiat] = useState<string | null>(null);
@@ -245,6 +253,15 @@ const findPowiatGeometry = (powiatCode: string | null, data: GeoJSON.FeatureColl
     return foundFeature?.geometry;
 };
 const powiatGeometry = findPowiatGeometry(selectedPowiat, powiatGeoData);
+const powiatAlertFeatures = useMemo<GeoJSON.Feature[]>(() => {
+    if (!selectedPowiat) return [];
+    const gminas = (gminaGeoData?.features ?? []).filter(
+        f => String(f.properties?.code ?? "").startsWith(selectedPowiat)
+    );
+    if (gminas.length > 0) return gminas;
+    if (!powiatGeometry) return [];
+    return [{ type: 'Feature', properties: { code: selectedPowiat }, geometry: powiatGeometry }];
+}, [selectedPowiat, gminaGeoData, powiatGeometry]);
 const powiatStations = stationsInGeometry(allStations, powiatGeometry);
 const modalTitle = (() => {
     if (!selectedProvince) {
@@ -271,6 +288,7 @@ return {
         provinceStationsShown,
         powiatInfo,
         powiatGeometry,
+        powiatAlertFeatures,
         powiatStations,
         modalTitle,
     };

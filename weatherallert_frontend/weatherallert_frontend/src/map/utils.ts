@@ -3,7 +3,8 @@ import type { SynopStation } from './SynopPresentation';
 import type { MeteoStation } from './MeteoPresentation';
 import type { HydroStation } from './HydroPresentation';
 import type { PowiatDetailMapInfo } from '../Powiatdetailmaps';
-import type { Ring, StationData } from './types';
+import type { GeoRect, Ring, StationData } from './types';
+import type { MeteoAllertDataProps } from '../WeatherAPI/AllertDataCollector';
 import {GEO_BOUNDS, MAP_HEIGHT, MAP_WIDTH } from './constans';
 /**
  * @brief Przelicza współrzędne GPS na współrzędne mapy głównej (układ Leaflet CRS.Simple).
@@ -288,3 +289,46 @@ export function pickOnePerPowiat(stations: StationData[], powiatFeatures: GeoJSO
 return result;
 }
 
+
+export type AlertLevel = 1 | 2 | 3;
+export type AlertLevelMap = Map<string, AlertLevel>;
+
+export function buildAlertLevelMap(alerts: MeteoAllertDataProps[], now: number = Date.now()): AlertLevelMap {
+    const result: AlertLevelMap = new Map();
+    for (const alert of alerts) {
+        const digit = String(alert.level ?? '').match(/[1-3]/)?.[0];
+        if (!digit) continue;
+        const level = Number(digit) as AlertLevel;
+
+        const from = Date.parse(alert.validFrom);
+        const to = Date.parse(alert.validTo);
+        if (!Number.isNaN(from) && now < from) continue;
+        if (!Number.isNaN(to) && now > to) continue;
+
+        for (const code of alert.teryt ?? []) {
+            const key = String(code).trim();
+            if (!key) continue;
+            const prev = result.get(key) ?? 0;
+            if (level > prev) result.set(key, level);
+        }
+    }
+    return result;
+}
+
+export function levelForCode(levels: AlertLevelMap, code: string): number {
+    if (!code || levels.size === 0) return 0;
+    let best = 0;
+    for (const [key, level] of levels) {
+        if (level > best && (code.startsWith(key) || key.startsWith(code))) best = level;
+    }
+    return best;
+}
+
+export function makeToLatLng(geo: GeoRect, aspect: number = 1) {
+    return (coords: number[]): L.LatLng => {
+        const [lng, lat] = coords;
+        const y = ((lat - geo.minLat) / (geo.maxLat - geo.minLat)) * 1000;
+        const x = ((lng - geo.minLng) / (geo.maxLng - geo.minLng)) * 1000 * aspect;
+        return L.latLng(y, x);
+    };
+}

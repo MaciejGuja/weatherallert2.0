@@ -1,6 +1,7 @@
 import { SIDE_MENU_WIDTH } from "../map/constans";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 import { MeteoAllertDataCollector, type MeteoAllertDataProps, HydroAllertDataCollector, type HydroAllertDataProps } from "../WeatherAPI/AllertDataCollector";
+import Draggable from "react-draggable";
 type WeatherForecastViewProps={
     translateKey: Map<string, string>;
 }
@@ -56,6 +57,10 @@ function isNotWorthy(alert: HydroAllertDataProps): boolean {
 export function WeatherAllertView({translateKey}:WeatherForecastViewProps){
     const [meteoAlerts, setMeteoAlerts] = useState<MeteoAllertDataProps[]>([]);
     const [hydroAlerts, setHydroAlerts] = useState<HydroAllertDataProps[]>([]);
+    const [frameMeteoView,setFrameMeteoView]=useState<boolean>(false);
+    const [frameHydroView,setFrameHydroView]=useState<boolean>(false);
+    const [selectedMeteoAlert, setSelectedMeteoAlert] = useState<MeteoAllertDataProps>();
+    const [selectedHydroAlert, setSelectedHydroAlert] = useState<HydroAllertDataProps>();
     const x: MeteoAllertDataProps[] = [];
     useEffect(() => {
     MeteoAllertDataCollector()
@@ -66,6 +71,7 @@ useEffect(() => {
         .then(data => {setHydroAlerts(data); });
 }, []);
       return (
+        <>
         <div
             style={{
                 position: 'absolute',
@@ -96,8 +102,12 @@ useEffect(() => {
                                     padding: '12px',
                                     boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
                                     boxSizing: 'border-box',
-                                    cursor: 'move',
+                                    cursor: 'pointer',
                                     flexShrink: 0,
+                                }}
+                                onClick={() => {
+                                    setFrameHydroView(true);
+                                    setSelectedHydroAlert(alert);
                                 }}
                                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.01)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -169,8 +179,12 @@ useEffect(() => {
                                     padding: '12px',
                                     boxShadow: '0 4px 8px rgba(0,0,0,0.08)',
                                     boxSizing: 'border-box',
-                                    cursor: 'move',
+                                    cursor: 'pointer',
                                     flexShrink: 0,
+                                }}
+                                onClick={() => {
+                                    setFrameMeteoView(true);
+                                    setSelectedMeteoAlert(alert);
                                 }}
                                 onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.01)'}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
@@ -208,7 +222,7 @@ useEffect(() => {
                             </button>
                         ))}
                     </div>
-}               
+}               {}
                 {isNoWarningMeteo(meteoAlerts)&&<div style={{marginTop: '200px'}}>Brak ostrzeżeń</div>}
                 <div style={{ flex: 1, padding: '24px', overflow: 'hidden' }}>
                     <div
@@ -224,5 +238,261 @@ useEffect(() => {
                 </div>
             </div>
         </div>
+        {frameMeteoView&&selectedMeteoAlert &&(<AllertMeteo onClose={()=>setFrameMeteoView(false)} meteo={selectedMeteoAlert} translateKey={translateKey}/>)}
+        {frameHydroView && selectedHydroAlert && (
+            <AllertHydro onClose={() => setFrameHydroView(false)} hydro={selectedHydroAlert} translateKey={translateKey} />
+        )}
+        </>
+    );
+}
+export function AllertMeteo({ onClose, meteo, translateKey }: { onClose: () => void, meteo: MeteoAllertDataProps, translateKey: Map<string, string> }) {
+    const nodeRef = useRef<HTMLDivElement>(null);
+    const downOnBackdrop = useRef(false);
+    return (
+        <aside
+            onMouseDown={(e) => { downOnBackdrop.current = e.target === e.currentTarget; }}
+            onClick={() => { if (downOnBackdrop.current) onClose?.(); }}
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                zIndex: 2000
+            }}
+        >
+            <Draggable nodeRef={nodeRef} handle=".drag-handle" bounds="parent">
+                <div
+                    ref={nodeRef}
+                    style={{
+                        position: 'absolute',
+                        width: '75vw',
+                        height: '75vh',
+                        backgroundColor: backgroudLevel(meteo.level),
+                        overflow: 'hidden',
+                        borderRadius: '16px',
+                        boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
+                    }}
+                >
+                    <div 
+                        className="drag-handle" 
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            height: '40px', 
+                            zIndex: 10,
+                            cursor: 'grab',
+                            backgroundColor: 'black',
+                            borderBottom: '1px solid #e0e0e0'
+                        }} 
+                    />
+                    
+                    <button
+                        type="button"
+                        aria-label="Zamknij"
+                        onClick={() => onClose?.()}
+                        style={{
+                            position: 'absolute',
+                            top: '8px',
+                            right: '8px',
+                            width: '24px',
+                            height: '24px',
+                            padding: 0,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: 'rgba(0, 0, 0, 0.45)',
+                            color: 'white',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            borderRadius: '50%',
+                            fontSize: '14px',
+                            lineHeight: 1,
+                            fontFamily: "'Roboto', sans-serif",
+                            cursor: 'pointer',
+                            zIndex: 20,
+                            transition: 'background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ff5252'}
+                        onMouseLeave={(e) => (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(0, 0, 0, 0.45)'}
+                    >
+                        ✕
+                    </button>
+                    <div style={{ 
+                        display: 'flex', flexDirection: 'column', height: '100%', width: '100%',
+                        padding: '60px 40px 40px 40px', boxSizing: 'border-box', color: 'black', overflowY: 'auto'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px', borderBottom: '2px solid rgba(0,0,0,0.1)', paddingBottom: '20px' }}>
+                            <img
+                                src={`/weather_icons/allert_icons/${meteo.eventName}.png`}
+                                alt="Icon"
+                                style={{ width: '100px', height: '100px', objectFit: 'contain', flexShrink: 0 }}
+                            />
+                            <div>
+                                <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 'bold' }}>
+                                    {setEventName(meteo.eventName, translateKey)}
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', fontSize: '16px', marginBottom: '20px' }}>
+                            <div><strong>{translateKey.get("warning-info-level")}</strong> {meteo.level}</div>
+                            <div><strong>{translateKey.get("warning-info-probability")}</strong> {meteo.probability}%</div>
+                            <div><strong>{translateKey.get("warning-info-valid-from")}</strong> {meteo.validFrom}</div>
+                            <div><strong>{translateKey.get("warning-info-valid-to")}</strong> {meteo.validTo}</div>
+                            <div><strong>{translateKey.get("warning-info-published")}</strong> {meteo.publishedAt}</div>
+                        </div>
+
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.4)', padding: '15px', borderRadius: '10px', marginBottom: '15px' }}>
+                            <strong>{translateKey.get("warning-info-content")}</strong>
+                            <p style={{ margin: '5px 0 0 0', lineHeight: '1.5' }}>{meteo.content}</p>
+                        </div>
+                        
+                        {meteo.comment && meteo.comment !== "Brak." && (
+                            <div style={{ fontStyle: 'italic', fontSize: '14px', marginBottom: '15px' }}>
+                                <strong>{translateKey.get("warning-info-comment")}</strong> {meteo.comment}
+                            </div>
+                        )}
+
+                        <div style={{ fontSize: '14px', marginTop: 'auto', paddingTop: '20px' }}>
+                            {meteo.province && meteo.province.length > 0 && (
+                                <div style={{ marginBottom: '10px' }}>
+                                    <strong>{translateKey.get("warning-info-provinces")}</strong> {meteo.province.join(", ")}
+                                </div>
+                            )}
+                            {meteo.country && meteo.country.length > 0 && (
+                                <div>
+                                    <strong>{translateKey.get("warning-info-counties")}</strong> {meteo.country.join(", ")}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </Draggable>
+        </aside>
+    );
+}
+export function AllertHydro({ onClose, hydro, translateKey }: { onClose: () => void, hydro: HydroAllertDataProps, translateKey: Map<string, string> }) {
+    const nodeRef = useRef<HTMLDivElement>(null);
+    const downOnBackdrop = useRef(false);
+    return (
+        <aside
+            onMouseDown={(e) => { downOnBackdrop.current = e.target === e.currentTarget; }}
+            onClick={() => { if (downOnBackdrop.current) onClose?.(); }}
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                zIndex: 2000
+            }}
+        >
+            <Draggable nodeRef={nodeRef} handle=".drag-handle" bounds="parent">
+                <div
+                    ref={nodeRef}
+                    style={{
+                        position: 'absolute',
+                        width: '75vw',
+                        height: '75vh',
+                        backgroundColor: backgroudLevel(hydro.level),
+                        overflow: 'hidden',
+                        borderRadius: '16px',
+                        boxShadow: '0 12px 40px rgba(0,0,0,0.6)'
+                    }}
+                >
+                    <div 
+                        className="drag-handle" 
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            height: '40px', 
+                            zIndex: 10,
+                            cursor: 'grab',
+                            backgroundColor: 'black',
+                            borderBottom: '1px solid #e0e0e0'
+                        }} 
+                    />
+                    
+                    <button
+                        type="button"
+                        aria-label="Zamknij"
+                        onClick={() => onClose?.()}
+                        style={{
+                            position: 'absolute',
+                            top: '8px',
+                            right: '8px',
+                            width: '24px',
+                            height: '24px',
+                            padding: 0,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: 'rgba(0, 0, 0, 0.45)',
+                            color: 'white',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            borderRadius: '50%',
+                            fontSize: '14px',
+                            lineHeight: 1,
+                            fontFamily: "'Roboto', sans-serif",
+                            cursor: 'pointer',
+                            zIndex: 20,
+                            transition: 'background-color 0.2s'
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#ff5252'}
+                        onMouseLeave={(e) => (e.currentTarget as HTMLButtonElement).style.backgroundColor = 'rgba(0, 0, 0, 0.45)'}
+                    >
+                        ✕
+                    </button>
+                    <div style={{ 
+                        display: 'flex', flexDirection: 'column', height: '100%', width: '100%',
+                        padding: '60px 40px 40px 40px', boxSizing: 'border-box', color: 'black', overflowY: 'auto'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '20px', borderBottom: '2px solid rgba(0,0,0,0.1)', paddingBottom: '20px' }}>
+                            <img
+                                src={`/weather_icons/allert_icons/${hydro.eventName}.png`}
+                                alt="Icon"
+                                style={{ width: '100px', height: '100px', objectFit: 'contain', flexShrink: 0 }}
+                            />
+                            <div>
+                                <h1 style={{ margin: 0, fontSize: '32px', fontWeight: 'bold' }}>
+                                    {setEventName(hydro.eventName, translateKey)}
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', fontSize: '16px', marginBottom: '20px' }}>
+                            <div><strong>{translateKey.get("warning-info-level")}</strong> {hydro.level}</div>
+                            <div><strong>{translateKey.get("warning-info-probability")}</strong> {hydro.probability}%</div>
+                            <div><strong>{translateKey.get("warning-info-valid-from")}</strong> {hydro.validFrom}</div>
+                            <div><strong>{translateKey.get("warning-info-valid-to")}</strong> {hydro.validTo}</div>
+                            <div><strong>{translateKey.get("warning-info-published")}</strong> {hydro.publishedAt}</div>
+                        </div>
+
+                        <div style={{ backgroundColor: 'rgba(255,255,255,0.4)', padding: '15px', borderRadius: '10px', marginBottom: '15px' }}>
+                            <strong>{translateKey.get("warning-info-content")}</strong>
+                            <p style={{ margin: '5px 0 0 0', lineHeight: '1.5' }}>{hydro.content}</p>
+                        </div>
+                        
+                        {hydro.comment && hydro.comment !== "Brak." && (
+                            <div style={{ fontStyle: 'italic', fontSize: '14px', marginBottom: '15px' }}>
+                                <strong>{translateKey.get("warning-info-comment")}</strong> {hydro.comment}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </Draggable>
+        </aside>
     );
 }

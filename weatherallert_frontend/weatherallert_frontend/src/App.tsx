@@ -23,10 +23,14 @@ export default function App() {
 }, [languageCode]);
     useEffect(() => {
         let canceled = false;
-        MeteoAllertDataCollector()
-            .then(data => { if (!canceled) setMeteoAlertsForMap(data); })
-            .catch(err => console.error("Błąd alertów dla mapy:", err));
-        return () => { canceled = true; };
+        const load = () => {
+            MeteoAllertDataCollector()
+                .then(data => { if (!canceled) setMeteoAlertsForMap([...data]); })
+                .catch(err => console.error("Błąd alertów dla mapy:", err));
+        };
+        load();
+        const timer = setInterval(load, 5 * 60 * 1000);
+        return () => { canceled = true; clearInterval(timer); };
     }, []);
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
