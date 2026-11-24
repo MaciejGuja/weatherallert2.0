@@ -9,6 +9,7 @@ import {MeteoAllertDataCollector, type MeteoAllertDataProps} from './WeatherAPI/
 export type ViewType = 'none' | 'conditions' | 'forecast' | 'allerts';
 export type LanguageCode = "pl" | "en" | "de";
 export default function App() {
+    const [loginInUse,setLoginInUse]=useState('');
     const [view, setView] = useState<ViewType>('none');
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [translateKey,setTranslateKey]=useState<Map<string,string>>(new Map());
@@ -34,10 +35,10 @@ export default function App() {
     }, []);
     return (
         <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
-            {!isLogin && <LoginView isLoginProps={isLogin} onLoginChange={setIsLogin} translateKey={translateKey}/>}
+            {!isLogin && <LoginView isLoginProps={isLogin} onLoginChange={setIsLogin} translateKey={translateKey} onLoginSet={setLoginInUse}/>}
             {isLogin && (
             <>      
-            <TopMenu onViewChanged={setView} onLogout={()=>setIsLogin(false)} translateKey={translateKey} onLanguageChange={setLanguageCode}/>
+            <TopMenu loginInUse={loginInUse} onViewChanged={setView} onLogout={()=>setIsLogin(false)} translateKey={translateKey} onLanguageChange={setLanguageCode}/>
             <div style={{
                 position: 'absolute',
                 top: 56,

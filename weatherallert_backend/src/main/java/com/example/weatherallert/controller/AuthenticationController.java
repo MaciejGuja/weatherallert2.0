@@ -35,4 +35,11 @@ public class AuthenticationController {
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Błędny login lub hasło");
     }
+    @PostMapping("/changePassword")
+    public ResponseEntity<String> changePassword(@RequestBody AuthRequest request){
+        if(authService.changePassword(request.login(), request.password())){
+            return ResponseEntity.ok("Zmieniono Hasło");
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Błąd przy zmianie hasła");
+    }
 }

@@ -51,4 +51,14 @@ public class AuthenticationService{
         return false;
     }
     }
+    public boolean changePassword(String login, String newPassword) {
+        HashDataDto x = new HashDataDto(login, newPassword);
+        String hashLogin = x.hashLogin();
+        String hashPassword = x.hashPassword();
+        if (!repository.existsById(hashLogin)) {
+            return false; 
+        }
+        int updatedRows = repository.updatePasswordByLogin(hashLogin, hashPassword);
+        return updatedRows > 0;
+}
 }

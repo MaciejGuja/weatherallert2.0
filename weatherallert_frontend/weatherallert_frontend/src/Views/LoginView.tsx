@@ -5,9 +5,10 @@ type LoginProps = {
     isLoginProps: boolean;
      onLoginChange: (isLoggedIn: boolean) => void;
     translateKey: Map<string,string>;
+    onLoginSet?: (login: string) => void;
 }
 
-export function LoginView({isLoginProps,onLoginChange,translateKey}:LoginProps) {
+export function LoginView({isLoginProps,onLoginChange,translateKey,onLoginSet}:LoginProps) {
     const [isLogin, setIsLogin] = useState<boolean>(false);
     const [responseMessage,setResponseMessage]=useState('');
     const [isRegisterOpen, setIsRegisterOpen]=useState(false);
@@ -15,15 +16,16 @@ export function LoginView({isLoginProps,onLoginChange,translateKey}:LoginProps) 
     const [password,setPassword]=useState('');
     const [regexError,setRegexError]=useState({login: '',password: ''});
     const handleLoginButton = async ()=>{
-        const result = await LoginAuthentication(login,password);
-        if(!(result.info==="Zalogowano")){
-            setResponseMessage(result.info);
+        const result = await LoginAuthentication(login,password,false);
+        if(!(result.info_k==="Zalogowano")){
+            setResponseMessage(result.info_k);
             setIsLogin(false);
             onLoginChange(false);
         }else{
             setResponseMessage("");
             setIsLogin(true);
             onLoginChange(true);
+            onLoginSet?.(login);
         }
     };
     useEffect(()=>{

@@ -9,8 +9,9 @@ type TopMenuProps = {
     onLogout: ()=>void;
     translateKey: Map<string, string>;
     onLanguageChange: (code: LanguageCode) => void;
+    loginInUse: string;
 };
-export function TopMenu({onViewChanged, onLogout,translateKey,onLanguageChange}: TopMenuProps){
+export function TopMenu({onViewChanged, onLogout,translateKey,onLanguageChange, loginInUse}: TopMenuProps){
     const [isSideSettingsOpen, setSettingsOpen]=useState(false);
     const [isTranslateSettingsOpen, setIsTranslateSettingsOpen]=useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
@@ -67,7 +68,7 @@ export function TopMenu({onViewChanged, onLogout,translateKey,onLanguageChange}:
                 
             </div>
             <SideSettingsMenu
-                        isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef} onLogout={()=>onLogout()} translateKey={translateKey}
+                        loginInUse={loginInUse} isOpen={isSideSettingsOpen} onClose={()=>setSettingsOpen(false)} toggleButtonRef={settingsBtnRef} onLogout={()=>onLogout()} translateKey={translateKey}
                     />
             <TranslateSettingsMenu
                         isOpen={isTranslateSettingsOpen} onClose={()=>setIsTranslateSettingsOpen(false)} toggleButtonRef={translateBtnRef} onLogout={()=>onLogout()} translateKey={translateKey} onLanguageChange={onLanguageChange}
