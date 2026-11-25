@@ -32,7 +32,8 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const [activeDayIndexLeft, setActiveDayIndexLeft] = useState(0);
     const [inputValue, setInputValue] = useState('');
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const scrollContainerRefLeft = useRef<HTMLDivElement>(null);
+    const scrollContainerRefRight = useRef<HTMLDivElement>(null);
     const days = Array.from({ length: TOTAL_DAYS }, (_, index) => index);
     const handleSearch = () => {
         if (inputValue.trim()) {
@@ -191,7 +192,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     }}
                 >
                     <button
-                        onClick={() => scrollContainerRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                        onClick={() => scrollContainerRefLeft.current?.scrollBy({ left: -150, behavior: 'smooth' })}
                         style={{
                             background: 'transparent',
                             border: 'none',
@@ -205,7 +206,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     </button>
 
                     <div
-                        ref={scrollContainerRef}
+                        ref={scrollContainerRefLeft}
                         style={{
                             display: 'flex',
                             overflowX: 'auto',
@@ -243,7 +244,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     </div>
 
                     <button
-                        onClick={() => scrollContainerRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                        onClick={() => scrollContainerRefLeft.current?.scrollBy({ left: 150, behavior: 'smooth' })}
                         style={{
                             background: 'transparent',
                             border: 'none',
@@ -320,7 +321,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     }}
                 >
                     <button
-                        onClick={() => scrollContainerRef.current?.scrollBy({ left: -150, behavior: 'smooth' })}
+                        onClick={() => scrollContainerRefRight.current?.scrollBy({ left: -150, behavior: 'smooth' })}
                         style={{
                             background: 'transparent',
                             border: 'none',
@@ -334,7 +335,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     </button>
 
                     <div
-                        ref={scrollContainerRef}
+                        ref={scrollContainerRefRight}
                         style={{
                             display: 'flex',
                             overflowX: 'auto',
@@ -372,7 +373,7 @@ export function WeatherForecastView({translateKey}:WeatherForecastViewProps) {
                     </div>
 
                     <button
-                        onClick={() => scrollContainerRef.current?.scrollBy({ left: 150, behavior: 'smooth' })}
+                        onClick={() => scrollContainerRefRight.current?.scrollBy({ left: 150, behavior: 'smooth' })}
                         style={{
                             background: 'transparent',
                             border: 'none',
